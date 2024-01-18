@@ -151,5 +151,5 @@ supervignette = calculation_of_the_supervignette (kw, years_since_the_registrati
 prize = calculation_of_the_stamp_duty (environmental_class, kw)
 prize_1 = calculation_of_the_supervignette (kw, years_since_the_registration_of_a_motor_vehicle)
 
-print ("The stamp duty is: ", prize)
-print ("The supervignette is: ", prize_1)
+print (f"The stamp duty is: {prize}")
+print (f"The supervignette is: {prize_1}")
