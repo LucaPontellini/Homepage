@@ -22,51 +22,70 @@
 #b) Utilizzando le funzioni precedentemente definite al fine di gestire le varie fasi del gioco.
 
 import random
+
+def generate_folder (id_: int, number_of_folders: int) -> list:
     
-    #crea una lista con le caratteristiche della cartella da cui si prende in modo casuale un numero per ogni colonna
-    #usa un random per pescare i numeri da mettere nella tabella
-    #trova un modo per stampare ordinatamente la cartella con tutti i numeri all'interno tramite un ciclo che varia con il numero delle cartelle
+    """This function simulates a number of bingo cards chosen by the user"""
 
-#La cartella ha le seguenti caratteristiche:
-#1) 3 righe e 9 colonne
-#2) 15 numeri in totale (5 per riga)
-#3) ogni colonna ha solo i numeri della decina di riferimento: la prima dall'1 al 10, la seconda dal 11 al 20....l'ultima dall'81 al 90
+    folder = [[0]*9, [0]*9, [0]*9]
 
-#random.randint (1, 90) #usalo per pescare 15 numeri
-#total_number = 90
+    for y in range (9):
+        for z in range (3):
+            while True:
 
-import random
+                number = random.randint ((y*10)+1,(y+1)*10)
+                number_present = False
+                
+                for sublist in folder:
+                    if number in sublist:
 
-def generate_folder (id_: int, number_of_the_folders: int) -> list:
+                        number_present = True
+                        break
+                    
+                if not number_present:
+                    folder [z][y] = number
+                    break
+    
+    numbers_to_remove = 12
 
-    folder = []
-
-    for y in range (15):
+    for t in range (numbers_to_remove):
         while True:
 
-            num = random.randint (1, 90)
+            row = random.randint (0,2)
+            column = random.randint (0,8)
 
-            if num not in folder:
-                folder.append (num)
+            if folder [row][column] != 0:
+
+                folder [row][column] = 0
                 break
 
-    folder.sort ()
+    for y in range (9):
 
-    print (f"This is your game folder: {id_}: {folder}")
+        column = []
+
+        for z in range (3):
+
+            column.append (folder [z][y])
+        column.sort ()
+
+        for z in range (3):
+            folder [z][y] = column [z]
+
     return folder
 
-number_of_the_folders = int(input("Enter the number of folder you want to have during the game: '"))
+number_of_folders = int (input ("Enter the number of folders you want to have during the game: '"))
 
-for id_ in range (number_of_the_folders):
-    generate_folder (id_, number_of_the_folders)
+for id_ in range (number_of_folders):
 
-#trova un modo per disporre i numeri in tre liste in modo tale da formare una sorta di tabella:
-#[                          ]
-#[                          ]
-#[                          ]
-#una cosa così deve risultare in output
+    folder = generate_folder (id_, number_of_folders)
+    print (f"\nThis is your game folder: {id_}")
+
+    for k in folder:
+        print (k)
 
 def drawn_numbers (billboard: list, numbers_drawn: list) -> list:
+
+    """This function simulates a Tombola billboard"""
     
     while len (numbers_drawn) < 90:
 
@@ -77,7 +96,16 @@ def drawn_numbers (billboard: list, numbers_drawn: list) -> list:
         print ("--------------------------------------------------")
         print (f"The drawn number is: {num}.\nThe total drawn numbers are: {len (numbers_drawn)}")
         print ("--------------------------------------------------")
-    
+
+        while True:
+
+            answer_1 = str (input ("Press 'Enter' to draw another number: '"))
+
+            if answer_1 == "":
+                break
+            
+            else: print ("Error: Invalid response. Press 'Enter' to continue")
+
     return numbers_drawn
 
 list_1 = [1,2,3,4,5,6,7,8,9,10]
@@ -94,10 +122,3 @@ billboard = list_1 + list_2 + list_3 + list_4 + list_5 + list_6 + list_7 + list_
 numbers_drawn = []
     
 drawn_numbers (billboard, numbers_drawn)
-
-#massimo = 3 numeri per ogni lista
-#minimo = 1 numero per ogni lista         
-#pesca 15 numeri dal dizionario dict_ contenente le liste
-
-#dei 90 numeri, tramite un ciclo, ne peschi 15 a caso e li metti nella cartella
-#dizionario = chiave, valore
