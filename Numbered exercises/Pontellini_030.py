@@ -37,19 +37,26 @@ import random
 
 import random
 
-def generate_folder(id_: int, number_of_the_folders: int) -> list:
+def generate_folder (id_: int, number_of_the_folders: int) -> list:
+
     folder = []
-    for y in range(15):
+
+    for y in range (15):
         while True:
-            num = random.randint(1, 90)
+
+            num = random.randint (1, 90)
+
             if num not in folder:
-                folder.append(num)
+                folder.append (num)
                 break
-    folder.sort()
-    print(f"This is your game folder: {id_}: {folder}")
+
+    folder.sort ()
+
+    print (f"This is your game folder: {id_}: {folder}")
     return folder
 
 number_of_the_folders = int(input("Enter the number of folder you want to have during the game: '"))
+
 for id_ in range(number_of_the_folders):
     generate_folder(id_, number_of_the_folders)
 
