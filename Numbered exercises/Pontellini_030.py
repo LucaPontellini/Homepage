@@ -35,37 +35,24 @@ import random
 #random.randint (1, 90) #usalo per pescare 15 numeri
 #total_number = 90
 
-def generate_folder (id_: int) -> list:
+import random
 
+def generate_folder(id_: int, number_of_the_folders: int) -> list:
     folder = []
-
-    for y in range (15):
+    for y in range(15):
         while True:
-        
-            num = random.randint (1, 90)
-
+            num = random.randint(1, 90)
             if num not in folder:
-            
-                folder.append (num)
+                folder.append(num)
                 break
-            
-            elif num in folder:
-                pass
-            
-            else: print ("Error")
-    
-    if number_of_the_folders == int (number_of_the_folders):
+    folder.sort()
+    print(f"This is your game folder: {id_}: {folder}")
+    return folder
 
-        folder.sort ()
-        print (f"This is your game folder: {id_}: {folder}")
-        return folder
-    
-    else: print ("Error")
-    
-number_of_the_folders = int (input ("Enter the number of folder you want to have during the game: '"))
+number_of_the_folders = int(input("Enter the number of folder you want to have during the game: '"))
+for id_ in range(number_of_the_folders):
+    generate_folder(id_, number_of_the_folders)
 
-for id_ in range (number_of_the_folders):
-    generate_folder (id_)
 
 #trova un modo per disporre i numeri in tre liste in modo tale da formare una sorta di tabella:
 #[                          ]
