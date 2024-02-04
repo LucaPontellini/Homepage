@@ -57,8 +57,8 @@ def generate_folder (id_: int, number_of_the_folders: int) -> list:
 
 number_of_the_folders = int(input("Enter the number of folder you want to have during the game: '"))
 
-for id_ in range(number_of_the_folders):
-    generate_folder(id_, number_of_the_folders)
+for id_ in range (number_of_the_folders):
+    generate_folder (id_, number_of_the_folders)
 
 #trova un modo per disporre i numeri in tre liste in modo tale da formare una sorta di tabella:
 #[                          ]
