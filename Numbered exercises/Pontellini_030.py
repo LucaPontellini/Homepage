@@ -19,7 +19,7 @@
 
 #Realizzare un programma che implementi la logica di funzionamento:
 #a) Utilizzando le opportune variabili di stato (es. una lista di cartelle, la lista dei numeri estratti, lo stato del gioco(ambo, terno,....))
-#b) Utilizzando le funzioni precedentemente definite al fine di gestire le varie fasi del gioco
+#b) Utilizzando le funzioni precedentemente definite al fine di gestire le varie fasi del gioco.
 
 import random
 
