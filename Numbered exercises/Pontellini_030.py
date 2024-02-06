@@ -152,3 +152,5 @@ def folder_control (folder: list, numbers_drawn: []) -> list [bool]:
                         print ("You've done Bingo!")
                     
                     else: print ("Error")
+    
+    return folder_control ()
