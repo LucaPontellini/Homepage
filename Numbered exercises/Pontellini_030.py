@@ -22,6 +22,7 @@
 #b) Utilizzando le funzioni precedentemente definite al fine di gestire le varie fasi del gioco.
 
 import random
+import termcolor
 
 def generate_folder (id_: int, number_of_folders: int) -> list:
     
