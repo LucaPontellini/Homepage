@@ -122,3 +122,33 @@ billboard = list_1 + list_2 + list_3 + list_4 + list_5 + list_6 + list_7 + list_
 numbers_drawn = []
     
 drawn_numbers (billboard, numbers_drawn)
+
+#3) def controlla_cartella (cartella: dict, numeri_estratti []) -> list [bool]:
+#Data come parametro una cartella e la lista di numeri estratti restituisca lo stato di tale cartella.
+#Potrebbe restituire una lista di bool dove l'elemento 0 si riferisce all'ambo, l'1 al terno fino ad arrivare al 4 che si riferisce alla tombola/bingo.
+#es.
+#[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
+
+def folder_control (folder: list, numbers_drawn []) -> list [bool]:
+
+    for folder in range (number_of_folders):
+        for z in range (3):
+            while True:
+
+                if numbers_drawn in folder:
+                    if number_of_folders in folder == 2:
+                        print ("You've done Ambo!")
+                
+                    elif number_of_folders in folder == 3:
+                        print ("You've done Tern!")
+                    
+                    elif number_of_folders in folder == 4:
+                        print ("You've done Quadruplet!")
+                    
+                    elif number_of_folders in folder == 5:
+                        print ("You've done Five!")
+                    
+                    elif number_of_folders in folder == 27:
+                        print ("You've done Bingo!")
+                    
+                    else: print ("Error")
