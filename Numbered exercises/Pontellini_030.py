@@ -129,7 +129,7 @@ drawn_numbers (billboard, numbers_drawn)
 #es.
 #[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
 
-def folder_control (folder: list, numbers_drawn []) -> list [bool]:
+def folder_control (folder: list, numbers_drawn: []) -> list [bool]:
 
     for folder in range (number_of_folders):
         for z in range (3):
