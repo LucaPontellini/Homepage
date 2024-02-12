@@ -130,7 +130,7 @@ drawn_numbers (billboard, numbers_drawn)
 #es.
 #[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
 
-def check_folder(folder: list, numbers_drawn: list) -> list:
+def check_folder (folder: list, numbers_drawn: list) -> list:
 
     """This function checks the status of the folder"""
 
