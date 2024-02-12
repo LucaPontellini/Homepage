@@ -124,12 +124,6 @@ numbers_drawn = []
     
 drawn_numbers (billboard, numbers_drawn)
 
-#3) def controlla_cartella (cartella: dict, numeri_estratti []) -> list [bool]:
-#Data come parametro una cartella e la lista di numeri estratti restituisca lo stato di tale cartella.
-#Potrebbe restituire una lista di bool dove l'elemento 0 si riferisce all'ambo, l'1 al terno fino ad arrivare al 4 che si riferisce alla tombola/bingo.
-#es.
-#[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
-
 def check_folder (folder: list, numbers_drawn: list) -> list:
 
     """This function checks the status of the folder"""
