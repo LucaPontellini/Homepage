@@ -130,26 +130,27 @@ drawn_numbers (billboard, numbers_drawn)
 #es.
 #[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
 
-def folder_control (folder: list, numbers_drawn: []) -> list [bool]:
+def check_folder(folder: list, numbers_drawn: list) -> list:
 
-    for folder in range (number_of_folders):
-        for z in range (3):
-            while True:
+    """This function checks the status of the folder"""
 
-                if numbers_drawn in folder:
-                    if number_of_folders in folder == 2:
-                        print ("You've done Ambo!")
-                
-                    elif number_of_folders in folder == 3:
-                        print ("You've done Tern!")
-                    
-                    elif number_of_folders in folder == 4:
-                        print ("You've done Quadruplet!")
-                    
-                    elif number_of_folders in folder == 5:
-                        print ("You've done Five!")
-                    
-                    elif number_of_folders in folder == 27:
-                        print ("You've done Bingo!")
-                    
-                    else: print ("Error")
+    status = [False] * 5
+    numbers_found = 0
+
+    for row in folder:
+        for number in row:
+
+            if number in numbers_drawn:
+                numbers_found += 1
+
+    if numbers_found >= 2:
+        status[0] = True
+    if numbers_found >= 3:
+        status[1] = True
+    if numbers_found >= 4:
+        status[2] = True
+    if numbers_found >= 5:
+        status[3] = True
+    if numbers_found == 15:
+        status[4] = True
+    return status
