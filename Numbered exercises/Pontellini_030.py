@@ -94,11 +94,17 @@ def drawn_numbers (billboard: list, numbers_drawn: list) -> list:
         billboard.remove (num)
         numbers_drawn.append (num)
 
+        for number_drawn in billboard:
+            for number in folder:
+                
+                if number_drawn in folder:
+                    number = termcolor.colored (number, 'light_red')
+
         print ("--------------------------------------------------")
         print (f"The drawn number is: {num}.\nThe total drawn numbers are: {len (numbers_drawn)}")
         print ("--------------------------------------------------")
 
-        while True:
+        while len (numbers_drawn) < 90:
 
             answer_1 = str (input ("Press 'Enter' to draw another number: '"))
 
@@ -126,6 +132,7 @@ drawn_numbers (billboard, numbers_drawn)
 
 def check_folder(folder: list, numbers_drawn: list) -> list[bool]:
 
+<<<<<<< HEAD
     """This function checks the status of the folder"""
 
     count = [0, 0, 0]
@@ -153,3 +160,6 @@ def check_folder(folder: list, numbers_drawn: list) -> list[bool]:
         return [True, False, False, False, False]
     
     else: return [False, False, False, False, False]
+=======
+    """This function checks the status of the folder"""
+>>>>>>> 345421e (edit)
