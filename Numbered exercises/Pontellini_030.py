@@ -136,6 +136,7 @@ def check_folder (folder: list, numbers_drawn: list) -> list:
 
             if number in numbers_drawn:
                 numbers_found += 1
+<<<<<<< HEAD
                 row [i] = termcolor.colored (number, 'red')
 
     if numbers_found >= 2:
@@ -149,3 +150,20 @@ def check_folder (folder: list, numbers_drawn: list) -> list:
     if numbers_found == 15:
         status [4] = True
     return status
+=======
+                row = termcolor.colored (number, 'red')
+
+    if numbers_found >= 2:
+        status [0] = "Ambo"
+    if numbers_found >= 3:
+        status [1] = "Terno"
+    if numbers_found >= 4:
+        status [2] = "Quaterna"
+    if numbers_found >= 5:
+        status [3] = "Cinquina"
+    if numbers_found == 15:
+        status [4] = "Tombola"
+    return status
+
+print (check_folder (folder,numbers_drawn))
+>>>>>>> 4134bd6 (edit)
