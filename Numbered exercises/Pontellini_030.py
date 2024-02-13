@@ -124,46 +124,32 @@ numbers_drawn = []
     
 drawn_numbers (billboard, numbers_drawn)
 
-def check_folder (folder: list, numbers_drawn: list) -> list:
+def check_folder(folder: list, numbers_drawn: list) -> list[bool]:
 
     """This function checks the status of the folder"""
 
-    status = [False] * 5
-    numbers_found = 0
+    count = [0, 0, 0]
 
-    for row in folder:
-        for number in row:
+    for row in range (3):
+        for column in range (9):
 
-            if number in numbers_drawn:
-                numbers_found += 1
-<<<<<<< HEAD
-                row [i] = termcolor.colored (number, 'red')
-
-    if numbers_found >= 2:
-        status [0] = True
-    if numbers_found >= 3:
-        status [1] = True
-    if numbers_found >= 4:
-        status [2] = True
-    if numbers_found >= 5:
-        status [3] = True
-    if numbers_found == 15:
-        status [4] = True
-    return status
-=======
-                row = termcolor.colored (number, 'red')
-
-    if numbers_found >= 2:
-        status [0] = "Ambo"
-    if numbers_found >= 3:
-        status [1] = "Terno"
-    if numbers_found >= 4:
-        status [2] = "Quaterna"
-    if numbers_found >= 5:
-        status [3] = "Cinquina"
-    if numbers_found == 15:
-        status [4] = "Tombola"
-    return status
-
-print (check_folder (folder,numbers_drawn))
->>>>>>> 4134bd6 (edit)
+            if folder [row] [column] in numbers_drawn:
+                count [row] += 1
+                folder [row] [column] = termcolor.colored (folder [row] [column], 'red')
+    
+    if sum (count) == 15:
+        return [True, True, True, True, True]
+    
+    elif max (count) == 5:
+        return [True, True, True, True, False]
+    
+    elif max (count) == 4:
+        return [True, True, True, False, False]
+    
+    elif max (count) == 3:
+        return [True, True, False, False, False]
+    
+    elif max (count) == 2:
+        return [True, False, False, False, False]
+    
+    else: return [False, False, False, False, False]
