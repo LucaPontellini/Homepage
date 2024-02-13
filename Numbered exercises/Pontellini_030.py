@@ -124,32 +124,28 @@ numbers_drawn = []
     
 drawn_numbers (billboard, numbers_drawn)
 
-#3) def controlla_cartella (cartella: dict, numeri_estratti []) -> list [bool]:
-#Data come parametro una cartella e la lista di numeri estratti restituisca lo stato di tale cartella.
-#Potrebbe restituire una lista di bool dove l'elemento 0 si riferisce all'ambo, l'1 al terno fino ad arrivare al 4 che si riferisce alla tombola/bingo.
-#es.
-#[True, True, False, False, False] per una cartella che ha fatto terno (naturalmente per fare terno bisogna aver fatto anche ambo....)
+def check_folder (folder: list, numbers_drawn: list) -> list:
 
-def folder_control (folder: list, numbers_drawn: []) -> list [bool]:
+    """This function checks the status of the folder"""
 
-    for folder in range (number_of_folders):
-        for z in range (3):
-            while True:
+    status = [False] * 5
+    numbers_found = 0
 
-                if numbers_drawn in folder:
-                    if number_of_folders in folder == 2:
-                        print ("You've done Ambo!")
-                
-                    elif number_of_folders in folder == 3:
-                        print ("You've done Tern!")
-                    
-                    elif number_of_folders in folder == 4:
-                        print ("You've done Quadruplet!")
-                    
-                    elif number_of_folders in folder == 5:
-                        print ("You've done Five!")
-                    
-                    elif number_of_folders in folder == 27:
-                        print ("You've done Bingo!")
-                    
-                    else: print ("Error")
+    for row in folder:
+        for number in row:
+
+            if number in numbers_drawn:
+                numbers_found += 1
+                row [i] = termcolor.colored (number, 'red')
+
+    if numbers_found >= 2:
+        status [0] = True
+    if numbers_found >= 3:
+        status [1] = True
+    if numbers_found >= 4:
+        status [2] = True
+    if numbers_found >= 5:
+        status [3] = True
+    if numbers_found == 15:
+        status [4] = True
+    return status
