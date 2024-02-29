@@ -102,13 +102,6 @@ invoices = [
 },
 ]
 
-#1) Mostri tutte le fatture
-#2) Permetta di aggiungere ad una fattura selezionata una nuova chiave "importo_scontato" 
-#al quale associa il valore dell'importo scontato in base alla percentuale indicata alla chiave "sconto_fattura";
-#3)Permetta di aggiungere una fattura alla lista (aggiornando il file JSON)
-
-#- Definire apposite funzioni di lettura e scrittura da/sul file JSON.
-#- Definire eventuali altre funzioni utili ai fini dell'esercizio.
 def read_json_file_as_list (file_name: str) -> list:
 
     '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list.'''
