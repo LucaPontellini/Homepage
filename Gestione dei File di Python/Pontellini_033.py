@@ -58,6 +58,7 @@
 #]
 
 import json
+import os
 
 invoices = [
 {"id":"Monticelli",
@@ -104,21 +105,24 @@ invoices = [
 
 def read_json_file_as_list (file_name: str) -> list:
 
-    '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list.'''
+    '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list'''
+
+    if not os.path.exists (file_name):
+        return []
 
     with open (file_name, "r") as json_file:
         try:
             mylist = json.load (json_file)
         except:
             mylist = []
+
     return mylist
 
 def write_list_to_json_file (file_name: str, list_: list) -> None:
-    
+
     """Writes a list to a JSON file"""
 
     with open (file_name, "w") as json_file:
-
         json.dump (list_, json_file, indent=4)
 
 def show_invoices (list_: list) -> None:
@@ -132,8 +136,16 @@ def add_invoice (invoices: list, file_name: str) -> list:
 
     """Adds a new invoice to the list and writes the list to a JSON file"""
 
-    invoice_to_add = {"id": "Quattrocchi", "amount": 128.54, "invoice_discount": 15}
-    invoices.append (invoice_to_add)
+    number_of_invoice_to_add = int (input ("How many invoices do you want to add? '"))
+
+    for _ in range (number_of_invoice_to_add):
+        
+        id_ = str (input ("Enter the ID: '"))
+        amount = float (input ("Enter the amount: '"))
+        invoice_discount = int (input ("Enter the discounted amount: '"))
+
+        invoice_to_add = {"id": id_, "amount": amount, "invoice_discount": invoice_discount}
+        invoices.append (invoice_to_add)
     write_list_to_json_file (file_name, invoices)
     return invoices
 
@@ -141,19 +153,23 @@ def add_discounted_amount (invoices: list, idx: int) -> list:
 
     """Adds a discounted amount to an invoice in the list"""
 
-    invoices [idx]["discounted_amount"] = invoices [idx]["amount"] - (invoices [idx]["amount"] * invoices [idx]["invoice_discount"] / 100)
+    invoices [idx]["discounted_amount"] = invoices [idx]["amount"] - (invoices [idx]["amount"] * invoices[idx]["invoice_discount"] / 100)
     return invoices
 
 def main ():
-    
+
     """Main function that reads invoices from a JSON file, shows them, adds a new invoice, adds a discounted amount to the first invoice, and writes the updated list back to the file"""
 
     file_name = "exercise_033.json"
     invoices = read_json_file_as_list (file_name)
+
+    if not invoices:
+        invoices = invoices
+        write_list_to_json_file (file_name, invoices)
     show_invoices (invoices)
     invoices = add_invoice (invoices, file_name)
     invoices = add_discounted_amount (invoices, 0)
     write_list_to_json_file (file_name, invoices)
 
 if __name__ == "__main__":
-    main ()
+    main()
