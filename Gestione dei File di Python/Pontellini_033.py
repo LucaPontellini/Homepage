@@ -107,9 +107,6 @@ def read_json_file_as_list (file_name: str) -> list:
 
     '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list'''
 
-    if not os.path.exists (file_name):
-        return invoices
-
     with open (file_name, "r") as json_file:
         try:
             mylist = json.load (json_file)
@@ -125,7 +122,7 @@ def write_list_to_json_file (file_name: str, list_: list) -> None:
     with open (file_name, "w") as json_file:
         json.dump (list_, json_file, indent=4)
 
-def show_invoices (list_: list) -> None:
+def show_invoices (invoices: list) -> None:
 
     """Prints all invoices in the list"""
 
@@ -163,10 +160,8 @@ def main ():
 
     file_name = "exercise_033.json"
     invoices = read_json_file_as_list (file_name)
-
-    if not invoices:
-        invoices = invoices
-        write_list_to_json_file (file_name, invoices)
+    
+    write_list_to_json_file (file_name, invoices)
     show_invoices (invoices)
     invoices = add_invoice (invoices, file_name)
     invoices = add_discounted_amount (invoices, 0)
