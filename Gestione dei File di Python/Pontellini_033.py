@@ -58,7 +58,6 @@
 #]
 
 import json
-import os
 
 invoices = [
 {"id":"Monticelli",
@@ -160,7 +159,7 @@ def main ():
 
     file_name = "exercise_033.json"
     invoices = read_json_file_as_list (file_name)
-    
+
     write_list_to_json_file (file_name, invoices)
     show_invoices (invoices)
     invoices = add_invoice (invoices, file_name)
