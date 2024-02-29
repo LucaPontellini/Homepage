@@ -99,7 +99,7 @@ invoices = [
 {"id":"Santini",
 "amount": 245.78,
 "invoice_discount": 22
-},
+}
 ]
 
 def read_json_file_as_list (file_name: str) -> list:
