@@ -102,7 +102,7 @@ invoices = [
 },
 ]
 
-#1) Mostri tutte le fatture 
+#1) Mostri tutte le fatture
 #2) Permetta di aggiungere ad una fattura selezionata una nuova chiave "importo_scontato" 
 #al quale associa il valore dell'importo scontato in base alla percentuale indicata alla chiave "sconto_fattura";
 #3)Permetta di aggiungere una fattura alla lista (aggiornando il file JSON)
