@@ -122,7 +122,7 @@ def write_list_to_json_file (file_name: str, list_: list) -> None:
 
     """Writes a list to a JSON file"""
 
-    with open (file_name, "w") as json_file:
+    with open (file_name, "a") as json_file:
         json.dump (list_, json_file, indent=4)
 
 def show_invoices (list_: list) -> None:
