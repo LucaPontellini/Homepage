@@ -58,7 +58,6 @@
 #]
 
 import json
-import os
 
 invoices = [
 {"id":"Monticelli",
@@ -106,9 +105,6 @@ invoices = [
 def read_json_file_as_list (file_name: str) -> list:
 
     '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list'''
-
-    if not os.path.exists (file_name):
-        return []
 
     with open (file_name, "r") as json_file:
         try:
