@@ -1,0 +1,13 @@
+[
+    {
+        "id": "NewUser",
+        "amount": 300.0,
+        "invoice_discount": 10,
+        "discounted_amount": 270.0
+    },
+    {
+        "id": "NewUser",
+        "amount": 300.0,
+        "invoice_discount": 10
+    }
+]
