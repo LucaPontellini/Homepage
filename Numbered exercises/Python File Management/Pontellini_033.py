@@ -144,16 +144,9 @@ def add_discounted_amount (invoices: list, idx: int) -> list:
     invoices [idx]["discounted_amount"] = invoices [idx]["amount"] - (invoices [idx]["amount"] * invoices [idx]["invoice_discount"] / 100)
     return invoices
 
-def main ():
-    
-    """Main function that reads invoices from a JSON file, shows them, adds a new invoice, adds a discounted amount to the first invoice, and writes the updated list back to the file"""
-
-    file_name = "exercise_033.json"
-    invoices = read_json_file_as_list (file_name)
-    show_invoices (invoices)
-    invoices = add_invoice (invoices, file_name)
-    invoices = add_discounted_amount (invoices, 0)
-    write_list_to_json_file (file_name, invoices)
-
-if __name__ == "__main__":
-    main ()
+file_name = "exercise_033.json"
+invoices = read_json_file_as_list (file_name)
+show_invoices (invoices)
+invoices = add_invoice (invoices, file_name)
+invoices = add_discounted_amount (invoices, 0)
+write_list_to_json_file (file_name, invoices)
