@@ -108,7 +108,7 @@ def read_json_file_as_list (file_name: str) -> list:
     '''This function reads a JSON file and returns its content as a list. If there's a problem reading the file, it returns an empty list'''
 
     if not os.path.exists (file_name):
-        return []
+        return invoices
 
     with open (file_name, "r") as json_file:
         try:
@@ -146,7 +146,7 @@ def add_invoice (invoices: list, file_name: str) -> list:
 
         invoice_to_add = {"id": id_, "amount": amount, "invoice_discount": invoice_discount}
         invoices.append (invoice_to_add)
-        
+
     write_list_to_json_file (file_name, invoices)
     return invoices
 
@@ -173,4 +173,4 @@ def main ():
     write_list_to_json_file (file_name, invoices)
 
 if __name__ == "__main__":
-    main()
+    main ()
