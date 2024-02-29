@@ -129,7 +129,7 @@ def show_invoices (list_: list) -> None:
 
     """Prints all invoices in the list"""
 
-    for invoice in list_:
+    for invoice in invoices:
         print (invoice)
 
 def add_invoice (invoices: list, file_name: str) -> list:
