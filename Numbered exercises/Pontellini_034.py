@@ -14,7 +14,7 @@
 #Ricordarsi di etichettare l'asse x, l'asse y e di fornire un titolo per ogni grafico. Visualizza tutti i grafici alla fine.
 
 import argparse
-import matplotlib.pyplot as plt
+import matplotlib
 
 #python plot_functions.py --linear --polinomial --exponential number    #script
 
