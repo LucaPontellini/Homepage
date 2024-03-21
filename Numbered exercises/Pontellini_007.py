@@ -1,8 +1,8 @@
 #Dati in input tre numeri, mostra a video il maggiore.
 
-num1 = int (input ("Enter one number: '"))
-num2 = int (input ("Enter one number: '"))
-num3 = int (input ("Enter one number: '"))
+num1 = float (input ("Enter one number: '"))
+num2 = float (input ("Enter one number: '"))
+num3 = float (input ("Enter one number: '"))
 
 if num1 > num2 and num1 > num3:
     print ("The first number is greater than the second and the third")

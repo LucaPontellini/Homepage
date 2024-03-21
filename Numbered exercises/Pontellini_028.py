@@ -27,6 +27,9 @@
 #Dopo i 15 anni pagano 3 euro per ogni kW oltre i 185
 #Dopo i 20 anni non pagano il superbollo
 
+from cgi import print_arguments
+
+
 def user_input (environmental_class: int , kw: int , years_since_the_registration_of_a_motor_vehicle: int) -> tuple:
 
     '''The parameters of the environmental class, the kW and the registration of the vehicle are entered'''
@@ -50,63 +53,70 @@ def calculation_of_the_stamp_duty (environmental_class: int , kw: int) -> list [
 
     '''Depending on the environmental class, kw and registration of the vehicle you enter, it calculates the vehicle stamp duty'''
 
-    prize = None
-
     if environmental_class == 0:
-        
         if kw >= 0 and kw <= 100:
+
             prize = 3 * kw
-        
-        elif kw > 100:
-            prize = 3 * 100 + 4.50 * (kw - 100)
-        
-        else: print ("Error")
-        return None
+            return prize
 
+        elif kw >= 100:
+
+            prize = 4.50 * kw
+            return prize
+    
+        else: print ("Error")
+    
     elif environmental_class == 1:
-
         if kw >= 0 and kw <= 100:
+
             prize = 2.9 * kw
+            return prize
 
-        elif kw > 100:
-            prize = 2.9 * 100 + 4.35 * (kw - 100)
+        elif kw >= 100:
+
+            prize = 4.35 * kw
+            return prize
     
         else: print ("Error")
-        return None
-    
+
     elif environmental_class == 2:
-
         if kw >= 0 and kw <= 100:
-            prize = 2.8 * kw
 
-        elif kw > 100:
-            prize = 2.8 * 100 + 4.20 * (kw - 100)
+            prize = 2.8 * kw
+            return prize
+
+        elif kw >= 100:
+
+            prize = 4.20 * kw
+            return prize
     
         else: print ("Error")
-        return None
     
     elif environmental_class == 3:
-
         if kw >= 0 and kw <= 100:
-            prize = 2.7 * kw
 
-        elif kw > 100:
-            prize = 2.7 * 100 + 4.05 * (kw - 100)
+            prize = 2.7 * kw
+            return prize
+
+        elif kw >= 100:
+
+            prize = 4.05 * kw
+            return prize
     
         else: print ("Error")
-        return None
     
     elif environmental_class == 4 or environmental_class == 5 or environmental_class == 6:
         if kw >= 0 and kw <= 100:
 
             prize = 2.58 * kw
+            return prize
 
         elif kw >= 100:
 
-            prize = 2.58 * 100 + 3.87 * (kw - 100)
+            prize = 3.87 * kw
+            return prize
     
         else: print ("Error")
-        return None
     
     else: print ("The environmental class of the vehicle entered does not correspond to the data provided")
 
@@ -120,36 +130,31 @@ def calculation_of_the_supervignette (kw: int, years_since_the_registration_of_a
            After 10 years they pay 6 euros for each kW over 185
            After the age of 15 they pay 3 euros for each kW over 185
            After the age of 20 they do not pay the supervignette""")
-
+    
     if years_since_the_registration_of_a_motor_vehicle <= 5 and kw > 185:
 
-        prize_1 = (kw - 185) * 20
+        prize_1 = 20 * kw
+        return prize_1
 
     elif years_since_the_registration_of_a_motor_vehicle > 5 and years_since_the_registration_of_a_motor_vehicle <10 and kw > 185:
 
-        prize_1 = (kw - 185) * 12
+        prize_1 = 12 * kw
+        return prize_1
     
     elif years_since_the_registration_of_a_motor_vehicle > 10 and years_since_the_registration_of_a_motor_vehicle <20 and kw > 185:
 
-        prize_1 = (kw - 185) * 6
-    
-    elif years_since_the_registration_of_a_motor_vehicle > 15 and years_since_the_registration_of_a_motor_vehicle <20 and kw > 185:
-
-        prize_1 = (kw - 185) * 3
+        prize_1 = 6 * kw
+        return prize_1
     
     elif years_since_the_registration_of_a_motor_vehicle > 20:
 
         prize_1 = 0
+        return prize_1
     
     else: print ("Error")
-    return None
 
-environmental_class, kw, years_since_the_registration_of_a_motor_vehicle = user_input ()
-stamp_duty = calculation_of_the_stamp_duty (environmental_class, kw)
-supervignette = calculation_of_the_supervignette (kw, years_since_the_registration_of_a_motor_vehicle)
+user = user_input (environmental_class = int, kw = int, years_since_the_registration_of_a_motor_vehicle = int)
+stamp_duty = calculation_of_the_stamp_duty (environmental_class = int, kw = int)
+supervignette = calculation_of_the_supervignette (kw = int, years_since_the_registration_of_a_motor_vehicle = int)
 
-prize = calculation_of_the_stamp_duty (environmental_class, kw)
-prize_1 = calculation_of_the_supervignette (kw, years_since_the_registration_of_a_motor_vehicle)
-
-print (f"The stamp duty is: {prize}")
-print (f"The supervignette is: {prize_1}")
+print_prizes = print (stamp_duty, supervignette)

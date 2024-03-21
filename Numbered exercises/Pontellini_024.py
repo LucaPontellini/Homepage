@@ -171,6 +171,13 @@ while True:
 
         case '4':
             print ("Assign each employee an hour commitment on a new project")
+#4. Assegna a ciascun dipendente un impegno in ore su questo nuovo progetto, 
+#sottraendo dal budget del progetto il costo dei dipendenti 
+#per le ore svolte e sommando allo stipendio iniziale i compensi accessori 
+#per i progetti su cui ha lavorato.
+#5. Stampa la lista dei dipendenti con i relativi stipendi totali 
+#e le ore lavorate per ciascun progetto.
+#6. Stampa le ore lavorate totali e il budget rimanente per ogni progetto.
 
             answer_7 = str (input ("Do you want to assign each employee an hour commitment on this new project? '"))
 
@@ -188,7 +195,11 @@ while True:
                     
                         for employee in employees:
 
+                            employee_info = dict ()
+
                             hours_worked = int (input ("Enter the number of hours related to the work on the project that the employee has worked on: '"))
+                            
+                            ancillary_fees = 0
                             
                             answer_8 = str (input ("Employees are compensated separately for the projects they've worked on? '"))
                             
@@ -197,21 +208,23 @@ while True:
                                 for employee_info in company:
                                     
                                     for employee in employees:
-                                        
-                                        ancillary_fees = 0
                                 
                                         ancillary_fees = int (input ("Enter ancillary fees: '"))
-                                        
-                                        employee_info = dict ()
 
                                         employee_info ["name of the employee"] = name
                                         employee_info ["role of the employee"] = role
                                         employee_info ["starting salary of the employee"] = starting_salary
                                         employee_info ["hours worked"] = hours_worked
-                                        
+
+                                        total_cost = hours_worked * hourly_cost * number_of_employees
+                                        updated_budget = initial_budget - total_cost
                                         updated_salary = starting_salary + ancillary_fees
 
                                         employee_info.update ({"starting salary of the employee" : updated_salary})
+
+                                        #da finire
+                                        #tova un modo per sostituire il salario del dipendente con quello aggiornato e trova un modo per assegnare 
+                                        #a tutti i dipendenti un impiego in ore e metterlo nel employee_info
 
                                         company.append (employee_info)
                             
@@ -220,153 +233,41 @@ while True:
                                 for employee_info in company:
                                     
                                     for employee in employees:
-                                        
-                                        employee_info = dict ()
                                 
                                         employee_info ["name of the employee"] = name
                                         employee_info ["role of the employee"] = role
                                         employee_info ["starting salary of the employee"] = starting_salary
                                         employee_info ["hours worked"] = hours_worked
 
+                                        total_cost = hours_worked * hourly_cost * number_of_employees
+                                        updated_budget = initial_budget - total_cost
                                         updated_salary = starting_salary
 
                                         employee_info.update ({"starting salary of the employee" : updated_salary})
 
                                         company.append (employee_info)
+
+                                        #print ("-----------------------------------------------")
+                                        #print (f"Name: {employee_info ['name of the employee']}") #da errore qui
+                                        #print (f"Role: {employee_info ['role of the employee']}")
+                                        #print (f"Updated salary: {employee_info ['updated salary of the employee']}")
+                                        #print (f"Hours worked: {employee_info ['hours worked']}")
+                                        #print ("-----------------------------------------------")
                             
                             else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-                            
-            elif answer_7 == "No":
-                
-                while True:
-
-                    answer_9 = str (input ("Are you sure you don't want to assign each employee an hour commitment on a new project? '"))
-
-                    if answer_9 == "No":
-
-                        print ("You'll be able to assign each employee an hour commitment on a new project if you press 4")
-                        break
-
-                    elif answer_9 == "Yes":
-
-                        print ("You won't be able to assign each employee an hour commitment on a new project")
-                        break
-
-                    else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-            
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
 
         case '5':
             print ("Print the list of employees with their total salaries and hours worked for each project")
             
-            answer_10 = str (input ("Do you want to see the list of employees with their total salaries and hours worked for each project? '"))
-            
-            if answer_10 == "Yes":
-            
-                if not company or not employees:
-
-                    print ("To print the list of employees with their total salaries and hours worked for each project, there must be employees")
-                    print (f"Right now you have {len (company)} employees")
-                    print ("To hire employees, press 1")
-
-                else:
-
-                    if ancillary_fees == 0:
-
-                        for employee_info in company:
-
-                            for employee in employees:
-                            
-                                print ("-----------------------------------------------")
-                                print (f"Name: {employee_info ['name of the employee']}")
-                                print (f"Role: {employee_info ['role of the employee']}")
-                                print (f"Updated salary: {employee_info ['updated salary of the employee']}")
-                                print (f"Hours worked: {employee_info ['hours worked']}")
-                                print ("-----------------------------------------------")
-
-                    elif ancillary_fees != 0:
-
-                        for employee_info in company:
-
-                            for employee in employees:
-
-                                print ("-----------------------------------------------")
-                                print (f"Name: {employee_info ['name of the employee']}")
-                                print (f"Role: {employee_info ['role of the employee']}")
-                                print (f"Updated salary: {employee_info ['updated salary of the employee']}")
-                                print (f"Hours worked: {employee_info ['hours worked']}")
-                                print ("-----------------------------------------------")
-            
-            elif answer_10 == "No":
-                
-                while True:
-
-                    answer_11 = str (input ("Are you sure you don't want to see the list of employees with their total salaries and hours worked for each project? '"))
-
-                    if answer_11 == "No":
-
-                        print ("You will be able to see the list of employees with their total salaries and hours worked for each project if you press 5")
-                        break
-
-                    elif answer_11 == "Yes":
-
-                        print ("You won't be able to see the list of employees with their total salaries and hours worked for each project")
-                        break
-
-                    else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-            
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
+            #print ("-----------------------------------------------")
+            #print (f"Name: {employee_info ['name of the employee']}")
+            #print (f"Role: {employee_info ['role of the employee']}")
+            #print (f"Updated salary: {employee_info ['updated salary of the employee']}")
+            #print (f"Hours worked: {employee_info ['hours worked']}")
+            #print ("-----------------------------------------------")
         
         case '6':
             print ("Print the total hours worked and the remaining budget for each project")
-            
-            answer_12 = str (input ("Do you want to see the total hours worked and the remaining budget for each project? '"))
-            
-            if answer_12 == "Yes":
-            
-                for projects in company:
-
-                    for project in projects:
-                    
-                        total_cost = hours_worked * hourly_cost * number_of_employees
-                        updated_budget = initial_budget - total_cost
-                        total_hours = hours_worked * number_of_employees
-
-                        new_project.update ({"initial budget" : total_cost})
-                        new_project ["total hours"] = total_hours
-
-                        if total_cost <= 0:
-
-                            print (f"{updated_budget} The badjet of the project is finished!\nYou can't do anything more if you don't add more money to the project's badjet")
-
-                        else:
-
-                            print ("-----------------------------------------------")
-                            print (f"Name: {new_project ['name of the project']}")
-                            print (f"Total cost: {new_project ['total cost']}")
-                            print (f"Hourly cost: {new_project ['hourly cost']}")
-                            print (f"Total hours: { ['total hours']}")
-                            print ("-----------------------------------------------")
-            
-            elif answer_12 == "No":
-                
-                while True:
-
-                    answer_13 = str (input ("Are you sure you don't want to see the total hours worked and the remaining budget for each project? '"))
-
-                    if answer_13 == "No":
-
-                        print ("You won't be able to see the total hours worked and the remaining budget for each project")
-                        break
-
-                    elif answer_13 == "Yes":
-
-                        print ("You will be able to see the total hours worked and the remaining budget for each project if you press 6")
-                        break
-
-                    else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-            
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
 
         case _: print("Invalid choice.")
     input("Press enter to continue...")

@@ -13,13 +13,14 @@
 
 import os
 
-products = []
-prizes = []
-quantities = []
+inventory = {"product" : "No_products" ,
+             "prize" : "€0" , 
+             "quantity" : "0"
+}
 
 while True:
 
-    os.system('cls'if os.name == 'nt' else 'clear')
+    os.system ('cls'if os.name == 'nt' else 'clear')
 
     print ("""
     1) View the inventory of products with their prices and quantities
@@ -36,10 +37,10 @@ while True:
         case '1':
             print ("View the inventory of products with their prices and quantities")
 
-            for product , prize , quantity in zip (products , prizes , quantities):
-                print(f"{product} : €{prize} : {quantity}")
-
-            else: print ("The inventory is empty")
+            for inventory in (inventory):
+                print (inventory ["product"])
+                print (inventory ["prize"])
+                print (inventory ["quantity"])
 
         case '2':
             print ("Add a product, a price and a quantity")
@@ -48,9 +49,9 @@ while True:
             prize = float (input ("Add a prize: '"))
             quantity = int (input ("Add a quantities: '"))
 
-            products.append (product)
-            prizes.append (prize)
-            quantities.append (quantity)
+            inventory ["products"] = product
+            inventory ["prizes"] = prize
+            inventory ["quantitys"] = quantity
 
         case '3':
             print ("Remove a product from inventory")
@@ -59,34 +60,43 @@ while True:
 
             if answer_1 == "Yes":
                 product = input ("Enter the product: ")
-                if product in products:
-                    index = products.index (product)
-                    products.pop (index)
+                if product in inventory:
+                    index = inventory.popitem ()
+                    print (inventory) 
                 else: print("Item not found.")
 
             elif answer_1 == "No":
-                    print (products , prizes , quantities) 
+                    print (inventory) 
             else: print ("Error")
         
         case '4':
             print ("View updated inventory")
 
-            for product , prize , quantity in zip (products , prizes , quantities):
-                print(f"{product} : €{prize} : {quantity}")
+            for inventory in (inventory):
+                inventory.update ({"product" : ""})
+                print (inventory)
         
         case '5':
             print ("Sum of all quantities of all products in inventory")
 
-            for product in zip (products):
-                sum_of_all_quantities_of_all_products = products + quantities
+            for inventory in (inventory):
+
+                product = inventory ["products"]
+                quantity = inventory ["quantitys"]
+                
+                sum_of_all_quantities_of_all_products = product + quantity
                 print (f"The sum of all quantities of all products in inventory is: {sum_of_all_quantities_of_all_products}")
         
         case '6':
             print ("Total value of inventory")
 
-            for prize , quantity in zip (prizes , quantities):
+            for inventory in (inventory):
+
+                prize = inventory ["prizes"]
+                quantity = inventory ["quantitys"]
+            
                 total_value_of_inventory = float (prize * quantity) + (prize + quantity)
                 print (f"The total value of inventory is: €{total_value_of_inventory}")
 
         case _: print("Invalid choice.")
-    input("Press enter to continue...")                
+    input("Press enter to continue...")  

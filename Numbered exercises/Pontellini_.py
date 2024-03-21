@@ -7,7 +7,7 @@ def my_input () -> list [int]:
     c = int (input ("Enter a number: '"))
     return [a, b, c]
 
-def elaboration (a: int, b: int, c: int) -> list [float] | None:
+def elaboration (a: int, b: int, c: int):
     delta = b * b -4 * a * c
 
     if delta > 0:
@@ -21,6 +21,9 @@ def elaboration (a: int, b: int, c: int) -> list [float] | None:
     else: return None
 
     return [solution_1, solution_2]
+
+a, b, c = my_input ()
+solutions = elaboration (a, b, c)
 
 def print_solutions (solutions: list [int] | None) -> None:
     if solutions is not None:

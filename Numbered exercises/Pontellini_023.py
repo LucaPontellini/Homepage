@@ -1,396 +1,211 @@
-# Esercizio: Realizzare un applicativo che permetta, mediante l'uso di dizionari e liste, la gestione del catalogo di un museo. In particolare, l'applicativo dovrà permettere di:
-# 1) Creare una nuova stanza (id, denominazione, metratura)
-# 2) Aggiungere un opera ad una stanza (titolo, artista, anno)
-# 3) Consultare le opere presenti in una stanza
-# 4) Consultare le stanze presenti
-# 5) Cercare le informazioni su un opera
-# 6) Cancellare un opera
-# 7) Cancellare una stanza solo se vuota
-
-# NB:
-# - Progettare la struttura dati a priori in modo da garantire le funzionalità richieste.
-# - Fare in modo che il museo sia inizialmente vuoto e popolabile da applicativo.
-# - Realizzare un menù numerato con le varie funzionalità elencate in precedenza.
-# - Controllare la presenza della stanza e/o dell'opera prima di aggiungerla.
+#Esercizio: Realizzare un applicativo che permetta, mediante l'uso di dizionari e liste, la gestione del catalogo di un museo. In particolare, l'applicativo dovrà permettere di:
+#1) Creare una nuova stanza (id, denominazione, metratura) 
+#2) Aggiungere un opera ad una stanza (titolo, artista, anno)
+#3) Consultare le opere presenti in una stanza
+#4) Consultare le stanze presenti
+#5) Cercare le informazioni su un opera
+#6) Cancellare un opera
+#7) Cancellare una stanza solo se vuota
+ 
+#NB:
+#- Progettare la struttura dati a priori in modo da garantire le funzionalità richieste.
+#- Fare in modo che il museo sia inizialmente vuoto e popolabile da applicativo.
+#- Realizzare un menù numerato con le varie funzionalità elencate in precedenza.
+#- Controllare la presenza della stanza e/o dell'opera prima di aggiungerla.
 
 import os
 
 museum = []
 
-while True:
-    os.system("cls" if os.name == "nt" else "clear")
+room_1 = {"ID" : "there is no room ID",
+        "name" : "the name of the room is not specified",
+        "square footage" : "there is no square footage of the room",
+        "work" : "there is no artwork in the room"
+}
 
-    print(
-        """ 
+rooms = []
+
+work = {"title" : "there is no title related to the work",
+        "artist" : "no artist name is present",
+        "year" : "the year of the work is not present"
+}
+
+works = []
+
+while True:
+
+    os.system ('cls'if os.name == 'nt' else 'clear')
+
+    print (""" 
     1) Create a new room (id, name, square footage)
     2) Add a work to a room (title, artist, year)
     3) Consult the works in a room
     4) Consult the rooms present
     5) Search for information about a work
     6) Deleting an artwork
-    7) Delete a room only if it is empty"""
-    )
+    7) Delete a room only if it is empty""")
 
     choice = input ("Choose the option you want: '")
 
     match choice:
-
-        case "1":
+#trova un modo per cambiare iteratore dal dizionario delle stanze perchè si soverascrivono i valori del dizionario
+        case '1':
             print ("Create a new room (id, name, square footage)")
 
-            print (f"{museum}")
+            print (f"{rooms}")
             
-            create_new_rooms = str (input ("Do you want to create a new room? '"))
+            if rooms == []:
+                print (f"{museum}. There are no rooms in the museum")
+
+                answer = int (input ("How many rooms do you want to create? '"))
+
+                for answer in range (answer):
+
+                    answer_1 = str (input ("Are you sure you want to create a new room? '"))
             
-            if create_new_rooms == "Yes":
-
-                number_of_rooms = int (input ("How many rooms do you want to create? '"))
-
-                for x in range (number_of_rooms):
-
-                    id_room_1 = int (input ("Enter the room ID: '"))
-                    name_room_1 = str (input ("Enter the name of the room: '"))
-                    square_footage_room_1 = float (input ("Enter the square footage of the room: '"))
-
-                    museum.append ({"id": id_room_1, "name": name_room_1, "square": square_footage_room_1, "artworks": [],})
-
-                    print (f"You have created {number_of_rooms} rooms")
-
-                    for room in museum:
-
-                        print ("-----------------------------------------------")
-                        print (f"Id: {room ['id']}")
-                        print (f"Name: {room ['name']}")
-                        print (f"Square: {room ['square']}")
-                        print (f"Artworks: {room ['artworks']}")
-                        print ("-----------------------------------------------")
-            
-            elif create_new_rooms == "No":
-                
-                print (f"{museum} No rooms have been created")
-                
-                while True:
-
-                    confirmation_1 = str (input ("Are you sure you don't want to create a room? '"))
-
-                    if confirmation_1 == "No":
-
-                        print ("You won't be able to create a room")
-                        break
-
-                    elif confirmation_1 == "Yes":
-
-                        print ("You will be able to create a room if you press 1")
-                        break
-
-                    else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-            
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-
-        case "2":
-            print ("Add a artwork to a room (title, artist, year)")
-
-            artwork_to_room = str (input ("Do you want to add a artwork to a room (title, artist, year)? '"))
-
-            if artwork_to_room == "Yes":
-            
-                room_id = int (input ("In which room do you want to add the artworks?\n Enter the room ID: '")) 
-                print(f"{museum}")
-
-                room_exists = False
-                for room in museum:
-                    if room ['id'] == room_id:
-                        room_where_to_add_artwork = room
-                        room_exists = True
-                        break
+                    if answer_1 == "Yes":
                     
-                if room_exists == False:
-                    print (f"room with id {room_id} does not exists")
+                        id_room_1 = (input ("Enter the room ID: '"))
+                        name_room_1 = (input ("Enter the name of the room: '"))
+                        square_footage_room_1 = (input ("Enter the square footage of the room: '"))
 
-                elif room_exists == True:
+                        room_1 ["ID"] = id_room_1
+                        room_1 ["name"] = name_room_1
+                        room_1 ["square footage"] = square_footage_room_1
 
-                    while True:
-                        title = input("Enter the title: ")
-                        artist = input("Enter the artist: ")
-                        year = int(input("Enter the year: ")) 
+                        rooms.append (room_1)
 
-                        temp_artwork = {}
-                        temp_artwork ["title"] = title
-                        temp_artwork ["artist"] = artist
-                        temp_artwork ["year"] = year
-
-                        list_of_artworks_in_the_room = room_where_to_add_artwork ['artworks']
-                        artwork_exists = False
-                        for artwork in list_of_artworks_in_the_room:
-                            if artwork ['title'] == title:
-                                artwork_exists = True
-                                break                
-                            
-                        if artwork_exists == False:
-                            list_of_artworks_in_the_room.append (temp_artwork)
-                            break
-                        else: 
-                            print (f"artwork with name {title} already exists")
-
-            elif artwork_to_room == "No":
-                print (f"{museum} No rooms have been created")
-
-                while True:
-
-                    confirmation_2 = str (input ("Are you sure you don't want to add an artwork? '"))
-
-                    if confirmation_2 == "No":
-                        print ("You won't be able to add an artwork")
+                        print (f"{rooms}")
+                
+                    elif answer_1 == "No":
+                        print (f"{rooms}")
                         break
 
-                    elif confirmation_2 == "Yes":
-                        print ("You will be able to add an artwork if you press 2")
+                    else: print (f"{rooms}")
+                
+            elif rooms != []:
+                print (f"{museum}. There are rooms in the museum")
+                
+            else: print ("Error")
+
+        case '2':
+            print ("Add a work to a room (title, artist, year)")
+
+            print (f"{works}")
+
+            if works == []:
+                print (f"{room_1}")
+
+                answer_2 = int (input ("How many artworks do you want to add to a room? '"))
+
+                for answer_2 in range (answer_2):
+
+                    answer_3 = str (input ("Do you want to add a work to a room? '"))
+
+                    if answer_3 == "Yes":
+
+                        answer_9 = str (input ("In which room do you want to add the artworks?\n Enter the room ID: '"))
+
+                        if answer_9 == room_1 ["ID"]:
+
+                            title = input ("Enter the title: '")
+                            artist = input ("Enter the artist: '")
+                            year = input ("Enter the year: '")
+
+                            work ["title"] = title
+                            work ["artist"] = artist
+                            work ["year"] = year
+
+                            works.append (work)
+
+                            print (f"{works}")
+                    
+                        else: print ("The room ID doesn't match or doesn't exist")
+
+                    elif answer_3 == "No":
+                        print (f"{works}")
                         break
 
-                    else: 
-                        print ("Error: Invalid response. Enter 'Yes' or 'No'")
-                        break
-            
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
+                    else: print (f"{works}")
+                
+                if answer_2 == answer_2:
+                        print (f"This is the list of rooms in the museum: {rooms}")
 
-        case "3":
-            print("Consult the works in a room")
+                        if answer != room_1 ["ID"] and room_1 in (museum): #il programma va in errore
+                            print ("There are no rooms in the museum where you can see the works")
+                        
+                        elif answer == room_1 ["ID"]:
 
-            consult_works = str (input ("Do you want to consult the works in a room? '"))
+                            for answer in range (answer): #gesisci l'errore se non sono presenti dele stanze perchè blocca il programma
 
-            if consult_works == "Yes":
+                                answer_4 = str (input ("Where do you want to place the works?\n Enter the name of the room: '"))
 
-                id_room = int (input ("Enter the room ID: "))
-                room_exists = False
+                                if room_1 in rooms:
 
-                for room in museum:
+                                    room_1.update ({"name" : answer_4})
 
-                    if room ['id'] == id_room:
-                        room_exists = True
+                                    for room_1 in rooms ():
+                                        room_1 ["work"] = work
 
-                        print (f"Artworks in room {id_room}: {room ['artworks']}")
-                        break
+                                        print (f"You added this artwork to the room: {work}")
+                                        print (f"{room_1}")
+                                #prendi l'ID della stanza su cui vuoi aggiungere l'opera. Dopo aver preso l'ID, aggiungi l'opera alla stanza
+                                else: print ("The name of the room or the room itself does not exist.\n To check this, click on option 4 in the menu")
 
-                if room_exists == False:
-                    print (f"Room with id {id_room} does not exist")
+                        else: print ("Error")
 
-            elif consult_works == "No":
-                print ("You chose not to consult the works in a room")
+                else: print ("Error")
+                
+            elif works != []:
+                print (f"{room_1}")
 
-                while True:
+            else: print ("Error")
 
-                    confirmation_3 = str (input ("Are you sure you don't want to consult the works in a room? '"))
+#stampa tutti gli ID delle stanze per poi stampare le opere pesenti nelle stanze
+        case '3':
+            print ("Consult the works in a room")
 
-                    if confirmation_3 == "No":
-                        print ("You won't be able to consult the works in a room")
-                        break
+            room_1 ["ID"] = id_room_1
 
-                    elif confirmation_3 == "Yes":
-                        print ("You will be able to consult the works in a room if you press 3")
-                        break
+            print (f"This is the list of rooms in the museum: {rooms}")
+            print (f"This is the list of all room IDs: {id_room_1}")
 
-                    else: 
-                        print ("Error: Invalid response. Enter 'Yes' or 'No'")
-                        break
+            answer_5 = str (input ("In which room do you want to see the works of?\n Enter the room ID: '"))
 
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
+            for id_room_1 in range (rooms): #Riformula la condizione del ciclo
+                if id_room_1 == answer_5:
+                    print (f"{room_1}")
+                else: print ("Room not found")
 
-        case "4":
+        case '4':
             print ("Consult the rooms present")
 
-            consult_rooms = str (input ("Do you want to consult the rooms present? '"))
-
-            if consult_rooms == "Yes":
-
-                print ("Rooms in the museum:")
-
-                for room in museum:
-
-                    print ("-----------------------------------------------")
-                    print (f"Id: {room ['id']}")
-                    print (f"Name: {room ['name']}")
-                    print (f"Square: {room ['square']}")
-                    print ("-----------------------------------------------")
-
-            elif consult_rooms == "No":
-                print ("You chose not to consult the rooms present")
-
-                while True:
-
-                    confirmation_4 = str (input ("Are you sure you don't want to consult the rooms present? '"))
-
-                    if confirmation_4 == "No":
-                        print("You won't be able to consult the rooms present")
-                        break
-
-                    elif confirmation_4 == "Yes":
-                        print("You will be able to consult the rooms present if you press 4")
-                        break
-
-                    else:
-                        print("Error: Invalid response. Enter 'Yes' or 'No'.")
-
-            else: print("Error: Invalid response. Enter 'Yes' or 'No'.")
-
-        case "5":
+            print (f"This is the list of rooms in the museum: {rooms}")
+#cerca le informazioni di un'opera. Per farlo stampa tutte le opere        
+        case '5':
             print ("Search for information about a work")
 
-            search_work = str (input ("Do you want to search for information about a work? "))
+            print (f"This is the list of all the works: {works}")
 
-            if search_work == "Yes":
-
-                title = str (input ("Enter the title of the artwork: '"))
-
-                artwork_exists = False
-
-                for room in museum:
-
-                    for artwork in room ['artworks']:
-
-                        if artwork ['title'] == title:
-
-                            artwork_exists = True
-
-                            print (f"Information about the artwork {title} : {artwork}")
-                            break
-
-                    if artwork_exists:
-                        break
-
-                if artwork_exists == False:
-
-                    print (f"Artwork with title {title} does not exist")
-
-            elif search_work == "No":
-
-                print ("You chose not to search for information about a work")
-
-                while True:
-
-                    confirmation_5 = str (input ("Are you sure you don't want to search for information about a work? '"))
-
-                    if confirmation_5 == "No":
-                        print ("You won't be able to search for information about a work")
-                        break
-
-                    elif confirmation_5 == "Yes":
-                        print ("You will be able to search for information about a work if you press 5")
-                        break
-
-                    else:
-                        print("Error: Invalid response. Enter 'Yes' or 'No'.")
-
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-
-        case "6":
+            answer_6 = str (input ("Which work do you want to know about?\n Enter the work you want to know about: '"))
+#cancella un'opera. Per farlo prendi le opere e chiedi quale vuole essere eliminata        
+        case '6':
             print ("Deleting an artwork")
-
-            delete_artwork = str (input ("Do you want to delete an artwork? '"))
-
-            if delete_artwork == "Yes":
-
-                id_room = int (input ("Enter the room ID: '"))
-                title = str (input ("Enter the title of the artwork: '"))
-
-                room_exists = False
-
-                for room in museum:
-
-                    if room ['id'] == id_room:
-
-                        room_exists = True
-                        artwork_exists = False
-
-                        for artwork in room ['artworks']:
-
-                            if artwork ['title'] == title:
-
-                                artwork_exists = True
-                                room ['artworks'].remove (artwork)
-                                print (f"You have deleted the artwork {title} from the room {id_room}")
-                                break
-
-                        if artwork_exists == False:
-
-                            print (f"Artwork with title {title} does not exist in the room")
-                            break
-
-                if room_exists == False:
-
-                    print (f"Room with id {id_room} does not exist")
-
-            elif delete_artwork == "No":
-                 
-                print ("You chose not to delete an artwork")
-
-                while True:
-
-                    confirmation_6 = str (input ("Are you sure you don't want to delete an artwork? '"))
-
-                    if confirmation_6 == "No":
-                        print("You won't be able to delete an artwork")
-                        break
-
-                    elif confirmation_6 == "Yes":
-                        print("You will be able to delete an artwork if you press 6")
-                        break
-
-                    else:
-                        print("Error: Invalid response. Enter 'Yes' or 'No'.")
-
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-
-        case "7":
+#elimina le stanze se sono vuote        
+        case '7':
             print ("Delete a room only if it is empty")
 
-            delete_room = str (input ("Do you want to delete a room only if it is empty? '"))
+            if rooms == []:
 
-            if delete_room == "Yes":
+                answer_7 = str (input ("Are you sure you want to delete a room? '"))
 
-                id_room = int (input ("Enter the room ID: '"))
+                if answer_7 == "Yes":
 
-                room_exists = False
+                    print (f"This is the list of rooms in the museum: {rooms}")
 
-                for room in museum:
+                    answer_8 = str (input ("Which room do you want to delete?\n Enter the name of it: '"))
 
-                    if room ['id'] == id_room:
+                    del rooms
 
-                        room_exists = True
-
-                        if not room ['artworks']:
-
-                            museum.remove (room)
-
-                            print (f"You have deleted the room {id_room}")
-
-                        else: print("The room is not empty.")
-                        break
-
-                if room_exists == False:
-
-                    print (f"Room with id {id_room} does not exist")
-
-            elif delete_room == "No":
-
-                print ("You chose not to delete a room")
-
-                while True:
-
-                    confirmation_7 = str (input ("Are you sure you don't want to delete a room? '"))
-
-                    if confirmation_7 == "No":
-                        print ("You won't be able to delete a room")
-                        break
-
-                    elif confirmation_7 == "Yes":
-                        print ("You will be able to delete a room if you press 7")
-                        break
-
-                    else:
-                        print ("Error: Invalid response. Enter 'Yes' or 'No'")
-
-            else: print ("Error: Invalid response. Enter 'Yes' or 'No'")
-
-        case _:
-            print("Invalid choice.")
+        case _: print("Invalid choice.")
     input("Press enter to continue...")

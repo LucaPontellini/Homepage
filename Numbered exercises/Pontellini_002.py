@@ -1,14 +1,17 @@
-#Esercizio: dati i seguenti costi giornaliero di un bagnino: ombrellone 12 euro, lettini 5 euro e sedie a sdraio di 6.50 euro; chiedi in input il numero di giorni ed i servizi che vuole prenotare. Visualizza la spesa complessiva.
+#Esercizio 2: Chiesto all’utente un anno in input controllare la validità dell’input (0<anno<2100) e dire se esso è bisestile o no. A tal fine, implementare il seguente algoritmo: Un anno è bisestile se esso è divisibile per 400 altrimenti è bisestile se è divisibile per 4 e non divisibile per 100. Non è bisestile negli altri casi.
+#N.B:
+#L’algoritmo può essere implementato anche con un unico blocco if/else con una condizione composta.
 
-d = int (input ("How many days you would stay here? '"))
-service = str (input ("What services do you want? We have beach umbrella, beach loungers and deck chairs. You can chose whatever you want."))
-x1 = int (input ("How many beach umbrella do you want? '"))
-y1 = int (input ("How many beach loungers do you want? '"))
-z1 = int (input ("How many deck chairs do you want? '"))
+year_1 = int (input ("Enter a number of the year: '"))
 
-x = float (12)
-y = float (5)
-z = float (6.50)
-cost = (x * x1 + y * y1 + z * z1)*d
+if year_1 > 0 and year_1 < 2100:
+    print ("Your year is a leap year")
+else: print ("Your year is not a leap year")
 
-print ("The cost is:" ,cost, "euro")
+year_2 = year_1 / 400
+
+if year_2 % 400:
+    print ("The year is a leap year")
+elif year_2 % 4:
+    print ("The year is a leap year")
+else: print ("The year is not a leap year")

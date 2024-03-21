@@ -1,7 +1,7 @@
 #Esercizio: scrivi un programma che passati in input n valori popoli una lista. In seguito chiedi all'utente di inserire un valore in modo tale da verificare che esso sia presente nella lista. Stampa a video ("Valore presente"/"Valore non presente").
 
 list_of_peoples = []
-number_of_peoples = input ("Enter the number of value '")
+number_of_peoples = input ("Enter the number of peoples '")
 value = input ("Enter a value: '")
 
 for peoples in number_of_peoples:

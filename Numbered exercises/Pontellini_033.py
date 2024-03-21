@@ -1,17 +1,20 @@
-#Esercizio: Scrivi una funzione che ricevuta in ingresso una lista di dizionari contenenti le fatture di n utenti così formate:
+#Esercizio: Scrivi un programma che letto da file JSON una lista di dizionari contenenti le fatture di n utenti così formate:
+
 #{"id":"id_utente",
 #"importo":128.54,
 #"sconto_fattura":15}
 #svolga le seguenti funzioni:
-#1) Aggiunga ad ogni dizionario una nuova chiave "importo_scontato" al quale associa il valore dell'importo scontato in base alla percentuale indicata alla chiave "sconto_fattura";
-#2) Restituisca una lista di float dove il primo elemento è il totale degli importi e il secondo il totale degli importi scontati;
-#3) Restituisca None se la lista delle fatture è vuota.
 
-#La funzione ha la seguente signature:
-#def calcola_importo(fatture:list[dict])->list[float]|None: ...... 
+#1) Mostri tutte le fatture 
+#2) Permetta di aggiungere ad una fattura selezionata una nuova chiave "importo_scontato" al quale associa il valore dell'importo scontato in base alla percentuale indicata alla chiave "sconto_fattura";
+#3)Permetta di aggiungere una fattura alla lista (aggiornando il file JSON)
 
-#Si provi la funzione in un programma dove le si dia in ingresso la seguente lista:
-#fatture=[
+#- Definire apposite funzioni di lettura e scrittura da/sul file JSON.
+#- Definire eventuali altre funzioni utili ai fini dell'esercizio.
+
+#Si crei un file JSON di esempio copiando la seguente lista:
+
+#fatture = [
 #{"id":"Monticelli",
 #"importo":245.78,
 #"sconto_fattura":10
@@ -53,6 +56,66 @@
 #"sconto_fattura":22
 #},
 #]
+
+import os
+import json
+
+invoices = [
+{"id":"Monticelli",
+"amount": 245.78,
+"invoice_discount": 10
+},
+{"id":"Kola",
+"amount": 325.71,
+"invoice_discount": 12
+},
+{"id":"Romagna",
+"amount": 245.78,
+"invoice_discount": 8
+},
+{"id":"Bilancioni",
+"amount": 245.78,
+"invoice_discount": 15
+},
+{"id":"Sanchi",
+"amount": 245.78,
+"invoice_discount": 5
+},
+{"id":"Pontellini",
+"amount": 245.78,
+"invoice_discount": 18
+},
+{"id":"Clementi",
+"amount": 245.78,
+"invoice_discount": 20
+},
+{"id":"Arlotti",
+"amount": 245.78,
+"invoice_discount": 19
+},
+{"id":"Nedria",
+"amount": 245.78,
+"invoice_discount": 7
+},
+{"id":"Santini",
+"amount": 245.78,
+"invoice_discount": 22
+},
+]
+
+def check_file_exist ():
+    
+    with open ("file_json.json","w") as file_json:
+
+        try: mylist = json.load (file_json)
+        except: mylist = []
+
+    mylist.append (invoices)
+
+    with open ("file_json.json","w") as file_json:
+        json.dump (mylist,file_json,indent = 4)
+
+return file_json
 
 def creating_a_new_invoice () -> list | None:
 

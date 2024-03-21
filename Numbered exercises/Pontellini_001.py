@@ -1,13 +1,32 @@
-#Esercizio: dato i seguenti valori inseriti in input: nome di un alunno e 3 voti di una materia, visualizza la media dei voti.
+#Esercizio 1: Chiesti all’utente 5 voti in input dire quanti di questi sono sufficienti su quelli considerati validi. I voti sono considerati validi se compresi tra 1 e 10.
 
-name = input ("Enter your name:")
-vote1 = input ("Enter your first vote:")
-vote2 = input ("Enter your second vote:")
-vote3 = input ("Enter your tird vote:")
+vote_1 = int (input ("Enter your first vote: '"))
+vote_2 = int (input ("Enter your second vote: '"))
+vote_3 = int (input ("Enter your third vote: '"))
+vote_4 = int (input ("Enter your fourth vote: '"))
+vote_5 = int (input ("Enter your fifth vote: '"))
 
-name = str (name)
-vote1 = float (vote1)
-vote2 = float (vote2)
-vote3 = float (vote3)
+if vote_1 <= 1 and vote_1 >= 10:
+    print ("Error: the vote does not satisfy the condition")
+elif vote_2 <= 1 and vote_2 >= 10:
+    print ("Error: the vote does not satisfy the condition")
+elif vote_3 <= 1 and vote_3 >= 10:
+    print ("Error: the vote does not satisfy the condition")
+elif vote_4 <= 1 and vote_4 >= 10:
+    print ("Error: the vote does not satisfy the condition")
+elif vote_5 <= 1 and vote_5 >= 10:
+    print ("Error: the vote does not satisfy the condition")
+else: print ("Error")
 
-print (f"{name}, your school average is: {(vote1 + vote2 + vote3)/3}")
+if vote_1 >= 6:
+    print ("Your vote is sufficient")
+elif vote_2 >= 6:
+    print ("Your vote is sufficient")
+elif vote_3 >= 6:
+    print ("Your vote is sufficient")
+elif vote_4 >= 6:
+    print ("Your vote is sufficient")
+elif vote_5 >= 6:
+    print ("Your vote is sufficient")
+else:
+    print ("Your vote is insufficent")

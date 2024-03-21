@@ -1,12 +1,13 @@
 #Dati in input n valori, calcolarne la somma. Si chieda quanti valori si vogliono inserire quando inizia il programma, si inizializzi la variabile di somma a zero prima che inizi il ciclo.
 
-sum = 0
+number_1 = 0
 
-value_1 = int (input ("how many values do you want to insert? '"))
+number_2 = int (input ("How many numbers do you want to enter? '"))
 
-for x in range (value_1):
-    value_2 = int ( input ("Enter a number: '"))
+while (number_1 + number_2) <= number_2:
+    print (f"The sum of your numbers is: {number_1 + number_2}")
 
-    sum += value_2
+    if (number_1 + number_2) == number_2:
+        break
 
-print (f"The sum is: {sum}")
+number_2 += number_1
