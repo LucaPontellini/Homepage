@@ -1,14 +1,6 @@
-#Esercizio 34 - Tracciare una funzione con matplotlib e argparse
-#Prerequisiti
-#Creare un repository
-#Creare un venv
-#Attiva il venv
-#Installare i pacchetti richiesti
-#Esercizio
+#Esercizio 34 - Tracciare una funzione con matplotlib e argparse.
 #In questo esercizio utilizzerete il modulo per accettare gli argomenti della riga di comando e il modulo per rappresentare graficamente le funzioni matematiche.argparsematplotlib
-#
 #Si creerà uno script denominato che accetta un numero e uno o più tipi di funzioni come argomenti. I tipi di funzioni possono essere 'lineari', 'polinomiali' o 'esponenziali'.plot_functions.pyn
-#
 #Lo script dovrebbe essere in grado di essere eseguito in questo modo:
 #
 #python plot_functions.py --linear --polinomial --exponential number
@@ -23,3 +15,4 @@
 
 import argparse
 import matplotlib
+
