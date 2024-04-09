@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import json
 
 #Esercizio: Creazione di un'applicazione meteo semplice con Flask
 
@@ -52,6 +53,25 @@ from flask import Flask, render_template
 #Questo è molto difficile!
 #In questo passaggio, modificherai la tua applicazione Flask per recuperare i dati meteorologici reali dall'API Open-Meteo.
 
+app = Flask(__name__)
+
 @app.route('/')
-def welcome():
+
+def home():
     return "Welcome to our weather app!"
+
+@app.route('/cities')
+
+def cities():
+    city_list = ["Paris", "London", "New York"]
+    return render_template('list.html', cities=city_list)
+
+@app.route('/weather/<city>')  
+
+def weather(city):
+    with open('weather_data.json') as file:
+        data = json.load(file)
+    return render_template('weather.html', city=city, weather_info=data[city])
+
+if __name__ == '__main__':
+    app.run(debug=True)
