@@ -36,17 +36,11 @@
 #]
 
 import json
-import os
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
 file_json = 'student_grades.json'
-
-if os.path.exists(file_json):
-    print(f"The file {file_json} exists.")
-else: 
-    print(f"The file {file_json} does not exist.")
 
 with open(file_json) as f:
     grades = json.load(f)
