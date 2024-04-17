@@ -47,7 +47,7 @@ app = Flask(__name__)
 def view_the_file():
     with open('websites.json') as f:
         websites = json.load(f)
-    return render_template('/Homepage/templates/websites.html', links=websites)
+    return render_template('websites.html', links=websites)
 
 if __name__ == '__main__':
     app.run(debug=True, port=12345)
