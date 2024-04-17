@@ -40,14 +40,13 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-file_json = 'student_grades.json'
-
-with open(file_json) as f:
-    grades = json.load(f)
+file_json = '//student_grades.json'
 
 @app.route('/')
 def view_the_table():
-    return render_template('table.html', grades=grades)
+    with open(file_json) as f:
+        grades = json.load(f)
+    return render_template('/templates/table.html', grades=grades)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=1234)
+    app.run(debug=True, port=12345)
