@@ -45,7 +45,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def view_the_file():
-    with open('websites.json',"r") as websites:
+    with open('Homepage/Exercises_with_Files/esexercises_037/websites.json',"r") as websites:
         websites = json.load(websites)
     return render_template('websites.html', websites=websites)
 
