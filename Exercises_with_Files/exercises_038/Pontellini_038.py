@@ -43,11 +43,11 @@ app = Flask(__name__)
 def registration():
     if request.method == 'POST':
         name = request.form.get('name')
-        e_mail = request.form.get('e-mail')
+        e_mail = request.form.get('email')
         password = request.form.get('password')
-        return 'You posted:\n Name' + str(name) + ', e-mai' + str(e_mail) + str(password) + 'and password'
+        return f"You posted:<br> Name: {str(name)}, e-mail: {str(e_mail)} and password: {str(password)}"
     else:
-        return render_template('registration.html')
+        return render_template('user_table.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=12345)

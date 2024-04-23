@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name,email,password %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>${{ email }}</td>
+            <td>${{ password }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
