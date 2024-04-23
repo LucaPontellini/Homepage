@@ -35,7 +35,7 @@
 #Esempio:
 #https://github.com/angelogalantiscuola/IT/blob/main/python/modules_library_packages/examples/flask_request_example.py
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 
 app = Flask(__name__)
 
@@ -45,9 +45,9 @@ def registration():
         name = request.form.get('name')
         e_mail = request.form.get('email')
         password = request.form.get('password')
-        return f"You posted:<br> Name: {str(name)}, e-mail: {str(e_mail)} and password: {str(password)}"
+        return render_template('user_table.html',html_name=name, html_email=e_mail)
     else:
-        return render_template('user_table.html')
+        return render_template('registration.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=12345)
