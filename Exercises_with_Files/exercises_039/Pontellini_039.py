@@ -48,7 +48,7 @@ import random
 
 app = Flask(__name__)
 
-with open('flashcards.json', 'r') as f:
+with open('/home/pontellini/Homepage/Exercises_with_Files/exercises_039/flashcards.json', 'r') as f:
     flashcards = json.load(f)
 
 @app.route('/flashcard/<int:id>', methods=['GET', 'POST'])
@@ -65,7 +65,7 @@ def flashcard(id):
         else:
             message = f"Sbagliato! La risposta corretta era: {flashcard['answer']}"
 
-    return render_template('flashcard.html', flashcard=flashcard, message=message)
+    return render_template('/home/pontellini/Homepage/Exercises_with_Files/exercises_039/flashcard.html', flashcard=flashcard, message=message)
 
 @app.route('/flashcard/random')
 def random_flashcard():
@@ -73,4 +73,4 @@ def random_flashcard():
     return redirect(url_for('flashcard', id=flashcard['id']))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=12345)
