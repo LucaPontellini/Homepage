@@ -46,13 +46,31 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 import random
 
-app = Flask (__name__)
+app = Flask(__name__)
 
-with open ('flashcards.json', 'r') as f:
-    flashcards = json.load (f)
+with open('flashcards.json', 'r') as f:
+    flashcards = json.load(f)
 
-#@app.route('/flashcard/<int:id>', methods=['GET', 'POST'])
-#def flashcard(id):
+@app.route('/flashcard/<int:id>', methods=['GET', 'POST'])
+def flashcard(id):
+    flashcard = next((f for f in flashcards if f['id'] == id), None)
+    if flashcard is None:
+        return "Flashcard non trovata", 404
+
+    message = None
+    if request.method == 'POST':
+        answer = request.form.get('answer')
+        if answer == flashcard['answer']:
+            message = "Corretto!"
+        else:
+            message = f"Sbagliato! La risposta corretta era: {flashcard['answer']}"
+
+    return render_template('flashcard.html', flashcard=flashcard, message=message)
+
+@app.route('/flashcard/random')
+def random_flashcard():
+    flashcard = random.choice(flashcards)
+    return redirect(url_for('flashcard', id=flashcard['id']))
 
 if __name__ == '__main__':
     app.run(debug=True)
