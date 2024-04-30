@@ -36,12 +36,13 @@
 #https://github.com/angelogalantiscuola/IT/blob/main/python/modules_library_packages/examples/flask_request_example.py
 
 from flask import Flask, request, render_template
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def registration():
-    
+
     """This feature manages user registration"""
 
     if request.method == 'POST':
@@ -54,17 +55,19 @@ def registration():
             return "Error: all fields are required!"
         if len(password) < 8:
             return "Error: Your password must be at least 8 characters long!"
-        
-        return render_template('user_table.html',html_name=name, html_email=e_mail, html_password=password)
-    else:
-        return render_template('registration.html')
 
-@app.route('/success', methods=['GET', 'POST'])
+        hashed_password = generate_password_hash(password)
+
+        return render_template('success.html', html_name=name, html_email=e_mail, html_password=hashed_password)
+    
+    else: return render_template('registration.html')
+
+@app.route('/success', methods=['GET'])
 def success():
 
-    """This function returns the rendered template 'user_table.html'"""
+    """This function returns the rendered template 'success.html'"""
 
-    return render_template('user_table.html')
+    return render_template('success.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=12345)
