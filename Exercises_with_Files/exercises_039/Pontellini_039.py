@@ -176,3 +176,44 @@
 #    flashcard = get_random_flashcard()
 #    return render_template('flashcard.html', flashcard=flashcard)
 #È possibile utilizzare lo stesso modello 'flashcard.html' per questo percorso.
+
+import json
+from flask import Flask, request, render_template
+
+def read_flashcards(filename: str) -> None:
+
+    with open(file='Homepage/Exercises_with_Files/exercises_039/flashcards.json', mode="r") as file_json:
+        
+        file_ = json.load(file_json)
+
+    return file_
+
+def get_flashcard_by_id(id: int):
+
+    with open(file='Homepage/Exercises_with_Files/exercises_039/flashcards.json', mode="r") as file_json:
+        
+        flashcard = json.load(file_json)
+        print(file_)
+
+    return flashcard
+
+def prompt_for_id() -> int:
+
+    id = int(input("Enter the question ID: '"))
+
+    return id
+      
+with open(file='Homepage/Exercises_with_Files/exercises_039/flashcards.json', mode="r") as file_json:
+        
+    file_ = json.load(file_json)
+
+    for id in file_json:
+        answer = file_json['answer']
+
+def prompt_for_answer() -> str:
+    
+
+id = prompt_for_id()
+flashcard = get_flashcard_by_id(id)
+user_answer = prompt_for_answer()
+is_correct = check_answer(user_answer, flashcard['answer'])
