@@ -1,63 +1,127 @@
-# HTML (HyperText Markup Language)
+# Mappa Concettuale HTML
 
-## Introduzione a HTML
-- **Definizione**: Linguaggio di markup utilizzato per la creazione e la strutturazione delle pagine web.
-- **Elemento HTML**: Componente fondamentale di una pagina web, definito da tag.
+## Struttura di base di un documento HTML
+- `<!DOCTYPE html>`: Definisce il tipo di documento e la versione di HTML.
+- `<html>`: L'elemento radice di una pagina web.
+  - `<head>`: Contiene metadati sulla pagina, come il titolo e i link ai fogli di stile CSS.
+    - `<title>`: Definisce il titolo del documento, che viene visualizzato nella barra del titolo del browser.
+    - `<link>`: Utilizzato per collegare i fogli di stile CSS esterni.
+    - `<meta>`: Fornisce metadati sulla pagina HTML, come la codifica dei caratteri e le parole chiave per i motori di ricerca.
+    - `<style>`: Utilizzato per includere informazioni di stile CSS all'interno di un documento HTML.
+  - `</head>`
+  - `<body>`: Contiene il contenuto principale del documento web.
+    - Elementi del corpo
+  - `</body>`
+- `</html>`
 
-## Struttura di Base di un Documento HTML
-- **`<!DOCTYPE html>`**: Dichiarazione del tipo di documento HTML.
-- **`<html>`**: Elemento radice che racchiude tutto il documento HTML.
-    - **`<head>`**: Contiene metadati, collegamenti a fogli di stile e script.
-        - **`<title>`**: Definisce il titolo della pagina visualizzato nella barra del browser.
-        - **`<meta>`**: Fornisce metadati sulla pagina (es. descrizione, parole chiave).
-        - **`<link>`**: Collega il documento a fogli di stile esterni.
-        - **`<style>`**: Contiene stili CSS per la formattazione della pagina.
-        - **`<script>`**: Collega script JavaScript o definisce script inline.
-    - **`<body>`**: Contiene il contenuto visibile della pagina.
-        - **Elementi HTML**: Tutti gli elementi che costituiscono la struttura della pagina.
+## Elementi del corpo HTML
+- Testo
+  - `<h1>` - `<h6>`: Rappresentano i titoli. `<h1>` è il titolo di livello più alto e `<h6>` è il titolo di livello più basso.
+  - `<p>`: Definisce un paragrafo.
+  - `<br>`: Inserisce un salto di riga.
+  - `<hr>`: Crea una linea orizzontale.
+- Formattazione del testo
+  - `<strong>`: Rende il testo in grassetto.
+  - `<em>`: Rende il testo in corsivo.
+  - `<small>`: Rende il testo più piccolo.
+  - `<sub>`: Crea testo in pedice.
+  - `<sup>`: Crea testo in apice.
+- Link
+  - `<a>`: Definisce un hyperlink.
+- Immagini
+  - `<img>`: Utilizzato per incorporare immagini.
+- Liste
+  - `<ul>`: Crea una lista non ordinata.
+  - `<ol>`: Crea una lista ordinata.
+  - `<li>`: Definisce un elemento della lista.
+- Tabelle
+  - `<table>`: Crea una tabella.
+  - `<tr>`: Definisce una riga della tabella.
+  - `<th>`: Definisce un'intestazione della tabella.
+  - `<td>`: Definisce una cella della tabella.
+- Form
+  - `<form>`: Crea un modulo HTML per l'input dell'utente.
+  - `<input>`: Crea campi di input interattivi per l'input dell'utente.
+  - `<button>`: Rappresenta un pulsante cliccabile.
+- Elementi semantici
+  - `<header>`: Rappresenta un contenitore per contenuti introduttivi o un insieme di link di navigazione.
+  - `<footer>`: Rappresenta un piede di pagina per il contenuto più vicino all'elemento padre.
+  - `<article>`: Rappresenta un contenuto autonomo all'interno di un documento.
+  - `<section>`: Rappresenta una sezione autonoma di un documento.
+  - `<aside>`: Rappresenta una sezione di una pagina che consiste in contenuto che è tangenziale al contenuto attorno all'elemento aside, e che può essere considerato separato dal contenuto attorno ad esso.
+  - `<nav>`: Rappresenta una sezione di una pagina che contiene link di navigazione.
 
-## Elementi HTML di Base
-- **`<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`**: Intestazioni di diversi livelli.
-- **`<p>`**: Paragrafo di testo.
-- **`<a>`**: Collegamento ipertestuale (link).
-    - **Attributo `href`**: URL di destinazione del link.
-- **`<img>`**: Immagine.
-    - **Attributo `src`**: URL dell'immagine.
-    - **Attributo `alt`**: Testo alternativo per l'immagine.
-- **`<ul>`, `<ol>`, `<li>`**: Liste non ordinate (puntate) e ordinate (numeriche/item).
-- **`<table>`, `<tr>`, `<td>`**: Tabelle, righe e celle.
-- **`<div>`**: Contenitore generico per organizzare il layout.
-- **`<span>`**: Elemento per applicare stili o manipolare parti di testo.
-- **`<form>`**: Formulario per la raccolta di input utente.
-    - **Elementi di input**: `<input>`, `<select>`, `<textarea>`, `<button>`, etc.
+# Colori
+- *Rosso* : #FF0000 - Usato per indicare l'importanza o l'attenzione.
+- *Verde* : #008000 - Spesso associato a successo o conferma.
+- *Blu* : #0000FF - Usato per indicare fiducia e stabilità.
+- *Giallo* : #FFFF00 - Può indicare cautela o attenzione.
+- *Nero* : #000000 - Usato per il testo o per indicare l'eleganza.
+- *Bianco* : #FFFFFF - Usato per lo sfondo o per indicare la purezza.
+- *Arancione* : #FFA500 - Spesso usato per indicare creatività o gioia.
+- *Viola* : #800080 - Può indicare lusso o ambizione.
+- *Marrone* : #A52A2A - Spesso usato per indicare la terra o la natura.
+- *Grigio* : #808080 - Usato per indicare la neutralità o il compromesso.
+- *Rosa* : #FFC0CB - Spesso associato alla femminilità o alla dolcezza.
+- *Ciano* : #00FFFF - Può indicare freschezza o leggerezza.
+- *Magenta* : #FF00FF - Spesso usato per indicare l'originalità o l'audacia.
+- *Lime* : #00FF00 - Può indicare energia o vivacità.
+- *Teal* : #008080 - Usato per indicare la sofisticatezza o la stabilità.
+- *Navy* : #000080 - Può indicare la professionalità o la serietà.
+- *Maroon* : #800000 - Spesso associato alla forza o al coraggio.
+- *Olive* : #808000 - Può indicare la pace o la tranquillità.
+- *Aqua* : #00FFFF - Spesso usato per indicare la pulizia o la freschezza.
+- *Fuchsia* : #FF00FF - Può indicare l'entusiasmo o la passione.
+- *Silver* : #C0C0C0 - Usato per indicare la modernità o l'innovazione.
+- *Purple* : #800080 - Può indicare il lusso o la regalità.
 
-## Attributi HTML Comuni
-- **`id`**: Identificatore univoco per un elemento.
-- **`class`**: Classe CSS per applicare stili agli elementi.
-- **`style`**: Stili CSS inline per un elemento specifico.
-- **`src`**: Percorso dell'immagine o risorsa esterna.
-- **`href`**: URL di destinazione per i collegamenti.
-- **`alt`**: Testo alternativo per immagini.
+# Stili di testo
 
-## Formattazione e Struttura
-- **Tag di Blocco**: Definiscono blocchi di contenuto (es. `<div>`, `<p>`, `<h1>`).
-- **Tag Inline**: Incorporati nel testo senza interromperne il flusso (es. `<a>`, `<strong>`, `<em>`).
-- **Commenti HTML**: `<!-- Commento -->` per annotazioni nel codice.
+## Maiuscolo
+- *Descrizione*: Il testo viene trasformato in maiuscolo.
+- *Esempio HTML*: <p style="text-transform: uppercase;">Testo in maiuscolo</p>
 
-## Altri Concetti Avanzati
-- **HTML Semantico**: Utilizzo di tag specifici per descrivere correttamente la struttura del contenuto (es. `<header>`, `<nav>`, `<section>`, `<article>`, `<footer>`).
-- **Multimedia**: Incorporazione di audio (`<audio>`) e video (`<video>`) nelle pagine web.
-- **Formulare e Input**: Utilizzo di elementi di input per la raccolta di dati dagli utenti.
-- **Stili CSS**: Collegamento a fogli di stile esterni o definizione di stili inline.
-- **Script JavaScript**: Utilizzo di script per aggiungere interattività e dinamicità alle pagine web.
-- **Responsive Design**: Creazione di pagine web che si adattano a diversi dispositivi e dimensioni dello schermo.
+## Minuscolo
+- *Descrizione*: Il testo viene trasformato in minuscolo.
+- *Esempio HTML*: <p style="text-transform: lowercase;">Testo in minuscolo</p>
 
-## Best Practices e Strumenti
-- **Validazione HTML**: Utilizzo di strumenti online per verificare la correttezza del codice HTML.
-- **Debugger e Console**: Utilizzo degli strumenti di sviluppo del browser per il debugging.
-- **Linters e Editor di Codice**: Utilizzo di linters HTML e editor di codice per garantire la correttezza e la coerenza del codice.
+## Corsivo
+- *Descrizione*: Il testo viene trasformato in corsivo.
+- *Esempio HTML*: <p style="font-style: italic;">Testo in corsivo</p>
 
-## Moduli Avanzati e Frameworks
-- **Bootstrap**: Framework CSS per lo sviluppo di interfacce web responsive.
-- **jQuery**: Libreria JavaScript per semplificare la manipolazione del DOM e le interazioni utente.
-- **Vue.js**, **React**, **Angular**: Frameworks JavaScript per lo sviluppo di interfacce utente dinamiche e reattive.
+## Testo evidenziato
+- *Descrizione*: Il testo viene evidenziato.
+- *Esempio HTML*: <mark>Testo evidenziato</mark>
+
+## Testo barrato
+- *Descrizione*: Il testo viene barrato.
+- *Esempio HTML*: <del>Testo barrato</del>
+
+## Grandezze del testo
+- *Descrizione*: Il testo può essere impostato con diverse grandezze.
+- *Esempio HTML*:
+  - Piccolo: <small>Testo piccolo</small>
+  - Normale: <p>Testo normale</p>
+  - Grande: <h1>Testo grande</h1>
+
+## Caratteri
+
+### Serif
+- *Descrizione*: I caratteri Serif hanno piccoli tratti o linee decorative alla fine delle lettere. Sono spesso usati per il testo del corpo perché sono facili da leggere.
+- *Esempi HTML*: Times New Roman, Georgia.
+
+### Sans-serif
+- *Descrizione*: I caratteri Sans-serif non hanno i tratti decorativi alla fine delle lettere. Sono spesso usati per i titoli e gli intestazioni.
+- *Esempi HTML*: Arial, Helvetica.
+
+### Monospace
+- *Descrizione*: I caratteri Monospace hanno la stessa larghezza per ogni carattere. Sono spesso usati per il codice o il testo preformattato.
+- *Esempi HTML*: Courier New, Lucida Console.
+
+### Cursive
+- *Descrizione*: I caratteri Cursive imitano la scrittura a mano. Sono spesso usati per gli elementi decorativi.
+- *Esempi HTML*: Brush Script MT, Lucida Handwriting.
+
+### Fantasy
+- *Descrizione*: I caratteri Fantasy sono caratteri decorativi con un aspetto unico. Sono spesso usati per i titoli e gli elementi decorativi.
+- *Esempi HTML*: Impact, Western.
