@@ -17,7 +17,7 @@
 #print(conto.get_saldo())  # Output: 1300.0
 
 class BankAccount:
-    def _init_(self, account_number, account_holder, initial_balance):
+    def __init__(self, account_number: int, account_holder: str , initial_balance: float):
         self.account_number = account_number
         self.account_holder = account_holder
         self._balance = initial_balance
@@ -25,13 +25,13 @@ class BankAccount:
     def get_balance(self):
         return self._balance
 
-    def deposit(self, amount):
+    def deposit(self, amount: float):
         if amount > 0:
             self._balance += amount
         else:
             print("The deposit amount must be positive.")
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: float):
         if 0 < amount <= self._balance:
             self._balance -= amount
         else:

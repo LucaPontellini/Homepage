@@ -15,7 +15,7 @@
 
 class Person:
     
-    def __init__(self, name, age, city):
+    def __init__(self, name: str, age: int, city: str):
         self.name = name
         self.age = age
         self.city = city
