@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<h1>giornale scolastico</h1>
+
+<form action="/" method="post">
+    <fieldset>
+        <label for="fname">Inserisci qui il tuo nome:</label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Inserisci qui il tuo cognome:</label>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="birthday">Data di nascita:</label>
+        <input type="date" id="birthday" name="birthday"><br>
+        <label for="classe">Nazionalità:</label>
+        <select id="classe" name="classe">
+            <option value="">Seleziona la nazionalità</option>
+            <option value="a">Italiano</option>
+            <option value="b">Inglese</option>
+            <option value="c">Americano</option>
+            <option value="d">Cinese</option>
+            <option value="e">Tedesco</option>
+        </select><br>
+        <label for="sesso">Sesso:</label>
+        <input type="radio" id="maschio" name="sesso" value="maschio">
+        <label for="maschio">maschio</label>
+        <input type="radio" id="femmina" name="sesso" value="femmina">
+        <label for="femmina">femmina</label><br>
+        <label for="email">Inserisci qui la tua email:</label>
+        <input type="text" id="email" name="email"><br>
+        <label for="fname">Inserisci qui il tuo nickname:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="pwd">Inserisci la password:</label>
+        <input type="password" id="psw" name="psw" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required><br>
+        <label for="classe">Classe:</label>
+        <select id="classe" name="classe">
+            <option value="">Seleziona la classe</option>
+            <option value="A">Classe 1</option>
+            <option value="B">Classe 2</option>
+            <option value="C">Classe 3</option>
+            <option value="D">Classe 4</option>
+            <option value="E">Classe 5</option>
+        </select><br>
+    </fieldset>
+
+   <input name="invia" type="submit" value="INVIA">
+   <input type="reset" value="Elimina i dati">
+</form>
+
+</html>

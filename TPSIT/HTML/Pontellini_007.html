@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storia di Cartagine - I personaggi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 60%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+        }
+        .header {
+            background-color: #808080;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .content {
+            display: flex;
+        }
+        .sidebar {
+            background-color: #f4f4f4;
+            width: 20%;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar a {
+            display: block;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            margin: 10px 0;
+            font-weight: bold;
+            color: blue;
+            text-decoration: none;
+            position: relative;
+        }
+        .sidebar a:after {
+            content: '';
+            display: block;
+            width: 1em;
+            height: 1px;
+            background: blue;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
+        }
+        .main {
+            background-color: #ffff00;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .main h2 {
+            margin-top: 0;
+        }
+        .character {
+            margin-bottom: 20px;
+        }
+        .character h3 {
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+        .character p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Storia di Cartagine</h1>
+            <h2>I personaggi</h2>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <a href="#">A</a>
+                <a href="#">B</a>
+                <a href="#">C</a>
+                <a href="#">D</a>
+                <a href="#">E</a>
+            </div>
+            <div class="main">
+                <h2>A</h2>
+                <div class="character">
+                    <h3>Annibale</h3>
+                    <p>Condottiero cartaginese, mise a dura prova l'esercito romano durante la Seconda guerra punica.</p>
+                </div>
+                <div class="character">
+                    <h3>Asdrubale</h3>
+                    <p>Fratello di Annibale, fu ucciso nella battaglia del Metauro.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

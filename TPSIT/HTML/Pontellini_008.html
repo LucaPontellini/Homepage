@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .header {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .sidebar {
+            background-color: white;
+            border: 2px solid orange;
+            padding: 10px;
+            width: 150px;
+            position: absolute;
+            top: 100px;
+            left: 20px;
+        }
+        .sidebar ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .sidebar ul li {
+            margin: 5px 0;
+        }
+        .sidebar ul li a {
+            color: blue;
+            text-decoration: none;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            position: relative;
+            background-color: white;
+        }
+        .section-container {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            margin: 0;
+            color: blue;
+        }
+        .section p {
+            margin: 5px 0;
+        }
+        .footer {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - 40px);
+        }
+        .flower-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.pixabay.com/photo/2014/04/03/09/57/flower-309411_1280.png') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flower-bg"></div>
+        <div class="header">
+            <h1>Garden</h1>
+            <h2>Arredi giardino</h2>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Mobili</a></li>
+                <li><a href="#">Strutture</a></li>
+                <li><a href="#">Grigliati</a></li>
+                <li><a href="#">Fioriere</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="section-container">
+                <div class="section">
+                    <h3>Legno e giardino</h3>
+                    <p>Novità dal mondo del legno, consigli utili per la manutenzione e molto altro ancora. Nuovo design per panche e fioriere.</p>
+                </div>
+                <div class="section">
+                    <h3>Progettazione dei frangivento</h3>
+                    <p>Trasforma il frangivento in una vera e propria parete multifunzionale che può essere composta in base alle tue esigenze. L'obiettivo è creare una soluzione resistente e pratica.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            scrivi per informazioni
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  background: radial-gradient(circle at bottom left, #E0FFFF, #0000CD);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  width: 400px;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+}
+
+input[type=text], input[type=password] {
+  width: 90%; /* campi di input più larghi */
+  padding: 15px;
+  margin: 15px 0 40px 50px; /* posizionamento modificato */
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 10px; /* angoli più arrotondati */
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.btn {
+  background-color: #1E90FF; /* pulsante blu un pelo più chiaro */
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 10px; /* angoli più arrotondati */
+}
+
+.btn:hover {
+  opacity:1;
+}
+
+</style>
+</head>
+<body>
+
+<form action="/action_page.php" class="container">
+  <h2 style="text-align: center;"><b>Login</b></h2> <!-- Scritta Login in grassetto e centrata -->
+  <label for="uname"><b>Username</b></label><br>
+  <img src="user_icon.png" alt="User Icon" style="width:30px;height:30px;position:absolute;">
+  <input type="text" placeholder="Type your username" name="uname" required>
+  <hr style="border: none; border-top: 1px solid #000;"><br>
+
+  <label for="psw"><b>Password</b></label><br>
+  <img src="lock_icon.png" alt="Lock Icon" style="width:30px;height:30px;position:absolute;">
+  <input type="password" placeholder="Type your password" name="psw" required>
+  <hr style="border: none; border-top: 1px solid #000;"><br>
+
+  <button type="submit" class="btn">LOGIN</button>
+  <a href="#" style="float: right;">Forgot password?</a><br>
+
+  <div style="margin-top: 20px;">
+    <a href="https://www.facebook.com"><img src="facebook_icon.png" alt="Facebook Icon" style="width:30px;height:30px;"></a>
+    <a href="https://www.twitter.com"><img src="twitter_icon.png" alt="Twitter Icon" style="width:30px;height:30px;"></a>
+    <a href="https://www.google.com"><img src="google_icon.png" alt="Google Icon" style="width:30px;height:30px;"></a>
+  </div>
+  
+  <button type="button" class="btn" style="margin-top: 20px;">Already have an account?</button>
+  <button type="button" class="btn" style="margin-top: 20px;">Exit</button>
+</form>
+
+</body>
+</html>

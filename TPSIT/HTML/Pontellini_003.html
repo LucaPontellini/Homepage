@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<h1>Esempio di pagina web con un form</h1>
+
+<form action="/" method="post">
+    <fieldset>
+        <legend>Dati anagrafici</legend>
+        <label for="fname">Inserisci qui il tuo nome:</label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Inserisci qui il tuo cognome:</label>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="sesso">Sesso:</label>
+        <input type="radio" id="maschio" name="sesso" value="maschio">
+        <label for="maschio">maschio</label>
+        <input type="radio" id="femmina" name="sesso" value="femmina">
+        <label for="femmina">femmina</label><br>
+        <label for="name">Luogo di nascita:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="birthday">Data di nascita:</label>
+        <input type="date" id="birthday" name="birthday"><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>Password personale</legend>
+        <label for="pwd">Inserisci la password:</label>
+        <input type="password" id="pwd" name="pwd">
+    </fieldset>
+
+    <fieldset>
+        <legend>Dati personali</legend>
+        <label for="patente">Patente:</label>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="auto">
+        <label for="vehicle1">Auto</label>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="moto">
+        <label for="vehicle2">Moto</label>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="moto 50cc">
+        <label for="vehicle3">Moto 50cc</label><br>
+        <label for="classe">Classe:</label>
+        <select id="classe" name="classe">
+            <option value="">Seleziona la classe</option>
+            <option value="A">Classe A</option>
+            <option value="B">Classe B</option>
+            <option value="C">Classe C</option>
+        </select><br>
+
+<textarea name="message" rows="10" cols="30">
+Inserisci qui i tuoi commenti
+</textarea>
+
+    </fieldset>    
+</form>
+
+<button type="button">Invia i dati</button>
+
+</html>
