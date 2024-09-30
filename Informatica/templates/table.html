@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabella Voti Studenti</title>
+</head>
+<body>
+    <h1>Tabella Voti Studenti</h1>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Vote</th>
+        </tr>
+        {% for studente in grades %}
+            <tr>
+                <td>{{ studente['student'] }}</td>
+                <td>{{ studente['vote'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
