@@ -1,14 +1,18 @@
 #Esercizio 6: Polimorfismo
+
 #Obiettivo
-#Creare una gerarchia di classi che rappresenti diversi tipi di pagamento in un sistema di e-commerce. Utilizzare il polimorfismo per definire una classe base e classi derivate e che implementano un metodo comune .PagamentoCartaDiCreditoPayPalprocessa_pagamento
+#Creare una gerarchia di classi che rappresenti diversi tipi di pagamento in un sistema di e-commerce.
+#Utilizzare il polimorfismo per definire una classe base Pagamento e classi derivate CartaDiCredito e PayPal che implementano un metodo comune processa_pagamento.
 
 #Istruzioni
-#Definisci una classe base chiamata con un metodo Pagamentoprocessa_pagamento
-#Definisci una classe derivata chiamata che eredita dalla classe . Implementa il metodo per gestire i pagamenti con carta di credito.CartaDiCreditoPagamentoprocessa_pagamento
-#Definisci una classe derivata chiamata che eredita dalla classe . Implementa il metodo per gestire i pagamenti con PayPal.PayPalPagamentoprocessa_pagamento
-#Crea una funzione che accetti un oggetto di tipo e chiami il metodo su di esso, dimostrando il polimorfismo.Pagamentoprocessa_pagamento
-#Esempio di Utilizzo
-## Esempio di utilizzo
+#Definisci una classe base chiamata Pagamento con un metodo processa_pagamento
+#Definisci una classe derivata chiamata CartaDiCredito che eredita dalla classe Pagamento.
+#Implementa il metodo processa_pagamento per gestire i pagamenti con carta di credito.
+#Definisci una classe derivata chiamata PayPal che eredita dalla classe Pagamento.
+#Implementa il metodo processa_pagamento per gestire i pagamenti con PayPal.
+#Crea una funzione Pagamento che accetti un oggetto di tipo processa_pagamento e chiami il metodo su di esso, dimostrando il polimorfismo.
+
+#Esempio di utilizzo
 #def effettua_pagamento(metodo_di_pagamento: Pagamento):
 #    metodo_di_pagamento.processa_pagamento()
 

@@ -1,4 +1,5 @@
 #Esercizio 7: Sistema di Gestione di Biblioteca
+
 #Obiettivo
 #Creare una gerarchia di classi che rappresenti diversi tipi di materiali in una biblioteca.
 #Utilizzare l'ereditarietà per definire una classe base MaterialeBiblioteca e classi derivate Libro, Rivista e DVD che ereditano dalla classe base.
@@ -8,13 +9,16 @@
 #Definisci una classe base chiamata MaterialeBiblioteca con attributi di istanza titolo, anno_pubblicazione e disponibile.
 #Implementa metodi di istanza nella classe MaterialeBiblioteca per accedere e modificare questi attributi.
 #Aggiungi un metodo prestito che imposta l'attributo disponibile a False e un metodo restituzione che lo imposta a True.
-#Definisci una classe derivata chiamata Libro che eredita dalla classe MaterialeBiblioteca. Aggiungi attributi di istanza specifici per Libro, come autore e numero_pagine.
-#Definisci una classe derivata chiamata Rivista che eredita dalla classe MaterialeBiblioteca. Aggiungi attributi di istanza specifici per Rivista, come numero_edizione e mese_pubblicazione.
-#Definisci una classe derivata chiamata DVD che eredita dalla classe MaterialeBiblioteca. Aggiungi attributi di istanza specifici per DVD, come regista e durata.
+#Definisci una classe derivata chiamata Libro che eredita dalla classe MaterialeBiblioteca.
+#Aggiungi attributi di istanza specifici per Libro, come autore e numero_pagine.
+#Definisci una classe derivata chiamata Rivista che eredita dalla classe MaterialeBiblioteca.
+#Aggiungi attributi di istanza specifici per Rivista, come numero_edizione e mese_pubblicazione.
+#Definisci una classe derivata chiamata DVD che eredita dalla classe MaterialeBiblioteca.
+#Aggiungi attributi di istanza specifici per DVD, come regista e durata.
 #Implementa metodi di istanza nelle classi Libro, Rivista e DVD per accedere e modificare i loro attributi specifici.
 #Aggiungi un metodo di ricerca nella classe MaterialeBiblioteca che permette di cercare materiali per titolo o anno di pubblicazione.
 
-## Esempio di utilizzo
+# Esempio di utilizzo
 #libro = Libro("Il Signore degli Anelli", 1954, "J.R.R. Tolkien", 1178)
 #print(libro.get_titolo())  # Output: Il Signore degli Anelli
 #print(libro.get_autore())  # Output: J.R.R. Tolkien

@@ -1,6 +1,8 @@
 #Esercizio 4: Metodi Statici
+
 #Obiettivo
-#Creare una classe chiamata Calcolatrice che utilizzi metodi statici per eseguire operazioni matematiche di base. La classe deve avere metodi statici per l'addizione, la sottrazione, la moltiplicazione e la divisione.
+#Creare una classe chiamata Calcolatrice che utilizzi metodi statici per eseguire operazioni matematiche di base.
+#La classe deve avere metodi statici per l'addizione, la sottrazione, la moltiplicazione e la divisione.
 
 #Istruzioni
 #Definisci una classe chiamata Calcolatrice.
@@ -8,8 +10,8 @@
 #Implementa un metodo statico sottrazione che prenda due numeri come parametri e restituisca la loro differenza.
 #Implementa un metodo statico moltiplicazione che prenda due numeri come parametri e restituisca il loro prodotto.
 #Implementa un metodo statico divisione che prenda due numeri come parametri e restituisca il loro quoziente, assicurandoti di gestire la divisione per zero.
-#Esempio di Utilizzo
-# Esempio di utilizzo
+
+#Esempio di utilizzo
 #print(Calcolatrice.addizione(10, 5))       # Output: 15
 #print(Calcolatrice.sottrazione(10, 5))     # Output: 5
 #print(Calcolatrice.moltiplicazione(10, 5)) # Output: 50

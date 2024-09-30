@@ -1,14 +1,18 @@
 #Esercizio 5: Ereditarietà
+
 #Obiettivo
-#Creare una gerarchia di classi che rappresenti diversi tipi di dipendenti in un'azienda. Utilizzare l'ereditarietà per definire una classe base e classi derivate e che ereditano dalla classe base.DipendenteManagerSviluppatore
+#Creare una gerarchia di classi che rappresenti diversi tipi di dipendenti in un'azienda.
+#Utilizzare l'ereditarietà per definire una classe base Dipendente e classi derivate Manager e Sviluppatore che ereditano dalla classe base.
 
 #Istruzioni
-#Definisci una classe base chiamata con attributi di istanza e .Dipendentenomestipendio
-#Implementa metodi di istanza nella classe per accedere e modificare questi attributi.Dipendente
-#Definisci una classe derivata chiamata che eredita dalla classe . Aggiungi un attributo di istanza specifico per , come .ManagerDipendenteManagernumero_di_team
-#Definisci una classe derivata chiamata che eredita dalla classe . Aggiungi un attributo di istanza specifico per , come .SviluppatoreDipendenteSviluppatorelinguaggio_di_programmazione
-#Implementa metodi di istanza nelle classi e per accedere e modificare i loro attributi specifici.ManagerSviluppatore
-#Esempio di Utilizzo
+#Definisci una classe base chiamata Dipendente con attributi di istanza nome e stipendio.
+#Implementa metodi di istanza nella classe Dipendente per accedere e modificare questi attributi.
+#Definisci una classe derivata chiamata Manager che eredita dalla classe Dipendente.
+#Aggiungi un attributo di istanza specifico per Manager, come numero_di_team.
+#Definisci una classe derivata chiamata Sviluppatore che eredita dalla classe Dipendente.
+#Aggiungi un attributo di istanza specifico per Sviluppatore, come linguaggio_di_programmazione.
+#Implementa metodi di istanza nelle classi Manager e Sviluppatore per accedere e modificare i loro attributi specifici.
+
 # Esempio di utilizzo
 #manager = Manager("Alice", 50000, 3)
 #print(manager.get_nome())  # Output: Alice
