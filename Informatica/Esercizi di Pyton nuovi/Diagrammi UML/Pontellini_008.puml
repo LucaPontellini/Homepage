@@ -1,0 +1,68 @@
+@startuml
+class Dish {
+    + name: str
+    + price: float
+    + available: bool
+    __
+    + __init__(self, name: str, price: float, available: bool)
+    + get_name()
+    + set_name(name: str)
+    + get_price()
+    + set_price(price: float)
+    + is_available()
+    + set_available(available: bool)
+    + order()
+    + make_available()
+    + __str__()
+    + search(dishes: list, name: str = None, price: float = None): list
+}
+
+class Appetizer {
+    + ingredients: str
+    + portion: str
+    __
+    + __init__(self, name: str, price: float, ingredients: str, portion: str, available: bool = True)
+    + get_ingredients()
+    + set_ingredients(ingredients: str)
+    + get_portion()
+    + set_portion(portion: str)
+}
+
+class FirstCourse {
+    + type_of_pasta: str
+    + sauce: str
+    __
+    + __init__(self, name: str, price: float, type_of_pasta: str, sauce: str, available: bool = True)
+    + get_type_of_pasta()
+    + set_type_of_pasta(type_of_pasta: str)
+    + get_sauce()
+    + set_sauce(sauce: str)
+}
+
+class SecondCourse {
+    + type_of_meat: str
+    + cooking: str
+    __
+    + __init__(self, name: str, price: float, type_of_meat: str, cooking: str, available: bool = True)
+    + get_type_of_meat()
+    + set_type_of_meat(type_of_meat: str)
+    + get_cooking()
+    + set_cooking(cooking: str)
+}
+
+class Dessert {
+    + type_of_dessert: str
+    + calories: int
+    __
+    + __init__(self, name: str, price: float, type_of_dessert: str, calories: int, available: bool = True)
+    + get_type_of_dessert()
+    + set_type_of_dessert(type_of_dessert: str)
+    + get_calories()
+    + set_calories(calories: int)
+}
+
+Dish <|-- Appetizer
+Dish <|-- FirstCourse
+Dish <|-- SecondCourse
+Dish <|-- Dessert
+@enduml
