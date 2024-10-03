@@ -60,7 +60,7 @@ class Dish:
     def get_price(self):
         return self.price
 
-    def set_prezzo(self, price):
+    def set_price(self, price):
         self.price = price
 
     def is_available(self):
