@@ -28,7 +28,7 @@ class Appetizer {
     + set_portion(portion: str)
 }
 
-class FirstCourse {
+class MainCourse {
     + type_of_pasta: str
     + sauce: str
     __

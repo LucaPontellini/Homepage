@@ -74,8 +74,75 @@ class Dish:
 
 class Appetizer(Dish):
     def __init__(self, name: str, price: float, ingredients: str, portion: str, available: bool = True):
-        get_ingredients(self):
+        super().__init__(ingredients, portion, available)
+        self.ingredients = ingredients
+        self.portion = portion
+
+    def get_ingredients(self):
         return self.name
+        
+    def set_ingredients(self, ingredients: str):
+        ingredients = ingredients
+    
+    def get_portion(self):
+        return self.portion
+    
+    def set_portion(self, portion: str):
+        portion = portion
+
+class MainCourse(Dish):
+    def __init__(self, name: str, price: float, type_of_pasta: str, sauce: str, available: bool = True):
+        super().__init__(type_of_pasta, sauce, available)
+        self.type_of_pasta = type_of_pasta
+        self.sauce = sauce
+    
+    def get_type_of_pasta(self):
+        return self.type_of_pasta
+    
+    def set_type_of_pasta(self, type_of_pasta: str):
+        type_of_pasta = type_of_pasta
+    
+    def get_sauce(self):
+        return self.sauce
+    
+    def set_sauce(self, sauce: str):
+        sauce = sauce
+
+class SecondCourse(Dish):
+    def __init__(self, name: str, price: float, type_of_meat: str, cooking: str, available: bool = True):
+        super().__init__(type_of_meat, cooking, available)
+        self.type_of_meat = type_of_meat
+        self.cooking = cooking
+    
+    def get_type_of_meat(self):
+        return self.type_of_meat
+    
+    def set_type_of_meat(self, type_of_meat: str):
+        type_of_meat = type_of_meat
+
+    def get_cooking(self):
+        return self.cooking
+    
+    def set_cooking(self, cooking: str):
+        cooking = cooking
+
+class Dessert(Dish):
+    def __init__(self, name: str, price: float, type_of_dessert: str, calories: int, available: bool = True):
+        super().__init__(type_of_dessert, calories, available)
+        self.type_of_dessert = type_of_dessert
+        self.calories = calories
+    
+    def get_type_of_dessert(self):
+        return self.type_of_dessert
+    
+    def set_type_of_dessert(self, type_of_dessert: str):
+        type_of_dessert = type_of_dessert
+    
+    def get_calories(self):
+        return self.calories
+    
+    def set_calories(self, calories: int):
+        calories = calories
 
 appetizer = Appetizer("Bruschetta", 5.0, ["Bread", "Tomato", "Basil"], "Small")
 main_course = MainCourse("Spaghetti Carbonara", 12.0, "Spaghetti", "Carbonara")
