@@ -50,6 +50,9 @@ class Dish:
         self.name = name
         self.price = price
         self.available = available
+    
+    def __str__(self):
+        return f"{self.name} - €{self.price} - {'Available' if self.available else 'Unavailable'}"
 
     def get_name(self):
         return self.name
@@ -69,81 +72,110 @@ class Dish:
     def set_available(self, available):
         self.available = available
 
-    def __str__(self):
-        return f"{self.name} - {self.price}€ - {'Available' if self.available else 'Unavailable'}"
+def search_dishes(dishes, name=None, price=None):
+    results = []
+    for dish in dishes:
+        if name and name in dish.name:
+            results.append(dish)
+        elif price and dish.price == price:
+            results.append(dish)
+    return results
+
+def calculate_bill(ordered_dishes):
+    total_bill = 0
+    for dish in ordered_dishes:
+        total_bill += dish.price
+    return total_bill
+
+def print_menu(dishes):
+    for dish in dishes:
+        print(dish)
 
 class Appetizer(Dish):
-    def __init__(self, name: str, price: float, ingredients: str, portion: str, available: bool = True):
-        super().__init__(ingredients, portion, available)
+    def __init__(self, name: str, price: float, ingredients: list, portion: str, available: bool = True):
+        super().__init__(name, price, available)
         self.ingredients = ingredients
         self.portion = portion
+    
+    def __str__(self):
+        return f"Appetizer: {self.name} - €{self.price} - {'Available' if self.available else 'Unavailable'} - Ingredients: {', '.join(self.ingredients)} - Portion: {self.portion}"
 
     def get_ingredients(self):
-        return self.name
+        return self.ingredients
         
-    def set_ingredients(self, ingredients: str):
-        ingredients = ingredients
+    def set_ingredients(self, ingredients: list):
+        self.ingredients = ingredients
     
     def get_portion(self):
         return self.portion
     
     def set_portion(self, portion: str):
-        portion = portion
+        self.portion = portion
 
 class MainCourse(Dish):
     def __init__(self, name: str, price: float, type_of_pasta: str, sauce: str, available: bool = True):
-        super().__init__(type_of_pasta, sauce, available)
+        super().__init__(name, price, available)
         self.type_of_pasta = type_of_pasta
         self.sauce = sauce
+    
+    def __str__(self):
+        return f"MainCourse: {self.name} - €{self.price} - {'Available' if self.available else 'Unavailable'} - Type of pasta: {self.type_of_pasta} - Sauce: {self.sauce}"
     
     def get_type_of_pasta(self):
         return self.type_of_pasta
     
     def set_type_of_pasta(self, type_of_pasta: str):
-        type_of_pasta = type_of_pasta
+        self.type_of_pasta = type_of_pasta
     
     def get_sauce(self):
         return self.sauce
     
     def set_sauce(self, sauce: str):
-        sauce = sauce
+        self.sauce = sauce
 
 class SecondCourse(Dish):
     def __init__(self, name: str, price: float, type_of_meat: str, cooking: str, available: bool = True):
-        super().__init__(type_of_meat, cooking, available)
+        super().__init__(name, price, available)
         self.type_of_meat = type_of_meat
         self.cooking = cooking
+    
+    def __str__(self):
+        return f"SecondCourse: {self.name} - €{self.price} - {'Available' if self.available else 'Unavailable'} - Type of meat: {self.type_of_meat} - Cooking: {self.cooking}"
     
     def get_type_of_meat(self):
         return self.type_of_meat
     
     def set_type_of_meat(self, type_of_meat: str):
-        type_of_meat = type_of_meat
-
+        self.type_of_meat = type_of_meat
+    
     def get_cooking(self):
         return self.cooking
     
     def set_cooking(self, cooking: str):
-        cooking = cooking
+        self.cooking = cooking
 
 class Dessert(Dish):
     def __init__(self, name: str, price: float, type_of_dessert: str, calories: int, available: bool = True):
-        super().__init__(type_of_dessert, calories, available)
+        super().__init__(name, price, available)
         self.type_of_dessert = type_of_dessert
         self.calories = calories
+    
+    def __str__(self):
+        return f"Dessert: {self.name} - €{self.price} - {'Available' if self.available else 'Unavailable'} - Type of dessert: {self.type_of_dessert} - Calories: {self.calories}"
     
     def get_type_of_dessert(self):
         return self.type_of_dessert
     
     def set_type_of_dessert(self, type_of_dessert: str):
-        type_of_dessert = type_of_dessert
+        self.type_of_dessert = type_of_dessert
     
     def get_calories(self):
         return self.calories
     
     def set_calories(self, calories: int):
-        calories = calories
+        self.calories = calories
 
+# Esempio di utilizzo
 appetizer = Appetizer("Bruschetta", 5.0, ["Bread", "Tomato", "Basil"], "Small")
 main_course = MainCourse("Spaghetti Carbonara", 12.0, "Spaghetti", "Carbonara")
 second_course = SecondCourse("Florentine Steak", 25.0, "Beef", "Medium")
