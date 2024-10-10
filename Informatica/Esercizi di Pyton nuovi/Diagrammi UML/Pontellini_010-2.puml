@@ -4,6 +4,7 @@ class Fraction {
     + denominator: int
     __
     + __init__(self, numerator: int, denominator: int)
+    + simplify()
     + __add__(other: Fraction): Fraction
     + __sub__(other: Fraction): Fraction
     + __mul__(other: Fraction): Fraction
