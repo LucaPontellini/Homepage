@@ -175,3 +175,29 @@ Questa libreria fornisce funzioni specifiche per leggere, scrivere e manipolare 
 ## File PPTX
 - Per i file PPTX, avrai bisogno della libreria `python-pptx`. 
 Questa libreria offre funzioni per leggere, scrivere e manipolare i file PPTX
+
+# Classi e Oggetti in Python
+
+- **Classe**: Un modello per creare oggetti. Definisce attributi e metodi.
+- **Oggetto**: Un'istanza di una classe.
+- **Metodo**: Una funzione definita all'interno di una classe.
+- **Attributo**: Una variabile definita all'interno di una classe.
+- **Incapsulamento**: Raggruppa dati e metodi che lavorano sui dati all'interno di un'unica unità.
+- **Ereditarietà**: Consente di creare una classe derivata che eredita gli attributi e i metodi da una classe base.
+- **Polimorfismo**: Consente di trattare oggetti di diverse classi derivate come oggetti della classe base.
+- **Metodi Magici**: Metodi speciali con funzionalità predefinite.
+  - **`__init__`**: Inizializzatore degli oggetti (costruttore). Viene chiamato quando un'istanza della classe viene creata. Spesso usato per inizializzare gli attributi.
+  - **`__str__`**: Definisce la rappresentazione stringa di un oggetto. Viene chiamato quando l'oggetto è passato a `print()` o `str()`.
+  - **`__repr__`**: Definisce una rappresentazione ufficiale dell'oggetto. Viene chiamato da `repr()` e dagli ambienti interattivi come la shell di Python. Dovrebbe restituire una stringa che possa essere usata per ricreare l'oggetto.
+  - **`__len__`**: Definisce il comportamento della funzione `len()` applicata all'oggetto.
+  - **`__getitem__`**: Definisce il comportamento dell'indicizzazione (`[]`) sugli oggetti.
+  - **`__setitem__`**: Definisce il comportamento dell'assegnazione tramite indicizzazione.
+  - **`__delitem__`**: Definisce il comportamento della cancellazione di un elemento tramite indicizzazione.
+  - **`__iter__`**: Definisce il comportamento dell'iterazione sugli oggetti (ad esempio, con un ciclo `for`).
+  - **`__next__`**: Definisce il comportamento del passaggio all'elemento successivo in un'iterazione.
+
+- **Getter e Setter**: Metodi per accedere e modificare gli attributi privati.
+  - **Getter**: Metodo che restituisce il valore di un attributo privato.
+  - **Setter**: Metodo che permette di modificare il valore di un attributo privato.
+
+- **Decoratore `@property`**: Permette di definire metodi che si comportano come attributi.
