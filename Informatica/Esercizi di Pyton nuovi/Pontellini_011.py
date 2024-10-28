@@ -57,29 +57,49 @@ class Recipe:
     def __str__(self):
         return f"{self.name} - {self.preparation_time} min - Difficulty: {self.difficulty}"
     
-    def get_name(self):
-        return self.name
+    @property
+    def name(self):
+        return self._name
 
-    def set_name(self, name):
-        self.name = name
+    @name.setter
+    def name(self, name):
+        if name:
+            self._name = name
+        else:
+            self._name = "Unknown name"
     
-    def get_preparation_time(self):
-        return self.preparation_time
+    @property
+    def preparation_time(self):
+        return self._preparation_time
 
-    def set_preparation_time(self, preparation_time):
-        self.preparation_time = preparation_time
+    @preparation_time.setter
+    def preparation_time(self, preparation_time):
+        if preparation_time:
+            self._preparation_time = preparation_time
+        else:
+            self._preparation_time = "Unknown preparation time"
     
-    def get_ingredients(self):
-        return self.ingredients
+    @property
+    def ingredients(self):
+        return self._ingredients
 
-    def set_ingredients(self, ingredients):
-        self.ingredients = ingredients
+    @ingredients.setter
+    def ingredients(self, ingredients):
+        if ingredients:
+            self._ingredients = ingredients
+        else:
+            self._ingredients = "Unknown ingredients"
     
-    def get_difficulty(self):
-        return self.difficulty
+    @property
+    def difficulty(self):
+        return self._difficulty
 
-    def set_difficulty(self, difficulty):
-        self.difficulty = difficulty
+    @difficulty.setter
+    def difficulty(self, difficulty):
+        if difficulty:
+            self._difficulty = difficulty
+        else:
+            self._difficulty = "Unknown difficulty"
     
     def add_ingredient(self, ingredient):
         self.ingredients.append(ingredient)
@@ -90,17 +110,27 @@ class FirstCourse(Recipe):
         self.type_of_pasta = type_of_pasta
         self.sauce = sauce
 
-    def get_pasta_type(self):
-        return self.type_of_pasta
+    @property
+    def type_of_pasta(self):
+        return self._type_of_pasta
 
-    def set_pasta_type(self, type_of_pasta):
-        self.type_of_pasta = type_of_pasta
+    @type_of_pasta.setter
+    def type_of_pasta(self, type_of_pasta):
+        if type_of_pasta:
+            self._type_of_pasta = type_of_pasta
+        else:
+            self._type_of_pasta = "Unknown type of pasta"
 
-    def get_sauce(self):
-        return self.sauce
+    @property
+    def sauce(self):
+        return self._sauce
 
-    def set_sauce(self, sauce):
-        self.sauce = sauce
+    @sauce.setter
+    def sauce(self, sauce):
+        if sauce:
+            self._sauce = sauce
+        else:
+            self._sauce = "Unknown sauce"
 
     def __str__(self):
         return f"FirstCourse: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Type of pasta : {self.type_of_pasta} - Sauce: {self.sauce}"
@@ -111,17 +141,27 @@ class SecondCourse(Recipe):
         self.type_of_meat = type_of_meat
         self.cooking = cooking
 
-    def get_type_of_meat(self):
-        return self.type_of_meat
+    @property
+    def type_of_meat(self):
+        return self._type_of_meat
 
-    def set_type_of_meat(self, type_of_meat):
-        self.type_of_meat = type_of_meat
+    @type_of_meat.setter
+    def type_of_meat(self, type_of_meat):
+        if type_of_meat:
+            self._type_of_meat = type_of_meat
+        else:
+            self._type_of_meat = "Unknown type of meat"
 
-    def get_cooking(self):
-        return self.cooking
+    @property
+    def cooking(self):
+        return self._cooking
 
-    def set_cooking(self, cooking):
-        self.cooking = cooking
+    @cooking.setter
+    def cooking(self, cooking):
+        if cooking:
+            self._cooking = cooking
+        else:
+            self._cooking = "Unknown cooking"
     
     def __str__(self):
         return f"SecondCourse: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Type of meat : {self.type_of_meat} - Cooking: {self.cooking}"
@@ -132,17 +172,27 @@ class Dessert(Recipe):
         self.sugar = sugar
         self.type_of_dessert = type_of_dessert
 
-    def get_sugar(self):
-        return self.sugar
+    @property
+    def sugar(self):
+        return self._sugar
 
-    def set_sugar(self, sugar):
-        self.sugar = sugar
+    @sugar.setter
+    def sugar(self, sugar):
+        if sugar:
+            self._sugar = sugar
+        else:
+            self._sugar = "Unknown sugar"
 
-    def get_dessert_type(self):
-        return self.type_of_dessert
+    @property
+    def type_of_dessert(self):
+        return self._type_of_dessert
 
-    def set_dessert_type(self, type_of_dessert):
-        self.type_of_dessert = type_of_dessert
+    @type_of_dessert.setter
+    def type_of_dessert(self, type_of_dessert):
+        if type_of_dessert:
+            self._type_of_dessert = type_of_dessert
+        else:
+            self._type_of_dessert = "Unknown type of dessert"
     
     def __str__(self):
         return f"Dessert: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Sugar : {self.sugar} - Type of dessert: {self.type_of_dessert}"
