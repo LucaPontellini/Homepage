@@ -103,7 +103,7 @@ class FirstCourse(Recipe):
         self.sauce = sauce
 
     def __str__(self):
-        return f"Type of pasta : {self.type_of_pasta}, Sauce: {self.sauce}"
+        return f"FirstCourse: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Type of pasta : {self.type_of_pasta} - Sauce: {self.sauce}"
 
 class SecondCourse(Recipe):
     def __init__(self, name, preparation_time, ingredients, difficulty, type_of_meat, cooking):
@@ -124,7 +124,7 @@ class SecondCourse(Recipe):
         self.cooking = cooking
     
     def __str__(self):
-        return f"{self.name} - {self.preparation_time} min - Difficulty: {self.difficulty}"
+        return f"SecondCourse: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Type of meat : {self.type_of_meat} - Cooking: {self.cooking}"
 
 class Dessert(Recipe):
     def __init__(self, name, preparation_time, ingredients, difficulty, sugar, type_of_dessert):
@@ -143,11 +143,14 @@ class Dessert(Recipe):
 
     def set_dessert_type(self, type_of_dessert):
         self.type_of_dessert = type_of_dessert
+    
+    def __str__(self):
+        return f"Dessert: {self.name} - {self.preparation_time} min - Difficulty: {self.difficulty} - Sugar : {self.sugar} - Type of dessert: {self.type_of_dessert}"
 
 def calculate_total_time(recipes):
     total_time = 0
     for recipe in recipes:
-        total_time += recipe.prep_time
+        total_time += recipe.preparation_time
     return total_time
 
 def check_ingredients(recipes, available_ingredients):
@@ -166,15 +169,13 @@ def print_recipes(recipes):
     for recipe in recipes:
         print(recipe)
 
-first_course = FirstCourse("Spaghetti Carbonara", 20, ["Spaghetti", "Eggs", "Pancetta", "Pecorino", "Pepper"], "Medium", "Spaghetti", "Carbonara")
-second_course = SecondCourse("Florentine Steak", 30, ["Steak", "Salt", "Pepper", "Oil"], "High", "Beef", "Medium")
-dessert = Dessert("Tiramisu", 30, ["Ladyfingers", "Coffee", "Mascarpone", "Eggs", "Sugar", "Cocoa"], "Medium", "200g", "Dessert")
+first_course = FirstCourse("Spaghetti alla Carbonara", 20, ["Spaghetti", "Eggs", "Bacon"], "Medium", "Spaghetti", "Carbonara")
+second_course = SecondCourse("Bistecca alla Fiorentina", 30, ["Steak", "Salt", "Pepper"], "High", "Beef", "Medium")
+dessert = Dessert("Tiramisù", 30, ["Mascarpone", "Coffee", "Ladyfingers"], "Medium", 200, "Dessert")
 
 recipes = [first_course, second_course, dessert]
-available_ingredients = ["Spaghetti", "Eggs", "Pancetta", "Steak", "Salt", "Pepper", "Mascarpone", "Coffee", "Ladyfingers", "Bread", "Tomato", "Basil"]
-
-possible_recipes = check_ingredients(recipes, available_ingredients)
+possible_recipes = check_ingredients(recipes, ["Spaghetti", "Eggs", "Bacon", "Steak", "Salt", "Pepper", "Mascarpone", "Coffee", "Ladyfingers", "Bread", "Tomato", "Basil"])
 print(f"Recipes that can be prepared: {len(possible_recipes)}")
 
 print("\nRecipe information:")
-print_recipes(possible_recipes)
+print_recipes(recipes)
