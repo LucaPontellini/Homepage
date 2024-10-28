@@ -1,10 +1,10 @@
 @startuml
 
 class Recipe {
-    + name: str
-    + preparation_time: float
-    + ingredients: list
-    + difficulty: str
+    - name: str
+    - preparation_time: float
+    - ingredients: list
+    - difficulty: str
     __
     + __init__(self, name: str, preparation_time: float, ingredients: list, difficulty: str, check_the_ingredients: bool)
     + get_name(): str
@@ -19,8 +19,8 @@ class Recipe {
 }
 
 class MainCourse {
-    + type_of_pasta: str
-    + sauce: str
+    - type_of_pasta: str
+    - sauce: str
     __
     + __init__(self, name: str, type_of_pasta: str, sauce: str)
     + get_type_of_pasta(): str
@@ -32,8 +32,8 @@ class MainCourse {
 }
 
 class SecondCourse {
-    + type_of_meat: str
-    + cooking: str
+    - type_of_meat: str
+    - cooking: str
     __
     + __init__(self, name: str, type_of_meat: str, cooking: str)
     + get_type_of_meat(): str
@@ -45,8 +45,8 @@ class SecondCourse {
 }
 
 class Dessert {
-    + type_of_dessert: str
-    + sugar: float
+    - type_of_dessert: str
+    - sugar: float
     __
     + __init__(self, name: str, type_of_dessert: str, sugar: float)
     + get_type_of_dessert(): str
