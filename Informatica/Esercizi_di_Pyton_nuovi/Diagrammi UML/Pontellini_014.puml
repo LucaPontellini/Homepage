@@ -1,28 +1,29 @@
 @startuml
-class House {
-    - address: str
-    - owner: str
-    - rooms: List<Room>
-    __
-    + __init__(self, address: str, owner: str)
-    + get_address(): str
-    + set_address(address: str): void
-    + get_owner(): str
-    + set_owner(owner: str): void
-    + add_room(room: Room): void
-    + get_rooms(): List<Room>
-}
-
-class Room {
+class Student {
     - name: str
-    - surface: int
+    - freshman: str
     __
-    + __init__(self, name: str, surface: int)
+    + __init__(self, name: str, freshman: str)
     + get_name(): str
     + set_name(name: str): void
-    + get_surface(): int
-    + set_surface(surface: int): void
+    + get_freshman(): str
+    + set_freshman(freshman: str): void
+    + add_course(course: Course): void
+    + get_courses(): List<Course>
 }
 
-House "1" -- "0..*" Room
+class Course {
+    - title: str
+    - code: str
+    __
+    + __init__(self, title: str, code: int)
+    + get_title(): str
+    + set_title(code: int): void
+    + get_code(): str
+    + set_code(code: int): void
+    + add_student(student: Student): void
+    + get_students(): List<Student>
+}
+
+Student "0..*" -- "0..*" Course
 @enduml
