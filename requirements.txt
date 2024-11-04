@@ -3,3 +3,4 @@ argparse
 matplotlib
 flask
 tabulate
+pytest
