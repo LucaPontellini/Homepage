@@ -1,8 +1,7 @@
-import pytest
-from Pontellini_006 import CreditCard, PayPal, process_payment
+from Pontellini_006 import Credit_Card, PayPal, process_payment
 
 def test_credit_card_process_payment(capfd):
-    credit_card_payment = CreditCard(
+    credit_card_payment = Credit_Card(
         "Mario Rossi", "1234 5678 9012 3456", "12/23", "123"
     )
     credit_card_payment.process_payment()
@@ -18,7 +17,7 @@ def test_paypal_process_payment(capfd):
     )
 
 def test_process_payment_credit_card(capfd):
-    credit_card_payment = CreditCard(
+    credit_card_payment = Credit_Card(
         "Mario Rossi", "1234 5678 9012 3456", "12/23", "123"
     )
     process_payment(credit_card_payment)
