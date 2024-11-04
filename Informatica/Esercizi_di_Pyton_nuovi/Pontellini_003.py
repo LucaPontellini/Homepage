@@ -30,5 +30,5 @@ class Vehicle:
         
 print(Vehicle.get_number_of_vehicles())  # Output: 0
 car1 = Vehicle("Car", "Toyota")
-car2 = Vehicle("Motion", "Honda")
+Motion1 = Vehicle("Motion", "Honda")
 print(Vehicle.get_number_of_vehicles())  # Output: 2

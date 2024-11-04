@@ -8,7 +8,7 @@ import pytest
 from Pontellini_002 import BankAccount
 
 @pytest.fixture
-def conto():
+def balance():
     return BankAccount("123456789", "Mario Rossi", 1000.0)
 
 def test_get_balance(balance):
