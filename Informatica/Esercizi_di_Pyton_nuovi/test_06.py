@@ -1,34 +1,34 @@
 import pytest
-from Pontellini_006 import CartaDiCredito, PayPal, effettua_pagamento
+from Pontellini_006 import CreditCard, PayPal, process_payment
 
-def test_carta_di_credito_processa_pagamento(capfd):
-    pagamento_carta = CartaDiCredito(
+def test_credit_card_process_payment(capfd):
+    credit_card_payment = CreditCard(
         "Mario Rossi", "1234 5678 9012 3456", "12/23", "123"
     )
-    pagamento_carta.processa_pagamento()
+    credit_card_payment.process_payment()
     captured = capfd.readouterr()
-    assert "Elaborazione pagamento con Carta di Credito per Mario Rossi" in captured.out
+    assert "Processing payment with Credit Card for Mario Rossi" in captured.out
 
-def test_paypal_processa_pagamento(capfd):
-    pagamento_paypal = PayPal("mario.rossi@example.com", "password123")
-    pagamento_paypal.processa_pagamento()
+def test_paypal_process_payment(capfd):
+    paypal_payment = PayPal("mario.rossi@example.com", "password123")
+    paypal_payment.process_payment()
     captured = capfd.readouterr()
     assert (
-        "Elaborazione pagamento con PayPal per mario.rossi@example.com" in captured.out
+        "Processing payment with PayPal for mario.rossi@example.com" in captured.out
     )
 
-def test_effettua_pagamento_carta_di_credito(capfd):
-    pagamento_carta = CartaDiCredito(
+def test_process_payment_credit_card(capfd):
+    credit_card_payment = CreditCard(
         "Mario Rossi", "1234 5678 9012 3456", "12/23", "123"
     )
-    effettua_pagamento(pagamento_carta)
+    process_payment(credit_card_payment)
     captured = capfd.readouterr()
-    assert "Elaborazione pagamento con Carta di Credito per Mario Rossi" in captured.out
+    assert "Processing payment with Credit Card for Mario Rossi" in captured.out
 
-def test_effettua_pagamento_paypal(capfd):
-    pagamento_paypal = PayPal("mario.rossi@example.com", "password123")
-    effettua_pagamento(pagamento_paypal)
+def test_process_payment_paypal(capfd):
+    paypal_payment = PayPal("mario.rossi@example.com", "password123")
+    process_payment(paypal_payment)
     captured = capfd.readouterr()
     assert (
-        "Elaborazione pagamento con PayPal per mario.rossi@example.com" in captured.out
+        "Processing payment with PayPal for mario.rossi@example.com" in captured.out
     )
