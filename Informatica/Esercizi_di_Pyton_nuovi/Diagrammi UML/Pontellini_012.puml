@@ -1,0 +1,27 @@
+@startuml
+class Vehicle {
+    - brand: str
+    - model: str
+    __
+    + __init__(self, brand: str, model: str)
+    + get_brand(): str
+    + set_brand(brand: str): void
+    + get_model(): str
+    + set_model(model: str): void
+    + associate_engine(engine: Engine): void
+}
+
+class Engine {
+    - serial_number: str
+    - type: str
+    __
+    + __init__(self, serial_number: str, type: str)
+    + get_serial_number(): str
+    + set_serial_number(serial_number: str): void
+    + get_type(): str
+    + set_type(type: str): void
+    + associate_vehicle(vehicle: Vehicle): void
+}
+
+Vehicle "1" -- "1" Engine
+@enduml
