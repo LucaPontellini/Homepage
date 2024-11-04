@@ -1,13 +1,18 @@
+# pylint: disable=redefined-outer-name
 import pytest
-from Homepage.Informatica.Esercizi_di_Pyton_nuovi.Pontellini_001 import Person
+from Pontellini_001 import Person
 
-@pytest.fixture(person=True)
+# The @pytest.fixture decorator in pytest is used to define a fixture function.
+# Fixtures are a way to provide a fixed baseline upon which tests can reliably and repeatedly execute.
+# They are used to set up some context (like creating objects, connecting to databases, etc.)
+# before running tests and to clean up afterward.
 
-def test_creazione(self):
-    person1 = Person("Mario", 30, "Rome")
+@pytest.fixture
+def person():
+    return Person("Mario", 30, "Roma")
 
-def test_greets():
-    assert Person.greets(self)
+def test_greets(person):
+    assert person.greets() == "Hello, my name is Mario."
 
-def test_description():
-    assert Person.description(self)
+def test_description(person):
+    assert person.description() == "I'm 30 and i live in Rome."

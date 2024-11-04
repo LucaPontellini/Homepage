@@ -28,7 +28,7 @@ class Person:
     def description(self):
         print(f"I'm {self.age} and i live in {self.city}.")
 
-person1 = Person("Mario", 30, "Rome")
+person = Person("Mario", 30, "Rome")
 
-person1.greets()
-person1.description()
+person.greets()
+person.description()
