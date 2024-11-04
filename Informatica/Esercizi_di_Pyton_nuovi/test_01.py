@@ -9,7 +9,7 @@ from Pontellini_001 import Person
 
 @pytest.fixture
 def person():
-    return Person("Mario", 30, "Roma")
+    return Person("Mario", 30, "Rome")
 
 def test_greets(person):
     assert person.greets() == "Hello, my name is Mario."

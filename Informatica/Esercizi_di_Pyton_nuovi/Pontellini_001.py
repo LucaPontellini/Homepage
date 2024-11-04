@@ -24,9 +24,11 @@ class Person:
     
     def greets(self):
         print(f"Hello, my name is {self.name}.")
+        return f"Hello, my name is {self.name}."
 
     def description(self):
         print(f"I'm {self.age} and i live in {self.city}.")
+        return f"I'm {self.age} and i live in {self.city}."
 
 person = Person("Mario", 30, "Rome")
 
