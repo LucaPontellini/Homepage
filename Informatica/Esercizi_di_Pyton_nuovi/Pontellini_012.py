@@ -35,8 +35,9 @@
 
 class Car:
     def __init__(self, brand: str, model: str):
-        self.brand = brand
-        self.model = model
+        self._brand = brand
+        self._model = model
+        self.engine = None
 
     @property
     def brand(self):
@@ -48,7 +49,7 @@ class Car:
             self._brand = brand
         else:
             self._brand = "Unknown brand"
-    
+
     @property
     def model(self):
         return self._model
@@ -59,14 +60,16 @@ class Car:
             self._model = model
         else:
             self._model = "Unknown model"
-    
+
     def associate_engine(self, engine) -> None:
-        self.engine = engine.vehicle = self
+        self.engine = engine
+        engine.vehicle = self
 
 class Engine:
     def __init__(self, serial_number: str, type: str):
-        self.serial_number = serial_number
-        self.type = type
+        self._serial_number = serial_number
+        self._type = type
+        self.vehicle = None
 
     @property
     def serial_number(self):
@@ -78,7 +81,7 @@ class Engine:
             self._serial_number = serial_number
         else:
             self._serial_number = "Unknown serial number"
-    
+
     @property
     def type(self):
         return self._type
@@ -89,9 +92,10 @@ class Engine:
             self._type = type
         else:
             self._type = "Unknown type"
-    
+
     def associate_vehicle(self, vehicle) -> None:
-        self.vehicle = vehicle.engine = self
+        self.vehicle = vehicle
+        vehicle.engine = self
 
 car1 = Car("Fiat", "500")
 engine1 = Engine("ENG123456", "Benzina")
@@ -99,7 +103,7 @@ engine1 = Engine("ENG123456", "Benzina")
 car1.associate_engine(engine1)
 
 print(f"{car1.brand} {car1.model} has the engine: {car1.engine.serial_number}")
-print(f"Il motore {engine1.serial_number} belongs to: {engine1.car.brand} {engine1.car.model}")
+print(f"The engine {engine1.serial_number} belongs to: {engine1.vehicle.brand} {engine1.vehicle.model}")
 
 #Fiat 500 ha il motore: ENG123456
 #Il motore ENG123456 appartiene a: Fiat 500

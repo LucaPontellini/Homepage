@@ -1,27 +1,28 @@
 @startuml
-class Vehicle {
-    - brand: str
-    - model: str
+class House {
+    - address: str
+    - owner: str
+    - rooms: List<Room>
     __
-    + __init__(self, brand: str, model: str)
-    + get_brand(): str
-    + set_brand(brand: str): void
-    + get_model(): str
-    + set_model(model: str): void
-    + associate_engine(engine: Engine): void
+    + __init__(self, address: str, owner: str)
+    + get_address(): str
+    + set_address(address: str): void
+    + get_owner(): str
+    + set_owner(owner: str): void
+    + add_room(room: Room): void
+    + get_rooms(): List<Room>
 }
 
-class Engine {
-    - serial_number: str
-    - type: str
+class Room {
+    - name: str
+    - surface: int
     __
-    + __init__(self, serial_number: str, type: str)
-    + get_serial_number(): str
-    + set_serial_number(serial_number: str): void
-    + get_type(): str
-    + set_type(type: str): void
-    + associate_vehicle(vehicle: Vehicle): void
+    + __init__(self, name: str, surface: int)
+    + get_name(): str
+    + set_name(name: str): void
+    + get_surface(): int
+    + set_surface(surface: int): void
 }
 
-Vehicle "1" -- "1" Engine
+House "1" -- "0..*" Room
 @enduml
