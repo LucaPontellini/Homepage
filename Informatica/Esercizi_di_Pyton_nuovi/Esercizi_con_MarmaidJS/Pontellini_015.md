@@ -3,36 +3,36 @@
 classDiagram
 
     class Author {
-        +String name
-        +String surname
-        +List<Book> books
-        +String biography
+        +String: name
+        +String: surname
+        +List<Book>: books
+        +String: biography
     }
     class Biography {
         +String text
         +String publicationDate
     }
     class Library {
-        +String name
-        +String address
+        +String: name
+        +String: address
     }
     class Book {
-        +String title
-        +Author author
+        +String: title
+        +Author: author
     }
     class Student {
-        +String name
-        +String surname
+        +String: name
+        +String: surname
     }
     class Device {
-        +String brand
-        +String model
+        +String: brand
+        +String: model
     }
     class Smartphone {
-        +boolean supports5G
+        +boolean: supports5G
     }
     class Tablet {
-        +boolean hasPen
+        +boolean: hasPen
     }
 
     Author "1" --> "1" Biography

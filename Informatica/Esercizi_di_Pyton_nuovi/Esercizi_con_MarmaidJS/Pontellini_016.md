@@ -2,15 +2,17 @@
 
 classDiagram
 
-    class 
-
-
-    Author "1" --> "1" Biography
-    Author "1" --> "n" Book
-    Book "1" --> "1" Author
-    Library "1" --> "n" Book
-    Library "1" --> "n" Student
-    Student "1" --> "n" Book
-    Student "1" --> "1" Device
-    Device <|-- Smartphone
-    Device <|-- Tablet
+    class Doctor {
+        +String name
+        +String surname
+        +String specialization
+    }
+    class Drugs {
+        +String name
+        +Float dose
+    }
+    class Hospital {
+        +String name
+        +String address
+        +List <department> departments
+    }
