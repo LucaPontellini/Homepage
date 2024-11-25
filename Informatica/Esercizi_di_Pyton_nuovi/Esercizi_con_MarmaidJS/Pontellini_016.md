@@ -34,3 +34,6 @@ classDiagram
     class Medical_record {
         +List<medical_examination>: medical_examinations
     }
+    class Medical_examination {
+        +String:
+    }
