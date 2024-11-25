@@ -9,8 +9,8 @@ classDiagram
         +String: biography
     }
     class Biography {
-        +String text
-        +String publicationDate
+        +String: text
+        +String: publicationDate
     }
     class Library {
         +String: name
