@@ -44,3 +44,4 @@ classDiagram
     Student "1" --> "1" Device
     Device <|-- Smartphone
     Device <|-- Tablet
+```
