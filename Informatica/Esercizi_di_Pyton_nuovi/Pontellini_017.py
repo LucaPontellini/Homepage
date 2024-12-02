@@ -68,6 +68,9 @@ class Student:
     def enroll_course(self, course):
         self.courses.append(course)
         course.students.append(self)
+
+    def __str__(self):
+        pass
 class Course:
     def __init__(self, name, duration):
         self.name = name
@@ -78,7 +81,6 @@ class Course:
         return f"Course: {self.name}, Duration: {self.duration}"
 
 def main():
-
     teacher1 = Teacher("Mario", "Rossi", "Piano")
     teacher2 = Teacher("Luca", "Bianchi", "Guitar")
 
