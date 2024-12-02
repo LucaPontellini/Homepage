@@ -6,6 +6,7 @@ classDiagram
         +String: name
         +String: surname
         +String: specialization
+        prescribes()
     }
 
     class Drug {
@@ -35,7 +36,8 @@ classDiagram
     class Nurse {
         +String: name 
         +String: surname 
-        +String: work_shift 
+        +String: work_shift
+        prescribes()
     }
     
     class Medical_Record { 
