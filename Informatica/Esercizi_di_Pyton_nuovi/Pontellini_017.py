@@ -48,17 +48,17 @@
 #if __name__ == "__main__":
 #    main()
 class Teacher:
-    def __init__(self, first_name, last_name, instrument):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, name, surname, instrument):
+        self.name = name
+        self.surname = surname
         self.instrument = instrument
 
     def __str__(self):
-        return f"Teacher: {self.first_name} {self.last_name}, Instrument: {self.instrument}"
+        return f"Teacher: {self.name} {self.surname}, Instrument: {self.instrument}"
 class Student:
-    def __init__(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
         self.courses = []
         self.teacher = None
 
@@ -68,11 +68,6 @@ class Student:
     def enroll_course(self, course):
         self.courses.append(course)
         course.students.append(self)
-
-    def __str__(self):
-        courses_str = ", ".join([course.name for course in self.courses])
-        teacher_str = f"{self.teacher.first_name} {self.teacher.last_name}" if self.teacher else "None"
-        return f"Student: {self.first_name} {self.last_name}, Teacher: {teacher_str}, Courses: {courses_str}"
 class Course:
     def __init__(self, name, duration):
         self.name = name
