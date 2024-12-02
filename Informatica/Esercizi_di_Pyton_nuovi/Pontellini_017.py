@@ -47,7 +47,6 @@
 #
 #if __name__ == "__main__":
 #    main()
-
 class Teacher:
     def __init__(self, first_name, last_name, instrument):
         self.first_name = first_name
@@ -56,7 +55,6 @@ class Teacher:
 
     def __str__(self):
         return f"Teacher: {self.first_name} {self.last_name}, Instrument: {self.instrument}"
-
 class Student:
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -75,7 +73,6 @@ class Student:
         courses_str = ", ".join([course.name for course in self.courses])
         teacher_str = f"{self.teacher.first_name} {self.teacher.last_name}" if self.teacher else "None"
         return f"Student: {self.first_name} {self.last_name}, Teacher: {teacher_str}, Courses: {courses_str}"
-
 class Course:
     def __init__(self, name, duration):
         self.name = name
@@ -86,31 +83,25 @@ class Course:
         return f"Course: {self.name}, Duration: {self.duration}"
 
 def main():
-    # Creating teachers
+
     teacher1 = Teacher("Mario", "Rossi", "Piano")
     teacher2 = Teacher("Luca", "Bianchi", "Guitar")
 
-    # Creating students
     student1 = Student("Anna", "Verdi")
     student2 = Student("Marco", "Neri")
 
-    # Assigning teachers to students
     student1.set_teacher(teacher1)
     student2.set_teacher(teacher2)
 
-    # Creating courses
     course1 = Course("Music Theory", "3 months")
     course2 = Course("Piano Technique", "6 months")
 
-    # Enrolling students in courses
     student1.enroll_course(course1)
     student1.enroll_course(course2)
     student2.enroll_course(course1)
 
-    # Printing information
     print(student1)
     print(student2)
-
 
 if __name__ == "__main__":
     main()
