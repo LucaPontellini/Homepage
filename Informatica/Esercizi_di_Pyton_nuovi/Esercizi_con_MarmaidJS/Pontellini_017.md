@@ -13,8 +13,8 @@ classDiagram
         +String: surname
         +List<Course>: courses
         +Teacher: teacher
-        +void: set_teacher(Teacher teacher)
-        +void: enroll_course(Course course)
+        +void: set_teacher(Teacher: teacher)
+        +void: enroll_course(Course: course)
     }
 
     class Course {
@@ -24,6 +24,6 @@ classDiagram
     }
     
     Teacher "1" -- "n" Student : teaches
-    Student "1" -- "n" Course : enrolled_in
+    Student "1" -- "n" Course : enrolled in
     Course "n" -- "n" Student : includes
 ```
