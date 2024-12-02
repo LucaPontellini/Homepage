@@ -71,7 +71,10 @@ class Student:
 
     def __str__(self):
     
-        course_names = [course.name for course in self.courses]
+        course_names = []
+        for course in self.courses:
+            course_names.append(course.name)
+
         courses_str = ", ".join(course_names)
 
         if self.teacher:
