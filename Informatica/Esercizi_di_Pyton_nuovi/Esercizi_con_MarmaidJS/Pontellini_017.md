@@ -3,14 +3,14 @@
 classDiagram
 
     class Teacher {
-        +String: first_name
-        +String: last_name
+        +String: name
+        +String: surname
         +String: instrument
     }
 
     class Student {
-        +String: first_name
-        +String: last_name
+        +String: name
+        +String: surname
         +List<Course>: courses
         +Teacher: teacher
         +void: set_teacher(Teacher teacher)
