@@ -7,33 +7,56 @@ classDiagram
         +String: surname
         +String: specialization
     }
-    class Drugs {
+
+    class Drug {
         +String: name
         +Float: dose
     }
+
     class Hospital {
         +String: name
         +String: address
-        +List<department>: departments
+        +List<Department>: departments
     }
+    
     class Department {
-        +String: name
-        +List<doctor>: doctors
-        +List<patient>: patients 
+        +String: name 
+        +List<Doctor>: doctors 
+        +List<Patient>: patients 
+    } 
+    
+    class Patient { 
+        +String: name 
+        +String: surname 
+        +Date: date_of_birth 
+        +Medical_Record: medical_record 
     }
-    class Patients {
-        +String: name
-        +String: surname
-        +Int: date_of_birth
+    
+    class Nurse {
+        +String: name 
+        +String: surname 
+        +String: work_shift 
     }
-    class Nurses {
-        +String: name
-        +String: surname
-        +String: work_shift
+    
+    class Medical_Record { 
+        +List<Medical_Examination>: medical_examinations
+    } 
+    
+    class Medical_Examination { 
+        +Date: date 
+        +String: notes 
+        +Doctor: doctor 
     }
-    class Medical_record {
-        +List<medical_examination>: medical_examinations
-    }
-    class Medical_examination {
-        +String:
-    }
+    
+    Doctor "1" -- "n" Patient : treats
+    Doctor "1" -- "n" Drug : prescribes
+    Patient "1" -- "n" Drug : receives
+    Nurse "1" -- "n" Patient : assists
+    Nurse "1" -- "n" Drug : administers
+    Department "1" -- "n" Doctor : contains
+    Department "1" -- "n" Patient : contains
+    Hospital "1" -- "n" Department : contains
+    Patient "1" -- "1" Medical_Record : has
+    Medical_Record "1" -- "n" Medical_Examination : contains
+    Medical_Examination "1" -- "1" Doctor : responsible
+```
