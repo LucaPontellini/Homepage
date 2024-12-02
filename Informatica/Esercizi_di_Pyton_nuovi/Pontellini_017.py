@@ -70,7 +70,15 @@ class Student:
         course.students.append(self)
 
     def __str__(self):
-        pass
+    
+        course_names = [course.name for course in self.courses]
+        courses_str = ", ".join(course_names)
+
+        if self.teacher:
+            teacher_str = f"{self.teacher.name} {self.teacher.surname}"
+        else: teacher_str = "None"
+
+        return (f"Student: {self.name} {self.surname}, Teacher: {teacher_str}, Courses: {courses_str}")
 class Course:
     def __init__(self, name, duration):
         self.name = name
