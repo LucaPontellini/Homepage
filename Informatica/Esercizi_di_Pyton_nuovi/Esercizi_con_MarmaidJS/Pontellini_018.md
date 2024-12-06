@@ -14,7 +14,7 @@ classDiagram
         +List<course>: courses
     }
 
-    class Corse {
+    class Course {
         +String: name
         +Int: duration
     }
@@ -25,6 +25,6 @@ classDiagram
     }
 
 Coach "1" -- "n" Members : train
-Members "n" -- "n" Corse : enrollment
-Coach "1" -- "n" Corse : holds
+Members "n" -- "n" Course : enrollment
+Coach "1" -- "n" Course : holds
 Members "1" -- "1" Training_Schedule : has
