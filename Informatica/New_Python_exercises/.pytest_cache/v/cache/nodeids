@@ -1,0 +1,10 @@
+[
+  "test_017.py::test_assign_teacher_to_student",
+  "test_017.py::test_course_attributes",
+  "test_017.py::test_enroll_student_in_course",
+  "test_017.py::test_multiple_associations",
+  "test_017.py::test_no_duplicate_association",
+  "test_017.py::test_print_associations",
+  "test_017.py::test_student_attributes",
+  "test_017.py::test_teacher_attributes"
+]
