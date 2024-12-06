@@ -1,117 +1,109 @@
-from src.e17 import Insegnante, Studente, Corso  # type: ignore
+from src.e17 import Teacher, Student, Course  # type: ignore
 
+def test_teacher_attributes():
+    teacher = Teacher("Mario", "Rossi", "Piano")
+    assert teacher.first_name == "Mario"
+    assert teacher.last_name == "Rossi"
+    assert teacher.instrument == "Piano"
+    assert teacher.students == []
 
-def test_insegnante_attributes():
-    insegnante = Insegnante("Mario", "Rossi", "Pianoforte")
-    assert insegnante.nome == "Mario"
-    assert insegnante.cognome == "Rossi"
-    assert insegnante.strumento == "Pianoforte"
-    assert insegnante.studenti == []
+def test_student_attributes():
+    student = Student("Anna", "Verdi")
+    assert student.name == "Anna"
+    assert student.surname == "Verdi"
+    assert student.courses == []
+    assert student.teacher is None
 
+def test_course_attributes():
+    course = Course("Music Theory", "3 months")
+    assert course.name == "Music Theory"
+    assert course.duration == "3 months"
+    assert course.students == []
 
-def test_studente_attributes():
-    studente = Studente("Anna", "Verdi")
-    assert studente.nome == "Anna"
-    assert studente.cognome == "Verdi"
-    assert studente.corsi == []
-    assert studente.insegnante is None
+def test_assign_teacher_to_student():
+    teacher = Teacher("Mario", "Rossi", "Piano")
+    student = Student("Anna", "Verdi")
 
+    student.set_teacher(teacher)
 
-def test_corso_attributes():
-    corso = Corso("Teoria Musicale", "3 mesi")
-    assert corso.nome == "Teoria Musicale"
-    assert corso.durata == "3 mesi"
-    assert corso.studenti == []
+    assert student.teacher == teacher
+    assert student in teacher.students
 
+def test_enroll_student_in_course():
+    student = Student("Anna", "Verdi")
+    course = Course("Music Theory", "3 months")
 
-def test_assegna_insegnante_a_studente():
-    insegnante = Insegnante("Mario", "Rossi", "Pianoforte")
-    studente = Studente("Anna", "Verdi")
+    student.enroll_in_course(course)
 
-    studente.set_insegnante(insegnante)
+    assert course in student.courses
+    assert student in course.students
 
-    assert studente.insegnante == insegnante
-    assert studente in insegnante.studenti
+def test_multiple_associations():
+    teacher1 = Teacher("Mario", "Rossi", "Piano")
+    teacher2 = Teacher("Luca", "Bianchi", "Guitar")
+    student1 = Student("Anna", "Verdi")
+    student2 = Student("Marco", "Neri")
+    course1 = Course("Music Theory", "3 months")
+    course2 = Course("Piano Technique", "6 months")
 
+    student1.set_teacher(teacher1)
+    student2.set_teacher(teacher2)
+    student1.enroll_in_course(course1)
+    student1.enroll_in_course(course2)
+    student2.enroll_in_course(course1)
 
-def test_iscrivi_studente_a_corso():
-    studente = Studente("Anna", "Verdi")
-    corso = Corso("Teoria Musicale", "3 mesi")
+    # Verify associations for student1
+    assert course1 in student1.courses
+    assert course2 in student1.courses
+    assert student1 in course1.students
+    assert student1 in course2.students
 
-    studente.iscrivi_corso(corso)
+    # Verify associations for student2
+    assert course1 in student2.courses
+    assert student2 in course1.students
 
-    assert corso in studente.corsi
-    assert studente in corso.studenti
-
-
-def test_associazione_multiple():
-    insegnante1 = Insegnante("Mario", "Rossi", "Pianoforte")
-    insegnante2 = Insegnante("Luca", "Bianchi", "Chitarra")
-    studente1 = Studente("Anna", "Verdi")
-    studente2 = Studente("Marco", "Neri")
-    corso1 = Corso("Teoria Musicale", "3 mesi")
-    corso2 = Corso("Tecnica Pianistica", "6 mesi")
-
-    studente1.set_insegnante(insegnante1)
-    studente2.set_insegnante(insegnante2)
-    studente1.iscrivi_corso(corso1)
-    studente1.iscrivi_corso(corso2)
-    studente2.iscrivi_corso(corso1)
-
-    # Verifica associazioni per studente1
-    assert corso1 in studente1.corsi
-    assert corso2 in studente1.corsi
-    assert studente1 in corso1.studenti
-    assert studente1 in corso2.studenti
-
-    # Verifica associazioni per studente2
-    assert corso1 in studente2.corsi
-    assert studente2 in corso1.studenti
-
-    # Verifica insegnanti
-    assert studente1.insegnante == insegnante1
-    assert studente2.insegnante == insegnante2
-    assert studente1 in insegnante1.studenti
-    assert studente2 in insegnante2.studenti
-
+    # Verify teachers
+    assert student1.teacher == teacher1
+    assert student2.teacher == teacher2
+    assert student1 in teacher1.students
+    assert student2 in teacher2.students
 
 def test_no_duplicate_association():
-    studente = Studente("Anna", "Verdi")
-    corso = Corso("Teoria Musicale", "3 mesi")
+    student = Student("Anna", "Verdi")
+    course = Course("Music Theory", "3 months")
 
-    studente.iscrivi_corso(corso)
-    studente.iscrivi_corso(corso)  # Tentativo di aggiungere di nuovo lo stesso corso
+    student.enroll_in_course(course)
+    student.enroll_in_course(course)  # Attempt to add the same course again
 
-    assert len(studente.corsi) == 1
-    assert len(corso.studenti) == 1
+    assert len(student.courses) == 1
+    assert len(course.students) == 1
 
+def test_print_associations(capfd):
+    teacher1 = Teacher("Mario", "Rossi", "Piano")
+    student1 = Student("Anna", "Verdi")
+    student2 = Student("Marco", "Neri")
+    course1 = Course("Music Theory", "3 months")
+    course2 = Course("Piano Technique", "6 months")
 
-def test_stampa_associazioni(capfd):
-    insegnante1 = Insegnante("Mario", "Rossi", "Pianoforte")
-    studente1 = Studente("Anna", "Verdi")
-    studente2 = Studente("Marco", "Neri")
-    corso1 = Corso("Teoria Musicale", "3 mesi")
-    corso2 = Corso("Tecnica Pianistica", "6 mesi")
+    student1.set_teacher(teacher1)
+    student1.enroll_in_course(course1)
+    student1.enroll_in_course(course2)
+    student2.enroll_in_course(course1)
 
-    studente1.set_insegnante(insegnante1)
-    studente1.iscrivi_corso(corso1)
-    studente1.iscrivi_corso(corso2)
-    studente2.iscrivi_corso(corso1)
+    # Function to print associations
+    print(f"{student1.name} {student1.surname} is enrolled in the following courses:")
+    for course in student1.courses:
+        print(f"- {course.name} ({course.duration})")
 
-    # Funzione per stampare le associazioni
-    print(f"{studente1.nome} {studente1.cognome} è iscritto ai seguenti corsi:")
-    for corso in studente1.corsi:
-        print(f"- {corso.nome} ({corso.durata})")
-
-    print(f"\n{corso1.nome} ha i seguenti studenti iscritti:")
-    for studente in corso1.studenti:
-        print(f"- {studente.nome} {studente.cognome}")
+    print(f"\n{course1.name} has the following enrolled students:")
+    for student in course1.students:
+        print(f"- {student.name} {student.surname}")
 
     captured = capfd.readouterr()
 
-    assert "Anna Verdi è iscritto ai seguenti corsi:" in captured.out
-    assert "- Teoria Musicale (3 mesi)" in captured.out
-    assert "- Tecnica Pianistica (6 mesi)" in captured.out
-    assert "Teoria Musicale ha i seguenti studenti iscritti:" in captured.out
+    assert "Anna Verdi is enrolled in the following courses:" in captured.out
+    assert "- Music Theory (3 months)" in captured.out
+    assert "- Piano Technique (6 months)" in captured.out
+    assert "Music Theory has the following enrolled students:" in captured.out
     assert "- Anna Verdi" in captured.out
     assert "- Marco Neri" in captured.out

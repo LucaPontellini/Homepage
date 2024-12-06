@@ -78,7 +78,7 @@ class Members:
         self.courses = []
         self.coach = None
     
-    def set_trainer(self, coatch):
+    def set_coatch(self, coatch):
         self.coatch = coatch
 
     def enroll_course(self, course):
@@ -125,12 +125,12 @@ def main():
     member1 = Members("Anna", "Verdi")
     member2 = Members("Marco", "Neri")
 
-    member1.set_trainer(trainer1)
-    member2.set_trainer(trainer2)
+    member1.set_coatch(coatch1)
+    member2.set_coatch(coatch2)
 
-    course1 = Course("Pilates", "3 months", trainer1)
-    course2 = Course("HIIT", "6 months", trainer1)
-    course3 = Course("Advanced Yoga", "4 months", trainer2)
+    course1 = Course("Pilates", "3 months", coatch1)
+    course2 = Course("HIIT", "6 months", coatch1)
+    course3 = Course("Advanced Yoga", "4 months", coatch2)
 
     member1.enroll_course(course1)
     member1.enroll_course(course2)

@@ -1,42 +1,39 @@
 import unittest
-from src.e18 import Allenatore, Membro, Corso, SchedaAllenamento
-
-
+from src.e18 import Coatch, Member, Course, Training_Schedule
 class TestE18(unittest.TestCase):
     def setUp(self):
-        self.allenatore1 = Allenatore("Giovanni", "Rossi", "Fitness")
-        self.allenatore2 = Allenatore("Luca", "Bianchi", "Yoga")
-        self.membro1 = Membro("Anna", "Verdi")
-        self.membro2 = Membro("Marco", "Neri")
-        self.corso1 = Corso("Pilates", "3 mesi", self.allenatore1)
-        self.corso2 = Corso("HIIT", "6 mesi", self.allenatore1)
-        self.corso3 = Corso("Yoga Avanzato", "4 mesi", self.allenatore2)
-        self.scheda1 = SchedaAllenamento(
-            self.membro1, ["Esercizio 1: Squat", "Esercizio 2: Push-up"]
+        self.coach1 = Coatch("Giovanni", "Rossi", "Fitness")
+        self.coach2 = Coatch("Luca", "Bianchi", "Yoga")
+        self.member1 = Member("Anna", "Verdi")
+        self.member2 = Member("Marco", "Neri")
+        self.course1 = Course("Pilates", "3 months", self.coach1)
+        self.course2 = Course("HIIT", "6 months", self.coach1)
+        self.course3 = Course("Advanced Yoga", "4 months", self.coach2)
+        self.plan1 = Training_Schedule(
+            self.member1, ["Exercise 1: Squat", "Exercise 2: Push-up"]
         )
-        self.scheda2 = SchedaAllenamento(
-            self.membro2, ["Esercizio 1: Plank", "Esercizio 2: Burpee"]
+        self.program2 = Training_Schedule(
+            self.member2, ["Exercise 1: Plank", "Exercise 2: Burpee"]
         )
 
-    def test_set_allenatore(self):
-        self.membro1.set_allenatore(self.allenatore1)
-        self.assertEqual(self.membro1.allenatore, self.allenatore1)
-        self.assertIn(self.membro1, self.allenatore1.membri)
+    def test_set_coach(self):
+        self.member1.set_coach(self.coach1)
+        self.assertEqual(self.member1.coach, self.coach1)
+        self.assertIn(self.member1, self.coach1.members)
 
-    def test_iscrivi_corso(self):
-        self.membro1.iscrivi_corso(self.corso1)
-        self.assertIn(self.corso1, self.membro1.corsi)
-        self.assertIn(self.membro1, self.corso1.iscritti)
+    def test_enroll_course(self):
+        self.member1.enroll_course(self.course1)
+        self.assertIn(self.course1, self.member1.courses)
+        self.assertIn(self.member1, self.course1.enrolled)
 
-    def test_set_scheda_allenamento(self):
-        self.membro1.set_scheda_allenamento(self.scheda1)
-        self.assertEqual(self.membro1.scheda_allenamento, self.scheda1)
-        self.assertEqual(self.scheda1.membro, self.membro1)
+    def test_set_training_program(self):
+        self.member1.set_training_schedule(self.plan1)
+        self.assertEqual(self.member1.training_schedule, self.plan1)
+        self.assertEqual(self.plan1.member, self.member1)
 
-    def test_corso_allenatore_relationship(self):
-        self.assertIn(self.corso1, self.allenatore1.corsi)
-        self.assertEqual(self.corso1.allenatore, self.allenatore1)
-
+    def test_course_coach_relationship(self):
+        self.assertIn(self.course1, self.coach1.courses)
+        self.assertEqual(self.course1.coach, self.coach1)
 
 if __name__ == "__main__":
     unittest.main()
