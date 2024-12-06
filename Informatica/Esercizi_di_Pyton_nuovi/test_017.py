@@ -1,9 +1,9 @@
-from src.e17 import Teacher, Student, Course  # type: ignore
+from Pontellini_017 import Teacher, Student, Course  # type: ignore
 
 def test_teacher_attributes():
     teacher = Teacher("Mario", "Rossi", "Piano")
-    assert teacher.first_name == "Mario"
-    assert teacher.last_name == "Rossi"
+    assert teacher.name == "Mario"
+    assert teacher.surname == "Rossi"
     assert teacher.instrument == "Piano"
     assert teacher.students == []
 
