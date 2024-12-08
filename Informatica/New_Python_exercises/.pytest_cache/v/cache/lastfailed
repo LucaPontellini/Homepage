@@ -1,6 +1,0 @@
-{
-  "test_017.py::test_teacher_attributes": true,
-  "test_017.py::test_assign_teacher_to_student": true,
-  "test_017.py::test_multiple_associations": true,
-  "test_017.py::test_no_duplicate_association": true
-}
