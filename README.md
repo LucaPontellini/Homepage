@@ -16,6 +16,6 @@ Feel free to ask me about Python programming or any of the projects I've worked 
 
 ## 📫 How to reach me
 
-You can reach me on Instagram at lucapontellini_ and plastici.f3rroviari, or on my YouTube channel. I'm always open to new opportunities, collaborations, or just a friendly chat.
+You can reach me on Instagram at [![lucapontellini_](https://img.shields.io/badge/Instagram-lucapontellini_-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/lucapontellini_?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr) and [![plastici.f3rroviari](https://img.shields.io/badge/Instagram-plastici.f3rroviari-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/plastici.f3rroviari?igshid=NGVhN2U2NjQ0Yg%3D%3D&utm_source=qr), or on my YouTube channel ([![plastici.ferroviari](https://img.shields.io/badge/YouTube-plastici.ferroviari-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@plastici.ferroviari?si=wkOH-Bw3nANmbl_D)). I'm always open to new opportunities, collaborations, or just a friendly chat.
 
 Thank you for visiting my GitHub profile!
