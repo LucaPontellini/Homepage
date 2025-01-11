@@ -1,0 +1,14 @@
+{
+        "Parigi": {
+            "temperatura": "15C",
+            "umidità": "70%"
+        },
+        "Londra": {
+            "temperatura": "17C",
+            "umidità": "65%"
+        },
+        "New York": {
+            "temperatura": "20C",
+            "umidità": "60%"
+        }
+}
