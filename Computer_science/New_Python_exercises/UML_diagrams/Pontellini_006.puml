@@ -1,0 +1,26 @@
+@startuml
+class Payment {
+    +process_payment() : void
+}
+
+class Credit_Card {
+    -name_of_the_holder : str
+    -card_number : str
+    -expiration : str
+    -cvv : str
+    __
+    +__init__(self, name_of_the_holder : str, card_number : str, expiration : str, cvv : str)
+    +process_payment() : void
+}
+
+class PayPal {
+    -email : str
+    -password : str
+    __
+    +__init__(self, email : str, password : str)
+    +process_payment() : void
+}
+
+Payment <|-- Credit_Card
+Payment <|-- PayPal
+@enduml

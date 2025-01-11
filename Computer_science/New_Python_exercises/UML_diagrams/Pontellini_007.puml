@@ -1,0 +1,55 @@
+@startuml
+class Library_Material {
+    +title: str
+    +year_of_publication: int
+    +available: bool
+    __
+    +__init__(self, title: str, year_of_publication: int, available: bool = True)
+    +get_title() : str
+    +set_title(title: str) : void
+    +get_year_of_publication() : int
+    +set_year_of_publication(year_of_publication: int) : void
+    +is_available() : bool
+    +set_available(available: bool) : void
+    +borrow() : void
+    +return_material() : void
+    +{static} search(materials: list, title: str = None, year_of_publication: int = None) : list
+}
+
+class Book {
+    +author: str
+    +number_of_pages: int
+    __
+    +__init__(self, title: str, year_of_publication: int, author: str, number_of_pages: int, available: bool = True)
+    +get_author() : str
+    +set_author(author: str) : void
+    +get_number_of_pages() : int
+    +set_number_of_pages(number_of_pages: int) : void
+}
+
+class Magazine {
+    +edition_number: int
+    +month_of_publication: str
+    __
+    +__init__(self, title: str, year_of_publication: int, edition_number: int, month_of_publication: str, available: bool = True)
+    +get_edition_number() : int
+    +set_edition_number(edition_number: int) : void
+    +get_month_of_publication() : str
+    +set_month_of_publication(month_of_publication: str) : void
+}
+
+class DVD {
+    +director: str
+    +duration: int
+    __
+    +__init__(self, title: str, year_of_publication: int, director: str, duration: int, available: bool = True)
+    +get_director() : str
+    +set_director(director: str) : void
+    +get_duration() : int
+    +set_duration(duration: int) : void
+}
+
+Library_Material <|-- Book
+Library_Material <|-- Magazine
+Library_Material <|-- DVD
+@enduml

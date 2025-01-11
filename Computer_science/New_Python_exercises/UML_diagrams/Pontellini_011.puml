@@ -1,0 +1,62 @@
+@startuml
+class Recipe {
+    -name: str
+    -preparation_time: float
+    -ingredients: list
+    -difficulty: str
+    __
+    +__init__(self, name: str, preparation_time: float, ingredients: list, difficulty: str)
+    +get_name() : str
+    +set_name(name: str) : void
+    +get_preparation_time() : float
+    +set_preparation_time(preparation_time: float) : void
+    +get_ingredients() : list
+    +set_ingredients(ingredients: list) : void
+    +get_difficulty() : str
+    +set_difficulty(difficulty: str) : void
+    +add_ingredient(ingredient: str) : void
+}
+
+class FirstCourse {
+    +type_of_pasta: str
+    +sauce: str
+    __
+    +__init__(self, name: str, preparation_time: float, ingredients: list, difficulty: str, type_of_pasta: str, sauce: str)
+    +get_type_of_pasta() : str
+    +set_type_of_pasta(type_of_pasta: str) : void
+    +get_sauce() : str
+    +set_sauce(sauce: str) : void
+    +__str__() : str
+    +super().__init__(name, preparation_time, ingredients, difficulty)
+}
+
+class SecondCourse {
+    +type_of_meat: str
+    +cooking: str
+    __
+    +__init__(self, name: str, preparation_time: float, ingredients: list, difficulty: str, type_of_meat: str, cooking: str)
+    +get_type_of_meat() : str
+    +set_type_of_meat(type_of_meat: str) : void
+    +get_cooking() : str
+    +set_cooking(cooking: str) : void
+    +__str__() : str
+    +super().__init__(name, preparation_time, ingredients, difficulty)
+}
+
+class Dessert {
+    +type_of_dessert: str
+    +sugar: float
+    __
+    +__init__(self, name: str, preparation_time: float, ingredients: list, difficulty: str, sugar: float, type_of_dessert: str)
+    +get_type_of_dessert() : str
+    +set_type_of_dessert(type_of_dessert: str) : void
+    +get_sugar() : float
+    +set_sugar(sugar: float) : void
+    +__str__() : str
+    +super().__init__(name, preparation_time, ingredients, difficulty)
+}
+
+Recipe <|-- FirstCourse
+Recipe <|-- SecondCourse
+Recipe <|-- Dessert
+@enduml

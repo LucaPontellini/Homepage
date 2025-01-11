@@ -1,0 +1,33 @@
+@startuml
+class Employee {
+    +name : str
+    +salary : int
+    __
+    +__init__(self, name : str, salary : int)
+    +get_name() : str
+    +set_name(name : str) : void
+    +get_salary() : int
+    +set_salary(salary : int) : void
+}
+
+class Manager {
+    +number_of_teams : int
+    __
+    +__init__(self, name : str, salary : int, number_of_teams : int)
+    +super().__init__(name, salary)
+    +get_number_of_teams() : int
+    +set_number_of_teams(number_of_teams : int) : void
+}
+
+class Developer {
+    +programming_language : str
+    __
+    +__init__(self, name : str, salary : int, programming_language : str)
+    +super().__init__(name, salary)
+    +get_programming_language() : str
+    +set_programming_language(programming_language : str) : void
+}
+
+Employee <|-- Manager
+Employee <|-- Developer
+@enduml

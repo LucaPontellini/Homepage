@@ -1,0 +1,73 @@
+@startuml
+class Dish {
+    +name: str
+    +price: float
+    +available: bool
+    __
+    +__init__(self, name: str, price: float, available: bool = True)
+    +get_name() : str
+    +set_name(name: str) : void
+    +get_price() : float
+    +set_price(price: float) : void
+    +is_available() : bool
+    +set_available(available: bool) : void
+    +__str__() : str
+}
+
+class Appetizer {
+    +ingredients: list
+    +portion: str
+    __
+    +__init__(self, name: str, price: float, ingredients: list, portion: str, available: bool = True)
+    +get_ingredients() : list
+    +set_ingredients(ingredients: list) : void
+    +get_portion() : str
+    +set_portion(portion: str) : void
+    +__str__() : str
+    +super().__init__(name, price, available)
+}
+
+class FirstCourse {
+    +pasta_type: str
+    +sauce: str
+    __
+    +__init__(self, name: str, price: float, pasta_type: str, sauce: str, available: bool = True)
+    +get_pasta_type() : str
+    +set_pasta_type(pasta_type: str) : void
+    +get_sauce() : str
+    +set_sauce(sauce: str) : void
+    +__str__() : str
+    +super().__init__(name, price, available)
+}
+
+class MainCourse {
+    +meat_type: str
+    +cooking_level: str
+    __
+    +__init__(self, name: str, price: float, meat_type: str, cooking_level: str, available: bool = True)
+    +get_meat_type() : str
+    +set_meat_type(meat_type: str) : void
+    +get_cooking_level() : str
+    +set_cooking_level(cooking_level: str) : void
+    +__str__() : str
+    +super().__init__(name, price, available)
+}
+
+class Dessert {
+    +dessert_type: str
+    +calories: int
+    __
+    +__init__(self, name: str, price: float, dessert_type: str, calories: int, available: bool = True)
+    +get_dessert_type() : str
+    +set_dessert_type(dessert_type: str) : void
+    +get_calories() : int
+    +set_calories(calories: int) : void
+    +__str__() : str
+    +super().__init__(name, price, available)
+}
+
+Dish <|-- Appetizer
+Dish <|-- FirstCourse
+Dish <|-- MainCourse
+Dish <|-- Dessert
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+Class Vehicle {
+    +type_ : str
+    +brand : str
+    __
+    +__init__(self, type_: str, brand: str)
+    +get_number_of_vehicles() : int
+}
+@enduml

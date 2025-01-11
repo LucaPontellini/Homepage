@@ -1,0 +1,15 @@
+@startuml
+class Book {
+    -title: str
+    -author: str
+    -pages: int
+    __
+    +__init__(self, title: str, author: str, pages: int)
+    +get_title() : str
+    +set_title(title: str) : void
+    +get_author() : str
+    +set_author(author: str) : void
+    +get_pages() : int
+    +set_pages(pages: int) : void
+}
+@enduml

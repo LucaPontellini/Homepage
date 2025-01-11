@@ -1,0 +1,8 @@
+@startuml
+Class Calculator {
+    + {static} addition(number1: int, number2: int) : int
+    + {static} subtraction(number1: int, number2: int) : int
+    + {static} multiplication(number1: int, number2: int) : int
+    + {static} division(number1: int, number2: int) : float
+}
+@enduml

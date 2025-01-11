@@ -1,0 +1,28 @@
+@startuml
+class House {
+    -address: str
+    -owner: str
+    -rooms: List<Room>
+    __
+    +__init__(self, address: str, owner: str)
+    +get_address() : str
+    +set_address(address: str) : void
+    +get_owner() : str
+    +set_owner(owner: str) : void
+    +add_room(room: Room) : void
+    +get_rooms() : List<Room>
+}
+
+class Room {
+    -name: str
+    -surface: int
+    __
+    +__init__(self, name: str, surface: int)
+    +get_name() : str
+    +set_name(name: str) : void
+    +get_surface() : int
+    +set_surface(surface: int) : void
+}
+
+House "1" -- "0..*" Room
+@enduml
