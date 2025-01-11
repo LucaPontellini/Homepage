@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Spaghetti Carbonara",
+        "ingredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan Cheese"],
+        "instructions": "Boil the spaghetti. Fry the pancetta. Mix eggs and cheese. Combine everything."
+    },
+    {
+        "id": 2,
+        "name": "Tiramisu",
+        "ingredients": ["Ladyfingers", "Mascarpone", "Eggs", "Coffee", "Cocoa Powder"],
+        "instructions": "Dip ladyfingers in coffee. Layer with mascarpone mixture. Dust with cocoa powder."
+    }
+]
