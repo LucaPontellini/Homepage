@@ -22,11 +22,17 @@ Crea relativo diagramma UML e codice.
 
 ```mermaid
 
+classDiagram
     class User {
         +username: str
         +email: str
         +password: str
         +profile: str
+        +register()
+        +create_profile()
+        +upload_photo()
+        +follow_user()
+        +create_album()
     }
 
     class Photo {
@@ -34,34 +40,29 @@ Crea relativo diagramma UML e codice.
         +title: str
         +description: str
         +upload_date: date
-        +user: str
-        +album: str
+        +user: User
+        +album: Album
     }
 
     class Album {
         +title: str
         +description: str
-        +user: str
-        +photo: str
+        +user: User
+        +photos: List~Photo~
     }
 
-    class Album {
-        +title: str
-        +description: str
-        +user: str
-        +photo: list<photo>
+    class Comment {
+        +author: User
+        +photo: Photo
+        +content: str
+        +date: date
     }
 
-    class Comments {
-    +author: User
-    +lease: Photo
-    }
-
-    User "1..*" --> "0..*" Photo : "can upload"
-    Photo "1..*" --> "0..*" Comments : "can have"
-    Comments "0..*" --> "0..*" User : "belongs to"
-    Comments "0..*" --> "0..*" Photo : "belongs to"
-    Photo "1..*" --> "1..*" Album : "belongs to "
-    Album "1..*" --> "1..*" User : "belongs to"
->>>>>>> abf90e8 (edit)
+    User "1" --> "0..*" Photo : "uploads"
+    Photo "1" --> "0..*" Comment : "has"
+    Comment "1" --> "1" User : "is written by"
+    Comment "1" --> "1" Photo : "is about"
+    Photo "1" --> "1" Album : "belongs to"
+    Album "1" --> "0..*" Photo : "contains"
+    Album "1" --> "1" User : "is created by"
 ```
