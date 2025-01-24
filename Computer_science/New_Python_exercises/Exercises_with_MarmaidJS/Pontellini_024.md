@@ -12,6 +12,8 @@ Il sistema deve includere due classi principali:
 - rappresenta un singolo film nella libreria
 - gestisce i film e le operazioni associate
 
+Creare il Mermaid e il codice
+
 ```mermaid
 
 classDiagram
@@ -20,10 +22,13 @@ classDiagram
         +director: str
         +year_of_release: date
         +genre: str
-        +evaluation: int
+        +rating: float
+        +__init__()
+        +__str__()
     }
 
     class MovieLibrary {
+        +__init__()
         +add_new_movies()
         +search_films_by_title()
         +view_all_movies()
