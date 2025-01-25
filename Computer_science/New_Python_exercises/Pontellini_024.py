@@ -1,5 +1,4 @@
 from datetime import date
-from math import e
 
 class Film:
     def __init__(self, title: str, director: str, year_of_release: date, genre: str, duration: int, rating: float):
@@ -11,19 +10,22 @@ class Film:
         self.rating = rating
     
     def __str__(self):
-        return f"{self.title} - {self.director} ({self.year_of_release}) - {self.genre} - {self.duration} min - {self.rating}/10"
+        return f"Title: {self.title}, Director: {self.director}, Year of Release: {self.year_of_release}, Genre: {self.genre}, Duration: {self.duration} min, Rating: {self.rating}/10"
 
 class MovieLibrary:
     def __init__(self, list_of_movies: list [Film]):
         self.list_of_movies = list_of_movies
 
     def add_new_movies(self, movie: 'Film'):
-        title = Film(input("Enter the title of the movie: "))
-        year_of_release = Film(date(int(input("Enter the year of release: "))))
-        director = Film(input("Enter the director of the movie: "))
-        genre = Film(input("Enter the genre of the movie: "))
-        duration = Film(int(input("Enter the duration of the movie: ")))
-        rating = Film(float(input("Enter the rating of the movie: ")))
+        title = str(input("Enter the title of the movie: "))
+        director = str(input("Enter the director of the movie: "))
+        year = int(input("Enter the year of release: "))
+        month = int(input("Enter the month of release: "))
+        day = int(input("Enter the day of release: "))
+        year_of_release = date(year, month, day)
+        genre = str(input("Enter the genre of the movie: "))
+        duration = int(input("Enter the duration of the movie: "))
+        rating = float(input("Enter the rating of the movie: "))
         movie = Film(title, director, year_of_release, genre, duration, rating)
         self.list_of_movies.append(movie)
 
