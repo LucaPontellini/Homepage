@@ -30,7 +30,7 @@ classDiagram
     class Flight {
         +flight_number: int
         +destination: str
-        +date_and_time_of_departure: date
+        +date_and_time_of_departure: datetime
         +maximum_number_of_passengers: int
     }
 
@@ -41,10 +41,11 @@ classDiagram
     }
 
     class BookingSystem {
-        +list_of_flights:
-        +list_of_reservations:
-        +allow_addition_of_new_flights_and_bookings:
-        +view_information_about_all_flights_and_bookings:
-        +class_specifications:
+        +list_of_flights: List[Flight]
+        +list_of_reservations: List[Reservation]
+        +add_flight(flight: Flight): void
+        +add_reservation(reservation: Reservation): void
+        +view_all_flights(): void
+        +view_all_reservations(): void
     }
 ```
