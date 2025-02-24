@@ -15,14 +15,14 @@ Implementare una funzione che restituisca un dizionario con i parametri di ogni 
 
 ```mermaid
 classDiagram
-    class NaturePark {
+    class NaturalPark {
         +name: str
         +surface: float
         +ecosystems: list[Ecosystem]
         +sensors: list[Sensor]
         +devices: list[Device]
         +monitor_parameters() dict
-        +activate_devices(str name_of_ecosystems) bool
+        +activate_devices(name_of_ecosystems: str) bool
     }
 
     class Ecosystem {
@@ -33,25 +33,25 @@ classDiagram
         +temperature: float
         +humidity: float
         +air_quality: float
-        +NaturePark: nature_park
+        +natural_park: NaturalPark 
     }
 
     class Sensor {
-        +str: type
-        +str: location
-        +float: value
-        +str: unit_measure
-        +bool: active
-        +Ecosystem: ecosystem
-        +NaturePark: nature_park
+        +type: str
+        +location: str 
+        +value: float
+        +unit_measure: str
+        +active: bool
+        +ecosystem: Ecosystem 
+        +natural_park: NaturalPark
     }
 
     class Device {
         +name: str
-        +str: type
-        +str: status
-        +NaturePark: nature_park
-        +Ecosystem: ecosystem
+        +type: str
+        +status: str
+        +ecosystem: Ecosystem
+        +natural_park: NaturalPark
         +active() None
         +disable() None
         +check_status() bool
@@ -69,9 +69,9 @@ classDiagram
     
     }
 
-NaturePark "1..*" --> "0..*" Sensor : monitors with
-NaturePark "1..*" --> "0..*" Ecosystem : divided into
-NaturePark "1..*" --> "0..*" Device : controls
+NaturalPark "1..*" --> "0..*" Sensor : monitors with
+NaturalPark "1..*" --> "0..*" Ecosystem : divided into
+NaturalPark "1..*" --> "0..*" Device : controls
 Ecosystem "1..*" --> "0..*" Sensor : contains
 Ecosystem "1..*" --> "0..*" Device : uses
 Sprinklers "1..*" --|> "0..*" Device
