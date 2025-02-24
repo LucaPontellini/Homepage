@@ -31,5 +31,5 @@ classDiagram
         +availability: bool
     }
 
-    Car "0..*" --> "0..*" CarRentalAgency : "can be"
+    Car "0..*" --> "0..*" CarRentalAgency : "can be in"s
 ```

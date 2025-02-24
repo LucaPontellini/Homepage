@@ -34,7 +34,7 @@ class Fleet:
 
 def main():
     fleet = Fleet()
-    
+
     car = str(input("Enter the car brand: "))
     model = str(input("Enter the car model: "))
     fuel = str(input("Enter the car fuel: "))

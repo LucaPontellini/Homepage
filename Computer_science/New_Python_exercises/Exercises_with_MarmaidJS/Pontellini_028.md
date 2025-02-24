@@ -22,7 +22,7 @@ classDiagram
         +sensors: list[Sensor]
         +devices: list[Device]
         +monitor_parameters() dict
-        +activate_devices(name_of_ecosystems: str) bool
+        +activate_devices(name_of_ecosystem: str) bool
     }
 
     class Ecosystem {
@@ -33,16 +33,16 @@ classDiagram
         +temperature: float
         +humidity: float
         +air_quality: float
-        +natural_park: NaturalPark 
+        +natural_park: NaturalPark
     }
 
     class Sensor {
         +type: str
-        +location: str 
+        +location: str
         +value: float
         +unit_measure: str
         +active: bool
-        +ecosystem: Ecosystem 
+        +ecosystem: Ecosystem
         +natural_park: NaturalPark
     }
 
@@ -58,23 +58,35 @@ classDiagram
     }
 
     class Sprinklers {
-    
+        +name: str
+        +type: str
+        +status: str
+        +ecosystem: Ecosystem
+        +natural_park: NaturalPark
     }
 
     class Fans {
-    
+        +name: str
+        +type: str
+        +status: str
+        +ecosystem: Ecosystem
+        +natural_park: NaturalPark
     }
 
     class Lights {
-    
+        +name: str
+        +type: str
+        +status: str
+        +ecosystem: Ecosystem
+        +natural_park: NaturalPark
     }
 
-NaturalPark "1..*" --> "0..*" Sensor : monitors with
-NaturalPark "1..*" --> "0..*" Ecosystem : divided into
-NaturalPark "1..*" --> "0..*" Device : controls
-Ecosystem "1..*" --> "0..*" Sensor : contains
-Ecosystem "1..*" --> "0..*" Device : uses
-Sprinklers "1..*" --|> "0..*" Device
-Fans "1..*" --|> "0..*" Device
-Lights "1..*" --|> "0..*" Device
+NaturalPark "1.." --> "0.." Sensor : monitors with
+NaturalPark "1.." --> "0.." Ecosystem : divided into
+NaturalPark "1.." --> "0.." Device : controls
+Ecosystem "1.." --> "0.." Sensor : contains
+Ecosystem "1.." --> "0.." Device : uses
+Sprinklers --|> Device
+Fans --|> Device
+Lights --|> Device
 ```
