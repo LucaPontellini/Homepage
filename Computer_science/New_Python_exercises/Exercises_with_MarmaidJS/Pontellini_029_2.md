@@ -71,32 +71,27 @@ classDiagram
         +stop_loss: float
         +take_profit: float
         +capital_allocation: float
-        +apply_risk(user: User, coin: Coin)
     }
 
     class DataSource {
         +market_data: list[data]
         +economic_data: list[data]
-        +strategies: Strategy
     }
 
     class Strategy {
         +strategy_name: str
         +parameters: dict
-        +apply_strategy(user: User, coin: Coin): bool
     }
 
     class Trade {
         +price: float
         +quantity: float
         +track_profit_loss()
-        +manages_individual_stop_losses()
     }
 
     class EconomicIndicator {
         +states: bool
         +historical_values: list
-        +check_the_validity_of_the_data(data: float): states
     }
 
     class SystemLogger {
@@ -106,18 +101,18 @@ classDiagram
         +activity_history(activities: list): list[activities]
     }
 
-    class Wallet {
-        +balance: float
-        +transactions: list
-        +deposit(amount: float)
-        +withdraw(amount: float)
-        +get_balance(): float
+    class UserInterface {
+        +display_info(info: dict)
+        +update_view()
     }
 
-    class Coin {
-        +typology: list[str]
-        +value: float
-        +coin_history: list[float]
-        +change_value(coin_history: list[float])
-    }
+    Core "1..*" --> "1..*" RiskManager: manages
+    Core "1..*" --> "1" DataSource: provides
+    Core "1..*" --> "1..*" Strategy: implements
+    Core "1..*" --> "1..*" Trade: executes
+    Core "1..*" --> "1" SystemLogger: logs
+    Core "1..*" --> "1" UserInterface: displays
+    DataSource "1..*" --> "1..*" EconomicIndicator: provides
+    Strategy "1..*" --> "1..*" EconomicIndicator: uses
+    Trade "1..*" --> "1" RiskManager: uses
 ```

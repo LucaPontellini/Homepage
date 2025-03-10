@@ -5,26 +5,24 @@ Crea relativo diagramma UML.
 ```mermaid
 classDiagram
     class TradingPlatform {
-            +users: list[User]
-            +coins: list[Coin]
-            +trading_strategies: list[TradingStrategy]
-            +execute_trades()
-            +manage_risk(user: User, coin: Coin)
-            +print_all_the_coins_history()
-        }
+        +users: list[User]
+        +coins: list[Coin]
+        +trading_strategies: list[TradingStrategy]
+        +execute_trades()
+        +manage_risk(user: User, coin: Coin)
+    }
 
     class User {
         +username: str
         +email: str
         +password: str
-        +profile: str
         +transaction_history: list
         +wallet: Wallet
         +register()
         +create_profile()
         +add_budget()
         +purchase(coin: Coin): Coin
-        +sale(coin: Coin)
+        +sell(coin: Coin)
     }
 
     class Wallet {
@@ -39,7 +37,6 @@ classDiagram
         +typology: list[str]
         +value: float
         +coin_history: list[float]
-        +change_value(coin_history: list[float])
     }
 
     class TradingStrategy {
@@ -55,13 +52,23 @@ classDiagram
         +apply_risk(user: User, coin: Coin)
     }
 
-TradingPlatform "1..*" --> "1..*" TradingStrategy: implements
-TradingPlatform "1..*" --> "1..*" Risk: incorporates
-TradingPlatform "1..*" --> "1..*" User: provides access
-TradingPlatform "1..*" --> "1..*" Coin: manages
-User "1..*" --> "1..*" Wallet: possesses
-User "1..*" --> "0..*" TradingStrategy: can apply
-User "1..*" --> "0..*" Risk: can have
-Wallet "0..*" --> "1..*" TradingPlatform: integrates with
-Coin "0..*" --> "0..*" Wallet: are contained in
+    class Notification {
+        +send_notification(message: str)
+    }
+
+    class Backtesting {
+        +historical_data: list[data]
+        +evaluate_strategy(strategy: TradingStrategy)
+    }
+
+    TradingPlatform "1..*" --> "1..*" TradingStrategy: implements
+    TradingPlatform "1..*" --> "1" Risk: incorporates
+    TradingPlatform "1" --> "1..*" User: provides access to
+    TradingPlatform "1" --> "1..*" Coin: manages
+    TradingPlatform "1" --> "1" Notification: sends
+    TradingPlatform "1" --> "1" Backtesting: evaluates
+    User "1" --> "1" Wallet: possesses
+    User "1" --> "1..*" TradingStrategy: can apply
+    User "1" --> "1" Risk: can have
+    Wallet "1" <-- "0..*" Coin: are contained in
 ```
