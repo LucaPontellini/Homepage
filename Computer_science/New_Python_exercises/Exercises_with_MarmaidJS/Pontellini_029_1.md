@@ -4,7 +4,6 @@ Crea relativo diagramma UML.
 
 ```mermaid
 classDiagram
-
     class TradingPlatform {
             +users: list[User]
             +coins: list[Coin]
