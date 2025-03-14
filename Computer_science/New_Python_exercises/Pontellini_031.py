@@ -24,7 +24,7 @@ class Student:
     def enroll_in_course(course: Course):
         self.enrolled_courses.append(course)
 
-    def attempt_quiz(course: Course): QuizAttempt:
+    def attempt_quiz(course: Course):
         quiz = course.quiz
         quiz_attempt = QuizAttempt(quiz, self)
         self.quiz_attempts.append(quiz_attempt)
@@ -64,7 +64,7 @@ class QuizAttempt:
         self.answers = answers
         self.score = score
         self.passed = passed
-        
+
     def submit_answers(answers: List[str]):
         self.answers = answers
         self.score = quiz.grade_answers(answers)
