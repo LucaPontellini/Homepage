@@ -13,17 +13,27 @@ classDiagram
         +surname: str
         +class: str
         +year: int
-        +reserve(resource: Resource)
-        +cancel(resource: Resource)
+        +reserved_resources: list[Resource]
+        +canceled_resources: list[Resource]
+        +reserve(resource: Resource): bool
+        +cancel(resource: Resource): bool
     }
 
     class SchoolWorkshop {
+        +name: str
         +lease: str
+        +capacity: float
     }
 
     class Resource {
         +typology: str
+        +quantity: int
+        +availability: bool
+        +manage_availability(resource: Resource): bool
+        +view_status(resource: Resource): bool
     }
 
-Resource "1..*" --> "1" Student : can be booked
+Resource "1..*" --> "1" Student : can be booked by
+Resource "1..*" --> "1..*" SchoolWorkshop : is contained in the
+Student "1..*" --> "1..*" SchoolWorkshop : can go to the
 ```
