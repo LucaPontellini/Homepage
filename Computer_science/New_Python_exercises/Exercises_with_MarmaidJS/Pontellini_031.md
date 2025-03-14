@@ -56,7 +56,7 @@ classDiagram
         +answers: List[str]
         +score: int
         +passed: bool
-        +answer(answers: List[str]): void
+        +submit_answers(answers: List[str]): void
     }
 
     Course --> "1..*" Student : contains
