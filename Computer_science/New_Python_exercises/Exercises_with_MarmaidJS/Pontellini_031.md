@@ -17,43 +17,43 @@ Per ogni tentativo, il sistema deve valutare le risposte fornite (attraverso il 
 ```mermaid
 classDiagram
     class Course {
-        +title : str
-        +description : str
-        +instructor : str
-        +enrolledStudents : List[Student]
-        +quiz : Quiz
-        +enrollStudent(student : Student) : void
-        +addQuiz(quiz : Quiz) : void
+        +title: str
+        +description: str
+        +instructor: str
+        +enrolled_students: List[Student]
+        +quiz: Quiz
+        +enrollStudent(student: Student): void
+        +addQuiz(quiz: Quiz): void
     }
 
     class Student {
-        +name : str
-        +enrolledCourses : List[Course]
-        +quizAttempts : List[QuizAttempt]
-        +enrollInCourse(course : Course) : void
-        +attemptQuiz(course : Course) : QuizAttempt
+        +name: str
+        +enrolled_courses: List[Course]
+        +quiz_attempts: List[QuizAttempt]
+        +enroll_in_course(course: Course): void
+        +attempt_quiz(course: Course): QuizAttempt
     }
 
     class Quiz {
-        +questions : List[Question]
-        +gradeAnswers(answers : List[str]) : int
-        +checkPassing(score : int, passingScore : int) : bool
+        +questions: List[Question]
+        +grade_answers(answers: List[str]): int
+        +check_passing(score: int, passing_score: int): bool
     }
 
     class Question {
-        +text : str
-        +options : List[str]
-        +correctAnswer : str
-        +isCorrectAnswer(answer : str) : bool
+        +text: str
+        +options: List[str]
+        +correct_answer: str
+        +is_correct_answer(answer: str): bool
     }
 
     class QuizAttempt {
-        +student : Student
-        +quiz : Quiz
-        +answers : List[str]
-        +score : int
-        +passed : bool
-        +answer(answers : List[str]) : void
+        +student: Student
+        +quiz: Quiz
+        +answers: List[str]
+        +score: int
+        +passed: bool
+        +answer(answers: List[str]): void
     }
 
     Course --> "1..*" Student : contains
