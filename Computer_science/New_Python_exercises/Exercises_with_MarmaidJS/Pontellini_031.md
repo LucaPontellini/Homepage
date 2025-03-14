@@ -29,6 +29,7 @@ classDiagram
     class Student {
         +name: str
         +surname: str
+        +email: str
         +class: str
         +year: int
         +enrolled_courses: List[Course]
