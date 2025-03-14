@@ -28,6 +28,9 @@ classDiagram
 
     class Student {
         +name: str
+        +surname: str
+        +class: str
+        +year: int
         +enrolled_courses: List[Course]
         +quiz_attempts: List[QuizAttempt]
         +enroll_in_course(course: Course): void

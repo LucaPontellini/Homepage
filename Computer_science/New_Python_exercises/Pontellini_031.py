@@ -13,6 +13,11 @@ class NaturalPark:
         self.quiz = quiz
 
 class Student:
+    def __init__(self, name: str, surname: str, class: str, year: int):
+        self.name = name
+        self.surname = surname
+        self.class = class
+        self.year = year
 
 
 if __name__ == "__main__":
