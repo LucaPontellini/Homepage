@@ -22,6 +22,7 @@ classDiagram
         +name: str
         +lease: str
         +capacity: float
+        +number_of_resources: list[Resource]
     }
 
     class Resource {
