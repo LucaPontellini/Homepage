@@ -7,7 +7,6 @@ Realizza il relativo diagramma UML
 
 ```mermaid
 classDiagram
-
     class Student {
         +name: str
         +surname: str
