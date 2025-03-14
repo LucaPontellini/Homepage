@@ -22,8 +22,8 @@ classDiagram
         +instructor: str
         +enrolled_students: List[Student]
         +quiz: Quiz
-        +enrollStudent(student: Student): void
-        +addQuiz(quiz: Quiz): void
+        +enroll_student(student: Student): void
+        +add_quiz(quiz: Quiz): void
     }
 
     class Student {
