@@ -50,8 +50,8 @@ classDiagram
     class Playlist {
         +name: str
         +creator: str
-        +create_the_playlist()
-        +delete_the_playlist()
+        +create_the_playlist(Playlist: list[str]): Playlist
+        +delete_the_playlist(Playlist: list[str]): Playlist
     }
 
     class Subscription {
@@ -73,9 +73,9 @@ classDiagram
     Platform --> "1..*" Subscription : can handle
     Platform --> "1..*" Comment : can handle
     Profile --> "1..*" Playlist : can create
-    Profile --> "1..*" Subscription : can have
+    Profile --> "1..1" Subscription : can have
     Profile --> "1..*" Comment : can leave
     Comment --> "1..*" Video : are under
-    Profile --> "1..*" Video : can watch
-    Playlist --> "1..*" Video : may contain
+    Profile --> "*..*" Video : can watch
+    Playlist --> "*..*" Video : may contain
 ```
