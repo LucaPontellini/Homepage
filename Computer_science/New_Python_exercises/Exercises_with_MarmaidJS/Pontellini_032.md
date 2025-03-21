@@ -17,3 +17,40 @@ I commenti sono messaggi lasciati dagli utenti sotto i video `dopo averlo guarda
 Ogni commento ha un autore, un testo, una data di pubblicazione ed è associato a uno specifico video.
 
 In sintesi, la piattaforma gestisce utenti, video, playlist, abbonamenti e commenti, permettendo agli utenti di interagire tra loro e con i contenuti.
+
+```mermaid
+classDiagram
+    class Profile {
+        +name: str
+        +email: str
+        +password: str
+        +subscription: float
+        +create_different_playlists(Playlist: list[str]): list[str]
+        +leave_comments(Video: video): str
+    }
+
+    class Video {
+        +title: str
+        +description: str
+        +URL: str
+        +duration: datetime
+    }
+
+    class Playlist {
+        +name: str
+        +creator: str
+    }
+
+    class Subscription {
+        +type: str
+        +price: float
+        +start_date: datetime
+        +end_date: datetime
+    }
+
+    class Comments {
+        +author: str
+        +text: str
+        +date_of_publication: datetime
+    }
+```
