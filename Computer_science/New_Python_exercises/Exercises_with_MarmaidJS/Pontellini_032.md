@@ -11,9 +11,9 @@ Sotto ogni video, gli utenti possono lasciare commenti.
 Le playlist sono raccolte di video create dagli utenti.
 Ogni playlist ha un nome e un creatore, e contiene una lista di video.
 
-Ogni abbonamento ha un tipo, un prezzo e `una data di inizio e fine.`
+Ogni abbonamento ha un tipo, un prezzo e una data di inizio e fine.
 
-I commenti sono messaggi lasciati dagli utenti sotto i video `dopo averlo guardato`.
+I commenti sono messaggi lasciati dagli utenti sotto i video dopo averlo guardato.
 Ogni commento ha un autore, un testo, una data di pubblicazione ed è associato a uno specifico video.
 
 In sintesi, la piattaforma gestisce utenti, video, playlist, abbonamenti e commenti, permettendo agli utenti di interagire tra loro e con i contenuti.
@@ -48,9 +48,16 @@ classDiagram
         +end_date: datetime
     }
 
-    class Comments {
+    class Comment {
         +author: str
         +text: str
         +date_of_publication: datetime
     }
+
+    Profile --> "1..*" Playlist : can create
+    Profile --> "1..*" Subscription : can have
+    Profile --> "1..*" Comment : can leave
+    Comment --> "1..*" Video : are under
+    Profile --> "1..*" Video : can watch
+    Playlist --> "1..*" Video : may contain
 ```
