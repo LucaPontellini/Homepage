@@ -55,8 +55,8 @@ classDiagram
     class Playlist {
         +name: str
         +creator: str
-        +create_the_playlist(Playlist: list[str]): Playlist
-        +delete_the_playlist(Playlist: list[str]): Playlist
+        +add_videos(Video: video): Playlist
+        +remove_videos(Video: video): Playlist
     }
 
     class Subscription {
