@@ -43,7 +43,7 @@ classDiagram
     class Video {
         +title: str
         +description: str
-        +URL: str
+        +url: str
         +duration: datetime
     }
 
