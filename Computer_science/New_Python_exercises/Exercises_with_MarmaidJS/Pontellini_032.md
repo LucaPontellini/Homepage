@@ -20,7 +20,6 @@ In sintesi, la piattaforma gestisce utenti, video, playlist, abbonamenti e comme
 
 ```mermaid
 classDiagram
-
     class Platform {
         +name: str
         +type: str
@@ -35,9 +34,13 @@ classDiagram
         +name: str
         +email: str
         +password: str
-        +subscription: float
+        +subscription: Subscription
+        +videos_viewed: list[Video]
         +create_different_playlists(Playlist: list[str]): list[str]
-        +leave_comments(Video: video): str
+        +add_videos_to_playlist(Playlist: playlist, Video: video): Playlist
+        +remove_videos_from_playlist(Playlist: playlist, Video: video): Playlist
+        +delete_playlist(Playlist: playlist): Profile
+        +leave_comments(Video: video, Comment: comment): str
     }
 
     class Video {
@@ -45,6 +48,8 @@ classDiagram
         +description: str
         +url: str
         +duration: datetime
+        +views: int
+        +add_comments(Comment: comment): Comment
     }
 
     class Playlist {
