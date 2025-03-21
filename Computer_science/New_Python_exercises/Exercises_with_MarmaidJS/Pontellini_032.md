@@ -24,7 +24,7 @@ classDiagram
     class Platform {
         +name: str
         +type: str
-        +manages_profile(Profile: profile)
+        +manages_profile(Profile: profile): Profile
         +manages_video(Video: video): Video
         +manages_playlist(Playlist: playlist): Playlist
         +manages_subscription(Subscription: subscription): Subscription
