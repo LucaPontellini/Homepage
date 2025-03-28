@@ -84,52 +84,65 @@ print(f"Ordini attivi: {len(tavolo.get_ordini_attivi())}")
 
 ```mermaid
 classDiagram
-    class ElementMenu {
-        +code: str
-        +name: str
-        +price: float
-        +timePreparation: int
-        +allergens: list[str]
-        +available: bool
-        +set_available(available: bool): void
-        +to_string(): str
-    }
-    
-    class FirstCourse {
-        +type_of_pasta: str
-        +vegetarian: bool
-        +set_pasta_type(type: str): void
-        +set_vegetarian(vegetarian: bool): void
-        +toString() : String
+    class MenuItem{
+        -code: str
+        -name: str
+        -price: float
+        -preparation_time: int
+        -allergens: list[allergen]
+        -available: bool
+        +get_code()
+        +get_name()
+        +get_price()
+        +get_preparation_time()
+        +get_allergens()
+        +is_available()
+        +set_available(state)
+        +to_string()
     }
 
-    class SecondPlate {
-        +cooking_default: str
-        +set_bake_default(bake: str): void
-        +to_string(): str
-    }
-    
-    class Order {
-        +order_number: str
-        +datetime: datetime
-        +state: str
-        +items: List[MenuItem]
-        +calculate_total(): float
-        +add_element(element: ElementMenu): void
-        +remove_element(element: ElementMenu): void
-    }
-    
-    class Table {
-        +number: int
-        +seats: int
-        +state: str
-        +is_free(): bool
-        +add_order(order: Order): void
-        +get_active_orders(): list[Order]
+    class FirstCourse{
+        -pasta_type: str
+        -vegetarian: bool
+        +get_pasta_type()
+        +set_pasta_type(type)
+        +is_vegetarian()
     }
 
-ItemMenu <|-- FirstCourse 
-ItemMenu <|-- SecondCourse
-Order "1" --> "*" ItemMenu
-Table "1" --> "*" Order
+    class SecondCourse{
+        -default_cooking: str
+        +get_default_cooking()
+        +set_default_cooking(cooking)
+    }
+
+    class Order{
+        -order_number: str
+        -date_time: datetime
+        -status: str
+        -items: list[item]
+        +get_order_number()
+        +get_date_time()
+        +get_status()
+        +set_status(status)
+        +add_item(item)
+        +remove_item(item)
+        +calculate_total()
+    }
+
+    class Table{
+        -number: int
+        -seats: int
+        -status: str
+        +get_number()
+        +get_seats()
+        +is_free()
+        +set_status(status)
+        +add_order(order)
+        +get_active_orders()
+    }
+
+MenuItem  <|-- FirstCourse
+MenuItem  <|-- SecondCourse
+Order "n" -- "n" MenuItem : contains
+Order "n" -- "1" Table : assigned
 ```
