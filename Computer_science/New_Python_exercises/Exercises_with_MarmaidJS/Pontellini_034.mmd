@@ -1,19 +1,24 @@
 classDiagram
     class User {
         +user_id: str
-        +user_name: str
+        +username: str
         +email: str
-        +projects: list[MusicProject]
-        +MusicProject: create_project(title: str)
+        +projects: list[MusicalProject] 
+        +create_project(title: str): MusicalProject
+        +projects_by_genre(): dict[string, int]
+        +count_total_projects(): int
+        +most_used_instrument(): VirtualInstrument
     }
 
-    class MusicProject {
+    class MusicalProject {
         +project_id: str
         +project_title: str
-        +creation_date: date
-        +music_genre: str
+        +creation_date: date 
+        +musical_genre: str
         +tracks: list[AudioTrack]
-        +AudioTrack: add_track(track_name: str)
+        +add_track(track_name: str): AudioTrack
+        +percentage_of_tracks_with_effects(): float
+        +most_used_effect(): EffectType
     }
 
     class AudioTrack {
@@ -22,13 +27,15 @@ classDiagram
         +duration_seconds: float
         +volume_db: int
         +manual_note_sequence: str
-        +used_instrument: VirtualInstrument
-        +applied_effects: list[AudioEffect]
+        +used_instrument: VirtualInstrument 
+        +applied_effects: list[AudioEffect] 
         +add_instrument(instrument: VirtualInstrument): None
         +apply_effect(effect: AudioEffect): None
         +remove_effect(effect: AudioEffect): None
-        +set_note_sequence(notes: string): None
-        +adjust_volume(new_volume_db: int): None
+        +set_note_sequence(notes: str): None
+        +modify_volume(new_volume_db: int): None
+        +has_effects(): bool
+        +number_of_notes(): int
     }
 
     class VirtualInstrument {
@@ -58,9 +65,9 @@ classDiagram
         DISTORTION
     }
 
-    User "1" -- "0..*" MusicProject : owns
-    MusicProject "1" -- "0..*" AudioTrack : contains
-    AudioTrack "1" -- "0..1" VirtualInstrument : uses
+    User "1" -- "0..*" MusicalProject : owns
+    MusicalProject "1" -- "0..*" AudioTrack : contains
+    AudioTrack "1" -- "1" VirtualInstrument : uses
     AudioTrack "1" -- "0..*" AudioEffect : applies
     VirtualInstrument --> InstrumentType
     AudioEffect --> EffectType
