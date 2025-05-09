@@ -7,8 +7,13 @@ class User:
         self._email = email
         self._projects = projects
 
-    def create_project(title: str): MusicalProject
+    def create_project(self, title: str) -> 'MusicalProject':
+        project = MusicalProject(project_id="p1", project_title=title, creation_date=datetime.date.today(), musical_genre="", tracks=[])
+        self._projects.append(project)
+        return project
+    
     def projects_by_genre(): dict[str, int]
+
     def count_total_projects(): int
     def most_used_instrument(): VirtualInstrument
 

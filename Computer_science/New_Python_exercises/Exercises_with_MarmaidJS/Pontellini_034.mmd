@@ -1,54 +1,54 @@
 classDiagram
     class User {
         +user_id: str
-        +username: str
-        +email: str
-        +projects: list[MusicalProject] 
-        +create_project(title: str): MusicalProject
-        +projects_by_genre(): dict[string, int]
-        +count_total_projects(): int
-        +most_used_instrument(): VirtualInstrument
+        +user_name
+        +email
+        +List~MusicalProject~ projects
+        +create_project(title: string) MusicalProject
+        +projects_by_genre() Dict~string, int~
+        +count_total_projects() int
+        +most_used_instrument() VirtualInstrument
     }
 
     class MusicalProject {
-        +project_id: str
-        +project_title: str
-        +creation_date: date 
-        +musical_genre: str
-        +tracks: list[AudioTrack]
-        +add_track(track_name: str): AudioTrack
-        +percentage_of_tracks_with_effects(): float
-        +most_used_effect(): EffectType
+        +string project_id
+        +string project_title
+        +date creation_date
+        +string musical_genre
+        +List~AudioTrack~ tracks
+        +add_track(track_name: string) AudioTrack
+        +percentage_tracks_with_effects() float
+        +most_used_effect() EffectType
     }
 
     class AudioTrack {
-        +track_id: str
-        +track_name: str
-        +duration_seconds: float
-        +volume_db: int
-        +manual_note_sequence: str
-        +used_instrument: VirtualInstrument 
-        +applied_effects: list[AudioEffect] 
-        +add_instrument(instrument: VirtualInstrument): None
-        +apply_effect(effect: AudioEffect): None
-        +remove_effect(effect: AudioEffect): None
-        +set_note_sequence(notes: str): None
-        +modify_volume(new_volume_db: int): None
-        +has_effects(): bool
-        +number_of_notes(): int
+        +string track_id
+        +string track_name
+        +float duration_seconds
+        +int volume_db
+        +string manual_note_sequence
+        +VirtualInstrument used_instrument
+        +List~AudioEffect~ applied_effects
+        +add_instrument(instrument: VirtualInstrument) None
+        +apply_effect(effect: AudioEffect) None
+        +remove_effect(effect: AudioEffect) None
+        +set_note_sequence(notes: string) None
+        +adjust_volume(new_volume_db: int) None
+        +has_effects() bool
+        +note_count() int
     }
 
     class VirtualInstrument {
-        +instrument_id: str
-        +instrument_name: str
-        +virtual_instrument_type: InstrumentType
-        +play_note(note: str, duration: float): None
+        +string instrument_id
+        +string instrument_name
+        +InstrumentType virtual_instrument_type
+        +play_note(note: string, duration: float) None
     }
 
     class AudioEffect {
-        +effect_id: str
-        +effect_name: str
-        +audio_effect_type: EffectType
+        +string effect_id
+        +string effect_name
+        +EffectType audio_effect_type
     }
 
     class InstrumentType {
@@ -69,5 +69,6 @@ classDiagram
     MusicalProject "1" -- "0..*" AudioTrack : contains
     AudioTrack "1" -- "1" VirtualInstrument : uses
     AudioTrack "1" -- "0..*" AudioEffect : applies
+
     VirtualInstrument --> InstrumentType
     AudioEffect --> EffectType
