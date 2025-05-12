@@ -62,12 +62,12 @@ class AudioTrack:
         return len(self.manual_note_sequence)
 
 class MusicalProject:
-    def __init__(self, project_id, project_title, creation_date, musical_genre):
+    def __init__(self, project_id, project_title, creation_date, musical_genre, tracks: list[AudioTrack] = []):
         self.project_id = project_id
         self.project_title = project_title
         self.creation_date = creation_date
         self.musical_genre = musical_genre
-        self.tracks = []
+        self.tracks = tracks
 
     def add_track(self, track_name):
         track = AudioTrack(str(len(self.tracks) + 1), track_name, 0, 0)
@@ -77,14 +77,27 @@ class MusicalProject:
     def percentage_tracks_with_effects(self):
         if not self.tracks:
             return 0.0
-        return sum(track.has_effects() for track in self.tracks) / len(self.tracks) * 100
+        for track in self.tracks:
+            return (len(self.tracks_with_effects()) / len(self.tracks)) * 100
 
     def most_used_effect(self):
-        effect_count = {}
+        effects_count: dict[EffectType, int] = {
+            EffectType.REVERB: 0,
+            EffectType.DELAY: 0,
+            EffectType.DISTORTION: 0,
+        }
+
         for track in self.tracks:
             for effect in track.applied_effects:
-                effect_count[effect.effect_name] = effect_count.get(effect.effect_name, 0) + 1
-        return max(effect_count, key=effect_count.get) if effect_count else None
+                type = effect.audio_effect_type
+                effects_count[type] += 1
+
+        max_count = max(effects_count.values())
+
+        for type, count in effects_count.items():
+            if count == max_count:
+                return type
+        return None
 
 class User:
     def __init__(self, user_id, user_name, email):
@@ -109,12 +122,7 @@ class User:
 
     def most_used_instrument(self):
         instrument_count = {}
-        for project in self.projects:
-            for track in project.tracks:
-                if track.used_instrument:
-                    instrument_name = track.used_instrument.instrument_name
-                    instrument_count[instrument_name] = instrument_count.get(instrument_name, 0) + 1
-        return max(instrument_count, key=instrument_count.get)
+  
 
 # Example usage
 if __name__ == "__main__":
@@ -155,7 +163,7 @@ if __name__ == "__main__":
 
     # Testing statistical methods
     print("\nUser-level statistics:")
-    print(f"Projects per genre: {user.projects_by_genre()}")
+    print(f"Projects by genre: {user.projects_by_genre()}")
     print(f"Total number of projects: {user.count_total_projects()}")
     print(f"Most used instrument: {user.most_used_instrument().instrument_name}")
 
