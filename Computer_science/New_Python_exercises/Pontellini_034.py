@@ -1,75 +1,120 @@
-import datetime
+from datetime import date
+import uuid
 
-class User:
-    def __init__(self, user_id: str, username: str, email: str, projects: list['MusicalProject']):
-        self._user_id = user_id
-        self._username = username
-        self._email = email
-        self._projects = projects
-
-    def create_project(self, title: str) -> 'MusicalProject':
-        project = MusicalProject(project_id="p1", project_title=title, creation_date=datetime.date.today(), musical_genre="", tracks=[])
-        self._projects.append(project)
-        return project
-    
-    def projects_by_genre(): dict[str, int]
-
-    def count_total_projects(): int
-    def most_used_instrument(): VirtualInstrument
-
-class MusicalProject:
-    def __init__(self, project_id: str, project_title: str, creation_date: datetime.date, musical_genre: str, tracks: list['AudioTrack']):
-        self._project_id = project_id
-        self._project_title = project_title
-        self._creation_date = creation_date
-        self._musical_genre = musical_genre
-        self._tracks = tracks
-
-    def add_track(track_name: str): AudioTrack
-    def percentage_of_tracks_with_effects(): float
-    def most_used_effect(): EffectType
-
-class AudioTrack:
-    def __init__(self, track_id: str, track_name: str, duration_seconds: float, volume_db: int, manual_note_sequence: str, used_instrument: 'VirtualInstrument', applied_effects: list['AudioEffect']):
-        self._track_id = track_id
-        self._track_name = track_name
-        self._duration_seconds = duration_seconds
-        self._volume_db = volume_db
-        self._manual_note_sequence = manual_note_sequence
-        self._used_instrument = used_instrument
-        self._applied_effects = applied_effects
-
-    def add_instrument(instrument: 'VirtualInstrument'): None
-    def apply_effect(effect: 'AudioEffect'): None
-    def remove_effect(effect: 'AudioEffect'): None
-    def set_note_sequence(notes: str): None
-    def modify_volume(new_volume_db: int): None
-    def has_effects(): bool
-    def number_of_notes(): int
-
-class VirtualInstrument:
-    def __init__(self, instrument_id: str, instrument_name: str, instrument_type: 'InstrumentType'):
-        self._instrument_id = instrument_id
-        self._instrument_name = instrument_name
-        self._instrument_type = instrument_type
-    
-    def play_note(note: str, duration: float): None
-
-class AudioEffect:
-    def __init__(self, effect_id: str, effect_name: str, effect_type: 'EffectType'):
-        self._effect_id = effect_id
-        self._effect_name = effect_name
-        self._effect_type = effect_type
+def generate_unique_id(prefix = "") -> str:
+    return f"{prefix}{str(uuid.uuid4())[:8]}"
 
 class InstrumentType:
+    DRUMS = "Drums"
     GUITAR = "Guitar"
     BASS = "Bass"
-    DRUMS = "Drums"
 
 class EffectType:
-    DISTORTION = "Distortion"
-    DELAY = "Delay"
     REVERB = "Reverb"
+    DELAY = "Delay"
+    DISTORTION = "Distortion"
+
+class VirtualInstrument:
+    def __init__(self, instrument_id, instrument_name, instrument_type):
+        self.instrument_id = instrument_id
+        self.instrument_name = instrument_name
+        self.virtual_instrument_type = instrument_type
+
+    def play_note(self, note, duration):
+        print(f"Playing {note} for {duration} seconds on {self.instrument_name}")
+
+class AudioEffect:
+    def __init__(self, effect_id, effect_name, effect_type):
+        self.effect_id = effect_id
+        self.effect_name = effect_name
+        self.audio_effect_type = effect_type
+
+class AudioTrack:
+    def __init__(self, track_id, track_name, duration_seconds, volume_db):
+        self.track_id = track_id
+        self.track_name = track_name
+        self.duration_seconds = duration_seconds
+        self.volume_db = volume_db
+        self.manual_note_sequence = ""
+        self.used_instrument = None
+        self.applied_effects = []
+
+    def add_instrument(self, instrument):
+        self.used_instrument = instrument
+
+    def apply_effect(self, effect):
+        self.applied_effects.append(effect)
+
+    def remove_effect(self, effect):
+        if effect in self.applied_effects:
+            self.applied_effects.remove(effect)
+
+    def set_note_sequence(self, notes):
+        self.manual_note_sequence = notes
+
+    def adjust_volume(self, new_volume_db):
+        self.volume_db = new_volume_db
+
+    def has_effects(self):
+        return len(self.applied_effects) > 0
+
+    def note_count(self):
+        return len(self.manual_note_sequence)
+
+class MusicalProject:
+    def __init__(self, project_id, project_title, creation_date, musical_genre):
+        self.project_id = project_id
+        self.project_title = project_title
+        self.creation_date = creation_date
+        self.musical_genre = musical_genre
+        self.tracks = []
+
+    def add_track(self, track_name):
+        track = AudioTrack(str(len(self.tracks) + 1), track_name, 0, 0)
+        self.tracks.append(track)
+        return track
+
+    def percentage_tracks_with_effects(self):
+        if not self.tracks:
+            return 0.0
+        return sum(track.has_effects() for track in self.tracks) / len(self.tracks) * 100
+
+    def most_used_effect(self):
+        effect_count = {}
+        for track in self.tracks:
+            for effect in track.applied_effects:
+                effect_count[effect.effect_name] = effect_count.get(effect.effect_name, 0) + 1
+        return max(effect_count, key=effect_count.get) if effect_count else None
+
+class User:
+    def __init__(self, user_id, user_name, email):
+        self.user_id = user_id
+        self.user_name = user_name
+        self.email = email
+        self.projects = []
+
+    def create_project(self, title):
+        project = MusicalProject(str(len(self.projects) + 1), title, date.today(), "")
+        self.projects.append(project)
+        return project
+
+    def projects_by_genre(self):
+        genre_count = {}
+        for project in self.projects:
+            genre_count[project.musical_genre] = genre_count.get(project.musical_genre, 0) + 1
+        return genre_count
+
+    def count_total_projects(self):
+        return len(self.projects)
+
+    def most_used_instrument(self):
+        instrument_count = {}
+        for project in self.projects:
+            for track in project.tracks:
+                if track.used_instrument:
+                    instrument_name = track.used_instrument.instrument_name
+                    instrument_count[instrument_name] = instrument_count.get(instrument_name, 0) + 1
+        return max(instrument_count, key=instrument_count.get)
 
 # Example usage
 if __name__ == "__main__":
@@ -110,7 +155,7 @@ if __name__ == "__main__":
 
     # Testing statistical methods
     print("\nUser-level statistics:")
-    print(f"Projects per genre: {user.projects_per_genre()}")
+    print(f"Projects per genre: {user.projects_by_genre()}")
     print(f"Total number of projects: {user.count_total_projects()}")
     print(f"Most used instrument: {user.most_used_instrument().instrument_name}")
 

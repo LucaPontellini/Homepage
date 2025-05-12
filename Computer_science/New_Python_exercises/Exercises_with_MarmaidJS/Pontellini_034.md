@@ -108,10 +108,10 @@ classDiagram
         +user_name: str
         +email: str 
         +projects: list[MusicalProject]
-        +create_project(title: string) MusicalProject
-        +projects_by_genre() Dict~string, int~
-        +count_total_projects() int
-        +most_used_instrument() VirtualInstrument
+        +create_project(title: str): MusicalProject
+        +projects_by_genre(): dict[string, int]
+        +count_total_projects(): int
+        +most_used_instrument(): VirtualInstrument
     }
 
     class MusicalProject {
