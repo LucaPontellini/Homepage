@@ -94,3 +94,14 @@ INSERT INTO Tipology (Id_tipologia, Nome_tipologia, Descrizione) VALUES (1, 'Mil
 INSERT INTO Honey (Id_miele, Denominazione, Id_tipologia) VALUES (1, 'Miele di Primavera', 1);
 INSERT INTO Apiary (Codice_apiario, Numero_arnie, Localita, Comune, Provincia, Regione, Id_apicoltore) VALUES ('A001', 10, 'Collina', 'Torino', 'TO', 'Piemonte', 1);
 INSERT INTO Production (Id_produzione, Anno, Quantita_annua, Codice_apiario, Id_miele) VALUES (1, 2023, 150.5, 'A001', 1);
+
+SELECT * FROM Beekeeper;
+SELECT Nome FROM Beekeeper WHERE Id_apicoltore = 1;
+SELECT * FROM Apiary WHERE Regione = 'Lombardia';
+SELECT Codice_apiario, Numero_arnie FROM Apiary WHERE Numero_arnie > 10;
+SELECT Codice_apiario, Localita FROM Apiary WHERE Id_apicoltore = 2;
+SELECT * FROM Honey WHERE Id_tipologia = 3;
+SELECT Denominazione FROM Honey WHERE Id_miele = 5;
+SELECT * FROM Production WHERE Anno = 2024;
+SELECT * FROM Production WHERE Codice_apiario = 'A001';
+SELECT * FROM Production WHERE Id_miele = 3 AND Anno = 2023;
