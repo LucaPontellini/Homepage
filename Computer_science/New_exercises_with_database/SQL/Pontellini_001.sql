@@ -1,3 +1,4 @@
+-- database: :memory:
 -- 1. Creare le tabelle del modello ER
 -- 2. Inserire dati nelle tabelle con le istruzioni di INSERT (2-3 righe per tabella)
 -- 3. Fare le seguenti query:
@@ -68,7 +69,7 @@ CREATE TABLE Tipology (
 CREATE TABLE Honey (
     Id_miele INT PRIMARY KEY,
     Denominazione VARCHAR(50),
-    Id_tipologia INT FOREIGN KEY REFERENCES Tipology(Id_tipologia)
+    Id_tipologia INT REFERENCES Tipology(Id_tipologia)
     );
 
 CREATE TABLE Apiary (
@@ -78,15 +79,15 @@ CREATE TABLE Apiary (
     Comune VARCHAR(50),
     Provincia VARCHAR(50),
     Regione VARCHAR(50),
-    Id_apicoltore INT FOREIGN KEY REFERENCES Beekeeper(Id_apicoltore)
+    Id_apicoltore INT REFERENCES Beekeeper(Id_apicoltore)
     );
 
 CREATE TABLE Production (
     Id_produzione INT PRIMARY KEY,
     Anno INT,
     Quantita_annua FLOAT,
-    Codice_apiario VARCHAR(10) FOREIGN KEY REFERENCES Apiary(Codice_apiario),
-    Id_miele INT FOREIGN KEY REFERENCES Honey(Id_miele)
+    Codice_apiario VARCHAR(10) REFERENCES Apiary(Codice_apiario),
+    Id_miele INT REFERENCES Honey(Id_miele)
     );
     
 INSERT INTO Beekeeper (Nome, Id_apicoltore) VALUES ('Mario', 1);
