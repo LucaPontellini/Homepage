@@ -126,3 +126,9 @@ while True:
     riepilogo_tabelle(cursor)
     conn.commit()
     conn.close()
+
+elimina_database()
+ricrea_database().close()
+print("\n🧹 Database resettato. Arrivederci!")
+
+#sistema il fatto che se passo da un file all'altro dal terminale compare l'errore nel file db.sqlite che esistono già le cose al suo interno. forse conviene resettare il databse appena si apre un file nuovo dentro alla cartella SQL
