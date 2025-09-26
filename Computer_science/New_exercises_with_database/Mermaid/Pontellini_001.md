@@ -68,8 +68,3 @@ BANCA_DATI }o--o{ MIELE : gestisce_i_dati_del
 APICOLTORE }o--o{ APIARIO : possiede
 MIELE }o--o{ APIARIO : produce
 ```
-
-- `|o--`: Uno o zero
-- `||--`: Esattamente uno
-- `}o--`: Molti o zero
-- `}|--`: Molti e almeno uno
