@@ -148,4 +148,7 @@ while True:
     conn.commit()
     conn.close()
 
-print("\n👋 Fine sessione. Il database è stato resettato solo quando hai eseguito un file SQL.")
+# 🧹 Elimina il database alla fine della sessione
+elimina_database()
+
+print("\n👋 Fine sessione. Il database è stato eliminato per evitare residui dalle esecuzioni precedenti.")
