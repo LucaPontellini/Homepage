@@ -16,7 +16,12 @@ def elimina_database():
             exit()
 
 def ricrea_database():
-    return sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path)
+    if not os.path.exists(db_path):
+        print("❌ Il database non è stato creato.")
+    else:
+        print("✅ Database creato correttamente.")
+    return conn
 
 def controlla_sql(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -59,12 +64,8 @@ def check_tabelle_presenti(conn, tabelle_richieste):
     tabelle_mancanti = [t for t in tabelle_richieste if t.lower() not in tabelle_presenti]
     return tabelle_mancanti
 
-# 🧹 Chiedi all'utente se vuole eliminare il database
-scelta_reset = input("🧹 Vuoi eliminare il database prima di iniziare? (sì/no): ").strip().lower()
-if scelta_reset in ["sì", "si", "y", "yes"]:
-    elimina_database()
-else:
-    print("📂 Il database esistente verrà mantenuto.")
+# 📂 Il database esistente verrà mantenuto all'avvio
+print("📂 Il database verrà resettato ogni volta che esegui un file SQL.")
 
 while True:
     # 📄 Mostra i file .sql disponibili
@@ -100,7 +101,14 @@ while True:
             print("⏭️ File saltato.")
             continue
 
-    conn = ricrea_database() if not os.path.exists(db_path) else sqlite3.connect(db_path)
+    # 🔄 Reset del database prima di eseguire il file selezionato
+    elimina_database()
+    conn = ricrea_database()
+
+    if not os.path.exists(db_path):
+        print("❌ Errore: il file db.sqlite non è stato creato.")
+        continue
+
     cursor = conn.cursor()
 
     with open(file_path, "r", encoding="utf-8") as f:
@@ -127,8 +135,4 @@ while True:
     conn.commit()
     conn.close()
 
-elimina_database()
-ricrea_database().close()
-print("\n🧹 Database resettato. Arrivederci!")
-
-#sistema il fatto che se passo da un file all'altro dal terminale compare l'errore nel file db.sqlite che esistono già le cose al suo interno. forse conviene resettare il databse appena si apre un file nuovo dentro alla cartella SQL
+print("\n👋 Fine sessione. Il database è stato resettato ad ogni esecuzione.")
