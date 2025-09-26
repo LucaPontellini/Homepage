@@ -6,6 +6,17 @@ import re
 sql_folder = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(sql_folder, "db.sqlite")
 
+def crea_database_se_manca():
+    if not os.path.exists(db_path):
+        try:
+            conn = sqlite3.connect(db_path)
+            conn.close()
+            print("✅ Database creato all'avvio.")
+        except Exception as e:
+            print(f"❌ Errore nella creazione del database: {e}")
+    else:
+        print("ℹ️ Database già esistente.")
+
 def elimina_database():
     if os.path.exists(db_path):
         try:
@@ -16,12 +27,13 @@ def elimina_database():
             exit()
 
 def ricrea_database():
-    conn = sqlite3.connect(db_path)
-    if not os.path.exists(db_path):
-        print("❌ Il database non è stato creato.")
-    else:
-        print("✅ Database creato correttamente.")
-    return conn
+    try:
+        conn = sqlite3.connect(db_path)
+        print("✅ Database ricreato correttamente.")
+        return conn
+    except Exception as e:
+        print(f"❌ Errore nella creazione del database: {e}")
+        return None
 
 def controlla_sql(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -64,8 +76,10 @@ def check_tabelle_presenti(conn, tabelle_richieste):
     tabelle_mancanti = [t for t in tabelle_richieste if t.lower() not in tabelle_presenti]
     return tabelle_mancanti
 
-# 📂 Il database esistente verrà mantenuto all'avvio
-print("📂 Il database verrà resettato ogni volta che esegui un file SQL.")
+# 📂 All'avvio: crea il database se non esiste
+print("📂 Il database verrà resettato solo quando esegui un file SQL.")
+print(f"📍 Percorso del database: {db_path}")
+crea_database_se_manca()
 
 while True:
     # 📄 Mostra i file .sql disponibili
@@ -105,8 +119,7 @@ while True:
     elimina_database()
     conn = ricrea_database()
 
-    if not os.path.exists(db_path):
-        print("❌ Errore: il file db.sqlite non è stato creato.")
+    if conn is None:
         continue
 
     cursor = conn.cursor()
@@ -135,4 +148,4 @@ while True:
     conn.commit()
     conn.close()
 
-print("\n👋 Fine sessione. Il database è stato resettato ad ogni esecuzione.")
+print("\n👋 Fine sessione. Il database è stato resettato solo quando hai eseguito un file SQL.")
