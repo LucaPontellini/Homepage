@@ -152,3 +152,11 @@ while True:
 elimina_database()
 
 print("\n👋 Fine sessione. Il database è stato eliminato per evitare residui dalle esecuzioni precedenti.")
+
+
+#TODO
+#bisogna modificarlo perchè adesso dentro la cartella SQL ci sono 2 cartelle:
+#- una chiamata folder_for_SQL_files (contiene tutti i file .sql)
+#- una chiamata folder_for_Python_files (contiene tutti i file .py)
+
+#questo file gestione_sql.py si trova dentro la cartella SQL
