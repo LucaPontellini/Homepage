@@ -2,9 +2,11 @@ import os
 import sqlite3
 import re
 
-# 📁 Percorso dinamico: cartella dove si trova lo script
-sql_folder = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(sql_folder, "db.sqlite")
+# 📁 Percorsi dinamici
+base_folder = os.path.dirname(os.path.abspath(__file__))  # SQL/
+sql_files_folder = os.path.join(base_folder, "folder_for_SQL_files")
+python_files_folder = os.path.join(base_folder, "folder_for_Python_files")
+db_path = os.path.join(base_folder, "db.sqlite")
 
 def crea_database_se_manca():
     if not os.path.exists(db_path):
@@ -25,6 +27,15 @@ def elimina_database():
         except PermissionError:
             print("❌ Il file db.sqlite è aperto da un altro programma. Chiudilo e riprova.")
             exit()
+
+def elimina_tutti_i_database_sqlite():
+    for file in os.listdir(base_folder):
+        if file.endswith(".sqlite"):
+            try:
+                os.remove(os.path.join(base_folder, file))
+                print(f"🧹 Database eliminato: {file}")
+            except PermissionError:
+                print(f"❌ Impossibile eliminare {file}: è aperto da un altro programma.")
 
 def ricrea_database():
     try:
@@ -82,32 +93,57 @@ print(f"📍 Percorso del database: {db_path}")
 crea_database_se_manca()
 
 while True:
-    # 📄 Mostra i file .sql disponibili
-    sql_files = [f for f in os.listdir(sql_folder) if f.endswith(".sql")]
-    print("\n📄 File SQL disponibili:")
-    for i, file in enumerate(sql_files, 1):
-        print(f"{i}. {file}")
+    try:
+        sql_files = [f for f in os.listdir(sql_files_folder) if f.endswith(".sql")]
+    except FileNotFoundError:
+        print(f"❌ Cartella dei file SQL non trovata: {sql_files_folder}")
+        break
 
-    # 📥 Chiedi quale file eseguire
-    scelta = input("\nInserisci il numero o il nome del file da eseguire (o 'esci' per uscire): ").strip()
+    try:
+        py_files = [f for f in os.listdir(python_files_folder) if f.endswith(".py")]
+    except FileNotFoundError:
+        print(f"❌ Cartella dei file Python non trovata: {python_files_folder}")
+        py_files = []
+
+    if not sql_files and not py_files:
+        print("📭 Nessun file SQL o Python trovato.")
+        break
+
+    # 🔢 Menu unificato
+    print("\n📄 File disponibili:")
+    file_menu = []
+    for f in sql_files:
+        file_menu.append(("sql", f))
+    for f in py_files:
+        file_menu.append(("py", f))
+
+    for i, (tipo, nome) in enumerate(file_menu, 1):
+        icona = "📄" if tipo == "sql" else "🐍"
+        print(f"{i}. {icona} {nome}")
+
+    scelta = input("\nInserisci il numero del file da eseguire (o 'esci' per uscire): ").strip()
 
     if scelta.lower() == "esci":
         break
 
-    if scelta.isdigit():
-        scelta_index = int(scelta) - 1
-        if 0 <= scelta_index < len(sql_files):
-            selected_file = sql_files[scelta_index]
-        else:
-            print("❌ Numero fuori intervallo.")
-            continue
-    elif scelta in sql_files:
-        selected_file = scelta
-    else:
-        print("❌ Scelta non valida.")
+    if not scelta.isdigit():
+        print("❌ Inserimento non valido.")
         continue
 
-    file_path = os.path.join(sql_folder, selected_file)
+    scelta_index = int(scelta) - 1
+    if not (0 <= scelta_index < len(file_menu)):
+        print("❌ Numero fuori intervallo.")
+        continue
+
+    tipo_file, nome_file = file_menu[scelta_index]
+
+    if tipo_file == "py":
+        os.system(f"python3 \"{os.path.join(python_files_folder, nome_file)}\"")
+        elimina_tutti_i_database_sqlite()  # 🔥 Elimina eventuali database creati dallo script Python
+        continue
+
+    # SQL file selezionato
+    file_path = os.path.join(sql_files_folder, nome_file)
 
     if not controlla_sql(file_path):
         conferma = input("Vuoi comunque eseguire il file? (sì/no): ").strip().lower()
@@ -115,7 +151,6 @@ while True:
             print("⏭️ File saltato.")
             continue
 
-    # 🔄 Reset del database prima di eseguire il file selezionato
     elimina_database()
     conn = ricrea_database()
 
@@ -141,22 +176,16 @@ while True:
             for tabella in tabelle_mancanti:
                 print(f"❌ Tabella mancante: {tabella}")
         else:
-            print(f"\n✅ {selected_file} eseguito con successo su db.sqlite.")
+            print(f"\n✅ {nome_file} eseguito con successo su db.sqlite.")
             print("✅ Il server è pronto. Tutte le tabelle necessarie sono presenti.")
 
     riepilogo_tabelle(cursor)
     conn.commit()
     conn.close()
 
-# 🧹 Elimina il database alla fine della sessione
-elimina_database()
+# 🔚 Fine sessione: pulizia completa
+elimina_tutti_i_database_sqlite()
+print("\n👋 Fine sessione. Tutti i database .sqlite sono stati eliminati.")
 
-print("\n👋 Fine sessione. Il database è stato eliminato per evitare residui dalle esecuzioni precedenti.")
 
-
-#TODO
-#bisogna modificarlo perchè adesso dentro la cartella SQL ci sono 2 cartelle:
-#- una chiamata folder_for_SQL_files (contiene tutti i file .sql)
-#- una chiamata folder_for_Python_files (contiene tutti i file .py)
-
-#questo file gestione_sql.py si trova dentro la cartella SQL
+#problema: i database creati dagli script python non vengono eliminati alla fine della sessione
