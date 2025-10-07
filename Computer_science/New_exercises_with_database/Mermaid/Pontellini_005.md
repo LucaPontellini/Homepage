@@ -35,3 +35,13 @@ Implementa le seguenti funzioni:
 Nel codice principale, chiama le funzioni e stampa i risultati delle query.
 
 Consulta l'esempio precedente per la struttura del codice Python.
+
+```mermaid
+
+erDiagram
+    Autori {
+      int id PK
+      str nome
+      str cognome
+    }
+```

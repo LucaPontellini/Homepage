@@ -26,14 +26,14 @@ Suggerimento: usa INSERT OR IGNORE per evitare errori su violazioni di vincoli (
 erDiagram
     STUDENTI {
       int matricola PK
-      string nome
-      string cognome
+      str nome
+      str cognome
     }
 
     ESAMI {
       int id PK
       int matricola FK
-      string corso
+      str corso
       int voto
     }
 
