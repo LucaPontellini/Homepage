@@ -24,18 +24,18 @@ Suggerimento: usa INSERT OR IGNORE per evitare errori su violazioni di vincoli (
 ```mermaid
 
 erDiagram
-    STUDENTI {
+    STUDENTE {
       int matricola PK
       str nome
       str cognome
     }
 
-    ESAMI {
+    ESAME {
       int id PK
       int matricola FK
       str corso
       int voto
     }
 
-    STUDENTI ||--o{ ESAMI : hanno
+    STUDENTE ||--o{ ESAME : ha
 ```

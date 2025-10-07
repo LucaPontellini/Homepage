@@ -39,9 +39,28 @@ Consulta l'esempio precedente per la struttura del codice Python.
 ```mermaid
 
 erDiagram
-    Autori {
+    AUTORE {
       int id PK
       str nome
       str cognome
     }
+
+    LIBRO {
+      int id PK
+      str titolo
+      int autore_id FK
+      int anno
+      str genere
+    }
+
+    PRESTITO {
+      int id PK
+      int libro_id FK
+      str utente
+      str data_prestito
+      str data_restituzione
+    }
+
+AUTORE ||--o{ LIBRO : "scrive"
+LIBRO ||--o{ PRESTITO : "viene prestato"
 ```
