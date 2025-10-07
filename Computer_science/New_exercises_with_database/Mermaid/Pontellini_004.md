@@ -20,3 +20,22 @@
   3. Numero di esami sostenuti per ciascuno studente (GROUP BY Matricola).
 
 Suggerimento: usa INSERT OR IGNORE per evitare errori su violazioni di vincoli (es. PRIMARY KEY)
+
+```mermaid
+
+erDiagram
+    STUDENTI {
+      int matricola PK
+      string nome
+      string cognome
+    }
+
+    ESAMI {
+      int id PK
+      int matricola FK
+      string corso
+      int voto
+    }
+
+    STUDENTI ||--o{ ESAMI : hanno
+```
