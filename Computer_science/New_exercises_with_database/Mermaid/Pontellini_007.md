@@ -60,10 +60,10 @@ erDiagram
     }
 
     AZIENDA_VINICOLA ||--o{ VIGNETO : possiede
-    VIGNETO ||--o{ PARCELLA : suddiviso_in
+    VIGNETO ||--o{ PARCELLA : suddiviso in
     PARCELLA ||--o{ BLOCCO : contiene
-    BLOCCO }o--|| VITIGNI : coltivato_con
+    BLOCCO }o--|| VITIGNI : coltivato con
     AZIENDA_VINICOLA ||--o{ ETICHETTA_DEL_VINO : produce
-    VIGNETO ||--o{ ETICHETTA_DEL_VINO : vigneto_principale
-    VITIGNI ||--o{ ETICHETTA_DEL_VINO : vitigno_prevalente
+    VIGNETO ||--o{ ETICHETTA_DEL_VINO : vigneto principale
+    VITIGNI ||--o{ ETICHETTA_DEL_VINO : vitigno prevalente
 ```
