@@ -9,6 +9,10 @@ python_files_folder = os.path.join(base_folder, "folder_for_Python_files")
 db_path = os.path.join(base_folder, "db.sqlite")
 db_log_path = os.path.join(base_folder, "db_paths.txt")
 
+# Ensure required folders exist
+os.makedirs(sql_files_folder, exist_ok=True)
+os.makedirs(python_files_folder, exist_ok=True)
+
 # 🛠️ Funzioni di gestione database
 def crea_database_se_manca():
     if not os.path.exists(db_path):
@@ -28,7 +32,7 @@ def elimina_database():
             print("🧹 Database eliminato.")
         except PermissionError:
             print("❌ Il file db.sqlite è aperto da un altro programma. Chiudilo e riprova.")
-            exit()
+            raise PermissionError("Il file db.sqlite è aperto da un altro programma. Chiudilo e riprova.")
 
 def elimina_tutti_i_database_sqlite():
     estensioni_valide = [".sqlite", ".db"]
@@ -37,7 +41,7 @@ def elimina_tutti_i_database_sqlite():
         base_folder,
         os.path.join(base_folder, "Computer_science"),
         os.path.join(base_folder, "New_exercises_with_database"),
-        os.path.abspath(os.sep)  # root directory
+        # Removed root directory for safety and performance
     ]
     for folder in cartelle_da_scansionare:
         for root, _, files in os.walk(folder):
@@ -122,8 +126,27 @@ def riepilogo_tabelle(cursor):
         print(f"   - {table_name}: {count} righe")
 
 def estrai_tabelle_da_sql(sql_text):
-    pattern = r"\b(?:FROM|JOIN|UPDATE|INSERT INTO)\s+([a-zA-Z_][a-zA-Z0-9_]*)"
-    return list(set(re.findall(pattern, sql_text, re.IGNORECASE)))
+    try:
+        import sqlparse
+        from sqlparse.sql import Identifier, IdentifierList
+        from sqlparse.tokens import Keyword, DML
+
+        tables = set()
+        parsed = sqlparse.parse(sql_text)
+        for stmt in parsed:
+            for token in stmt.tokens:
+                if token.ttype is Keyword and token.value.upper() in ('FROM', 'JOIN', 'UPDATE', 'INSERT INTO', 'CREATE TABLE'):
+                    next_token = stmt.token_next(stmt.token_index(token))
+                    if isinstance(next_token, Identifier):
+                        tables.add(str(next_token.get_real_name()))
+                    elif isinstance(next_token, IdentifierList):
+                        for identifier in next_token.get_identifiers():
+                            tables.add(str(identifier.get_real_name()))
+        return list(tables)
+    except ImportError:
+        print("⚠️ Il modulo 'sqlparse' non è installato. Uso regex di fallback.")
+        pattern = r"\b(?:FROM|JOIN|UPDATE|INSERT INTO|CREATE TABLE)\s+([a-zA-Z_][a-zA-Z0-9_]*)"
+        return list(set(re.findall(pattern, sql_text, re.IGNORECASE)))
 
 def check_tabelle_presenti(conn, tabelle_richieste):
     cursor = conn.cursor()
@@ -146,116 +169,120 @@ def lista_database_in_cartelle(cartelle):
     return db_files
 
 # 🚀 Avvio
-print("📂 Il database verrà resettato solo quando esegui un file SQL.")
+print("📂 Nota: Solo il database principale (db.sqlite) verrà resettato quando esegui un file SQL. L'esecuzione di script Python NON resetta db.sqlite né eventuali altri database creati dagli script.")
 print(f"📍 Percorso del database: {db_path}")
 crea_database_se_manca()
 
 python_eseguito = False
 
-while True:
+def mostra_file_disponibili():
     try:
         sql_files = [f for f in os.listdir(sql_files_folder) if f.endswith(".sql")]
     except FileNotFoundError:
         print(f"❌ Cartella dei file SQL non trovata: {sql_files_folder}")
-        break
-
+        return [], []
     try:
         py_files = [f for f in os.listdir(python_files_folder) if f.endswith(".py")]
     except FileNotFoundError:
         print(f"❌ Cartella dei file Python non trovata: {python_files_folder}")
         py_files = []
+    return sql_files, py_files
 
+def scegli_file(sql_files, py_files):
     if not sql_files and not py_files:
         print("📭 Nessun file SQL o Python trovato.")
-        break
-
+        return None, None
     print("\n📄 File disponibili:")
     file_menu = [("sql", f) for f in sql_files] + [("py", f) for f in py_files]
     for i, (tipo, nome) in enumerate(file_menu, 1):
         icona = "📄" if tipo == "sql" else "🐍"
         print(f"{i}. {icona} {nome}")
-
     scelta = input("\nInserisci il numero del file da eseguire (o 'esci' per uscire): ").strip()
     if scelta.lower() == "esci":
-        break
+        return "esci", None
     if not scelta.isdigit():
         print("❌ Inserimento non valido.")
-        continue
-
+        return None, None
     scelta_index = int(scelta) - 1
     if not (0 <= scelta_index < len(file_menu)):
         print("❌ Numero fuori intervallo.")
-        continue
+        return None, None
+    return file_menu[scelta_index]
 
-    tipo_file, nome_file = file_menu[scelta_index]
+def esegui_script_python(nome_file):
+    cartelle_monitorate = [
+        base_folder,
+        os.path.join(base_folder, "Computer_science"),
+        os.path.join(base_folder, "New_exercises_with_database")
+    ]
+    db_prima = lista_database_in_cartelle(cartelle_monitorate)
+    import subprocess
+    try:
+        subprocess.run(
+            ["python3", os.path.join(python_files_folder, nome_file)],
+            check=True
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Errore durante l'esecuzione dello script Python: {e}")
+    db_dopo = lista_database_in_cartelle(cartelle_monitorate)
+    nuovi_db = rileva_nuovi_database(db_prima, db_dopo)
+    if nuovi_db:
+        with open(db_log_path, "a", encoding="utf-8") as log_file:
+            for db in nuovi_db:
+                log_file.write(db + "\n")
+                print(f"📌 Database rilevato e registrato: {db}")
 
-    if tipo_file == "py":
-        cartelle_monitorate = [
-            base_folder,
-            os.path.join(base_folder, "Computer_science"),
-            os.path.join(base_folder, "New_exercises_with_database")
-        ]
-        db_prima = lista_database_in_cartelle(cartelle_monitorate)
-
-        import subprocess
-        try:
-            subprocess.run(
-                ["python3", os.path.join(python_files_folder, nome_file)],
-                check=True
-            )
-        except subprocess.CalledProcessError as e:
-            print(f"❌ Errore durante l'esecuzione dello script Python: {e}")
-        python_eseguito = True
-
-        db_dopo = lista_database_in_cartelle(cartelle_monitorate)
-        nuovi_db = rileva_nuovi_database(db_prima, db_dopo)
-
-        if nuovi_db:
-            with open(db_log_path, "a", encoding="utf-8") as log_file:
-                for db in nuovi_db:
-                    log_file.write(db + "\n")
-                    print(f"📌 Database rilevato e registrato: {db}")
-        continue
-
+def esegui_script_sql(nome_file):
     file_path = os.path.join(sql_files_folder, nome_file)
-
     if not controlla_sql(file_path):
         conferma = input("Vuoi comunque eseguire il file? (sì/no): ").strip().lower()
         if conferma not in ["sì", "si", "y", "yes"]:
             print("⏭️ File saltato.")
-            continue
-
+            return
     elimina_database()
     conn = ricrea_database()
     if conn is None:
-        continue
-
+        return
     cursor = conn.cursor()
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            sql_script = f.read()
+            tabelle_richieste = estrai_tabelle_da_sql(sql_script)
+            try:
+                cursor.executescript(sql_script)
+            except Exception as e:
+                print(f"\n❌ Errore durante l'esecuzione: {e}")
+                return
+        tabelle_mancanti = check_tabelle_presenti(conn, tabelle_richieste)
+        if tabelle_mancanti:
+            print(f"\n⚠️ Mancano le seguenti tabelle: {', '.join(tabelle_mancanti)}")
+            riepilogo_tabelle(cursor)
+        else:
+            print(f"\n✅ {nome_file} eseguito con successo.")
+            print("✅ Tutte le tabelle necessarie sono presenti.")
+            riepilogo_tabelle(cursor)
+        import re
+        if re.search(r"\b(insert|update|delete)\b", sql_script, re.IGNORECASE):
+            conn.commit()
+    finally:
+        cursor.close()
+        conn.close()
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        sql_script = f.read()
-        tabelle_richieste = estrai_tabelle_da_sql(sql_script)
-        try:
-            cursor.executescript(sql_script)
-        except Exception as e:
-            print(f"\n❌ Errore durante l'esecuzione: {e}")
-            conn.close()
-            continue
-
-    tabelle_mancanti = check_tabelle_presenti(conn, tabelle_richieste)
-    if tabelle_mancanti:
-        print(f"\n⚠️ Mancano le seguenti tabelle: {', '.join(tabelle_mancanti)}")
-        riepilogo_tabelle(cursor)
-    else:
-        print(f"\n✅ {nome_file} eseguito con successo.")
-        print("✅ Tutte le tabelle necessarie sono presenti.")
-        riepilogo_tabelle(cursor)
-    # Commit only if the script contains data-modifying statements
-    if any(kw in sql_script.lower() for kw in ["insert", "update", "delete", "create", "drop", "alter"]):
-        conn.commit()
-    cursor.close()
-    conn.close()
-
+while True:
+    sql_files, py_files = mostra_file_disponibili()
+    scelta = scegli_file(sql_files, py_files)
+    if scelta == ("esci", None):
+        break
+    if scelta is None:
+        continue
+    tipo_file, nome_file = scelta
+    if tipo_file == "py":
+        esegui_script_python(nome_file)
+        python_eseguito = True
+        continue
+    elif tipo_file == "sql":
+        esegui_script_sql(nome_file)
+        continue
 # 🔚 Fine sessione: pulizia completa
 if python_eseguito:
     print("\n🧹 Pulizia finale dei database creati dagli script Python...")
@@ -265,10 +292,7 @@ if python_eseguito:
         os.path.join(base_folder, "Computer_science"),
         os.path.join(base_folder, "folder_for_Python_files"),
         os.path.join(base_folder, "folder_for_SQL_files"),
-        os.path.abspath(os.sep),  # root directory
     ]
     elimina_tutti_i_database_sqlite()
-    elimina_database_in_cartelle(cartelle_da_pulire)
-    elimina_database_da_lista(db_log_path)
     elimina_database_in_cartelle(cartelle_da_pulire)
     elimina_database_da_lista(db_log_path)
