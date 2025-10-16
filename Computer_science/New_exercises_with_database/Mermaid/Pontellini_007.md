@@ -56,6 +56,14 @@ erDiagram
     ETICHETTA_DEL_VINO {
       str nome
       int annata
-      str tipologia
+      list tipologia
     }
+
+    AZIENDA_VINICOLA ||--o{ VIGNETO : possiede
+    VIGNETO ||--o{ PARCELLA : suddiviso_in
+    PARCELLA ||--o{ BLOCCO : contiene
+    BLOCCO }o--|| VITIGNI : coltivato_con
+    AZIENDA_VINICOLA ||--o{ ETICHETTA_DEL_VINO : produce
+    VIGNETO ||--o{ ETICHETTA_DEL_VINO : vigneto_principale
+    VITIGNI ||--o{ ETICHETTA_DEL_VINO : vitigno_prevalente
 ```
