@@ -32,15 +32,23 @@ def elimina_database():
 
 def elimina_tutti_i_database_sqlite():
     estensioni_valide = [".sqlite", ".db"]
-    for root, _, files in os.walk(base_folder):
-        for file in files:
-            if any(file.endswith(ext) for ext in estensioni_valide):
-                file_path = os.path.join(root, file)
-                try:
-                    os.remove(file_path)
-                    print(f"🧹 Eliminato: {file_path}")
-                except PermissionError:
-                    print(f"❌ Impossibile eliminare {file_path}: è aperto da un altro programma.")
+    # Include the root directory ('/') to catch databases like 'libreria.db' created at the root
+    cartelle_da_scansionare = [
+        base_folder,
+        os.path.join(base_folder, "Computer_science"),
+        os.path.join(base_folder, "New_exercises_with_database"),
+        os.path.abspath(os.sep)  # root directory
+    ]
+    for folder in cartelle_da_scansionare:
+        for root, _, files in os.walk(folder):
+            for file in files:
+                if any(file.endswith(ext) for ext in estensioni_valide):
+                    file_path = os.path.join(root, file)
+                    try:
+                        os.remove(file_path)
+                        print(f"🧹 Eliminato: {file_path}")
+                    except PermissionError:
+                        print(f"❌ Impossibile eliminare {file_path}: è aperto da un altro programma.")
 
 def elimina_database_in_cartelle(cartelle):
     estensioni_valide = [".sqlite", ".db"]
@@ -189,7 +197,14 @@ while True:
         ]
         db_prima = lista_database_in_cartelle(cartelle_monitorate)
 
-        os.system(f"python3 \"{os.path.join(python_files_folder, nome_file)}\"")
+        import subprocess
+        try:
+            subprocess.run(
+                ["python3", os.path.join(python_files_folder, nome_file)],
+                check=True
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Errore durante l'esecuzione dello script Python: {e}")
         python_eseguito = True
 
         db_dopo = lista_database_in_cartelle(cartelle_monitorate)
@@ -227,33 +242,33 @@ while True:
             conn.close()
             continue
 
-        tabelle_mancanti = check_tabelle_presenti(conn, tabelle_richieste)
-        if tabelle_mancanti:
-            print("\n🚫 Il file è stato eseguito, ma alcune tabelle richieste non sono presenti:")
-            for tabella in tabelle_mancanti:
-                print(f"❌ Tabella mancante: {tabella}")
-        else:
-            print(f"\n✅ {nome_file} eseguito con successo.")
-            print("✅ Tutte le tabelle necessarie sono presenti.")
-
-    riepilogo_tabelle(cursor)
-    conn.commit()
+    tabelle_mancanti = check_tabelle_presenti(conn, tabelle_richieste)
+    if tabelle_mancanti:
+        print(f"\n⚠️ Mancano le seguenti tabelle: {', '.join(tabelle_mancanti)}")
+        riepilogo_tabelle(cursor)
+    else:
+        print(f"\n✅ {nome_file} eseguito con successo.")
+        print("✅ Tutte le tabelle necessarie sono presenti.")
+        riepilogo_tabelle(cursor)
+    # Commit only if the script contains data-modifying statements
+    if any(kw in sql_script.lower() for kw in ["insert", "update", "delete", "create", "drop", "alter"]):
+        conn.commit()
+    cursor.close()
     conn.close()
 
 # 🔚 Fine sessione: pulizia completa
 if python_eseguito:
     print("\n🧹 Pulizia finale dei database creati dagli script Python...")
-    elimina_tutti_i_database_sqlite()
-
     cartelle_da_pulire = [
+        base_folder,
         os.path.join(base_folder, "New_exercises_with_database"),
         os.path.join(base_folder, "Computer_science"),
+        os.path.join(base_folder, "folder_for_Python_files"),
+        os.path.join(base_folder, "folder_for_SQL_files"),
+        os.path.abspath(os.sep),  # root directory
     ]
+    elimina_tutti_i_database_sqlite()
     elimina_database_in_cartelle(cartelle_da_pulire)
     elimina_database_da_lista(db_log_path)
-
-print("\n👋 Fine sessione. Tutti i database .sqlite e .db sono stati eliminati.")
-
-#esempio: avvio questo script e chiedo di aprire il 3. mi si genera scuola.db , ma quando scrivo "esci" scuola.db rimane dov'è e non si elimina.
-#possibili idee: tracciare la locazione del file database generato dal singolo file python oppure usare il nome del database creato per eliminarlo quando si esce (in questo caso il 3)
-#sistemare la grammatica, le frasi, il modo di capire cosa succede quando eseguo questo script perchè non si capisce bene il tutto
+    elimina_database_in_cartelle(cartelle_da_pulire)
+    elimina_database_da_lista(db_log_path)
