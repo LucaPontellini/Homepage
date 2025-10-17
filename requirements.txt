@@ -1,7 +1,14 @@
 termcolor
-argparse
 matplotlib
 flask
 tabulate
 pytest
 sqlparse
+pandas
+numpy
+requests
+beautifulsoup4
+sqlalchemy
+fpdf
+openpyxl
+odfpy
