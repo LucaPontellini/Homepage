@@ -2,14 +2,20 @@
 
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-import os, csv, json, zipfile, shutil, re, unicodedata, subprocess
+import os
+import csv
+import json
+import zipfile
+import shutil
+import re
+import unicodedata
+import subprocess
 from fpdf import FPDF
 import openpyxl
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 from odf.opendocument import OpenDocumentSpreadsheet
 from odf.table import Table, TableRow, TableCell
 from odf.text import P
-from openpyxl.worksheet.table import Table as XLTable, TableStyleInfo
 from openpyxl.utils import get_column_letter
 
 tutte_le_tabelle = {}
