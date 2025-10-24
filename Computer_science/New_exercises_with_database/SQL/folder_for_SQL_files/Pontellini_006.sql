@@ -41,28 +41,32 @@ INSERT OR IGNORE INTO Prestiti (Id, Libro_id, Utente, Data_prestito, Data_restit
 (3, 3, 'Alessandro Verdi', '2023-03-01', '2023-03-10'),
 (4, 4, 'Mario Rossi', '2023-04-01', NULL);
 
-SELECT Libri.Titolo, Libri.Anno, Libri.Genere
+SELECT Libri.Titolo, Libri.Anno, Autori.Nome, Autori.Cognome
 FROM Libri
-JOIN Autori ON Libri.Autore_id = Autori.Id
-WHERE Autori.Nome = 'Mario' AND Autori.Cognome = 'Rossi';
-
-SELECT Libri.Titolo, Prestiti.Data_prestito, Prestiti.Data_restituzione
-FROM Prestiti
-JOIN Libri ON Prestiti.Libro_id = Libri.Id
-WHERE Prestiti.Utente = 'Lucia Bianchi';
-
-SELECT Genere, COUNT(*) AS NumeroLibri
-FROM Libri
-GROUP BY Genere
-HAVING COUNT(*) > 1;
-
-SELECT Autori.Nome || ' ' || Autori.Cognome AS Autore, COUNT(Libri.Id) AS NumeroLibri
-FROM Autori
-JOIN Libri ON Autori.Id = Libri.Autore_id
-GROUP BY Autori.Id
-ORDER BY NumeroLibri DESC;
+JOIN Autori ON Libri.Autore_id = Autori.Id;
 
 SELECT Libri.Titolo, Prestiti.Utente, Prestiti.Data_prestito
 FROM Prestiti
+JOIN Libri ON Prestiti.Libro_id = Libri.Id;
+
+SELECT Titolo, Anno, Genere
+FROM Libri
+WHERE Anno > 2020;
+
+SELECT Utente, COUNT(*) AS NumeroPrestiti
+FROM Prestiti
+GROUP BY Utente;
+
+SELECT Genere, Titolo, Anno
+FROM Libri
+ORDER BY Genere, Anno;
+
+SELECT Libri.Titolo, Prestiti.Utente, Prestiti.Data_prestito, Prestiti.Data_restituzione
+FROM Prestiti
 JOIN Libri ON Prestiti.Libro_id = Libri.Id
-WHERE Prestiti.Data_restituzione IS NULL;
+WHERE Prestiti.Data_restituzione IS NOT NULL;
+
+SELECT Autori.Nome, Autori.Cognome, COUNT(Libri.Id) AS NumeroLibri
+FROM Autori
+LEFT JOIN Libri ON Autori.Id = Libri.Autore_id
+GROUP BY Autori.Id;
