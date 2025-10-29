@@ -18,53 +18,52 @@ Progettare un modello ER che rappresenti la struttura sopra descritta e che perm
 - Quali album sono stati venduti in una vendita specifica e in che quantità?
 
 ```mermaid
-
 erDiagram
-    NEGOZIO {
-      int codice PK
-      str indirizzo
-      str citta
+
+    RigheScontrino {
+        INTEGER id PK
+        INTEGER scontrino_id FK
+        INTEGER album_id FK
+        INTEGER quantita
     }
 
-    DIPENDENTE {
-      str id_dipendente PK
-      str nome
-      str cognome
-      str ruolo
-      str codice_negozio FK
+    Negozi {
+        INTEGER codice PK
+        TEXT indirizzo
+        TEXT citta
     }
 
-    ARTISTA {
-      str id_artista PK
-      str nome
-      str nazionalita
+    Dipendenti {
+        INTEGER id PK
+        TEXT nome
+        TEXT cognome
+        INTEGER negozio_id FK
     }
 
-    ALBUM_MUSICALE {
-      str codice PK
-      str titolo
-      float prezzo_vendita
-      str id_artista FK
+    Artisti {
+        INTEGER id PK
+        TEXT nome
+        TEXT cognome
     }
 
-    VENDITA {
-      str id_vendita PK
-      date data
-      str codice_negozio FK
-      float importo_totale
+    AlbumVirtuale {
+        INTEGER codice PK
+        TEXT titolo
+        REAL prezzo
+        REAL prezzo_unitario
+        INTEGER artista_id FK
     }
 
-    RIGA_VENDITA {
-      str id_riga_vendita PK
-      str id_vendita FK
-      str codice_album FK
-      int quantita
-      float prezzo_unitario
+    Scontrino {
+        INTEGER id PK
+        DATE data
+        INTEGER negozio_id FK
+        REAL importo_totale
     }
 
-    NEGOZIO ||--o{ DIPENDENTE : "impiega"
-    ARTISTA ||--o{ ALBUM_MUSICALE : "produce"
-    NEGOZIO ||--o{ VENDITA : "effettua"
-    VENDITA ||--o{ RIGA_VENDITA : "contiene"
-    ALBUM_MUSICALE ||--o{ RIGA_VENDITA : "è venduto in"
+    Negozi ||--o{ Dipendenti : "lavora"
+    Negozi ||--o{ Scontrino : "effettua"
+    Artisti ||--o{ AlbumVirtuale : "produce"
+    Scontrino ||--o{ RigheScontrino : "dettaglia"
+    RigheScontrino }o--|| AlbumVirtuale : "riguarda"
 ```
