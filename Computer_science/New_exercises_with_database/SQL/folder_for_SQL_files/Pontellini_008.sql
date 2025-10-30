@@ -152,5 +152,4 @@ WHERE AlbumVirtuale.artista_id = Artisti.id;
 
 SELECT artista_id, COUNT(*) AS numero_album, AVG(prezzo) AS prezzo_medio
 FROM AlbumVirtuale
->>>>>>> 5fb1f36090dc6e0f3c0c0fab2599082233b45efa
 GROUP BY artista_id;
