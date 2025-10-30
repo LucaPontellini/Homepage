@@ -31,20 +31,20 @@ erDiagram
       float superficie_totale
       str localita
       str comune
-      list classe_esposizione
+      str classe_esposizione
       int numero_filari
     }
 
     PARCELLA {
       str codice_parcella PK
       float superficie
-      list classe_esposizione
+      str classe_esposizione
     }
 
     VITIGNI {
       str nome_scientifico
       str nome_comune
-      tuple colore_bacca
+      str colore_bacca
       str origine_genetica
     }
 
@@ -56,7 +56,7 @@ erDiagram
     ETICHETTA_DEL_VINO {
       str nome
       int annata
-      list tipologia
+      str tipologia
     }
 
     AZIENDA_VINICOLA ||--o{ VIGNETO : possiede
