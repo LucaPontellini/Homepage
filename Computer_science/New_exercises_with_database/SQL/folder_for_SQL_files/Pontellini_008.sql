@@ -1,22 +1,26 @@
 -- database: :memory:
--- Query di complessità crescente per il database Music Store
+-- Query di complessità crescente per il database Music Store.
 
--- QUERY 1: Selezione semplice
--- Recuperare tutti gli album di Vasco Rossi ordinati per prezzo
+-- QUERY 1: Selezione semplice.
+-- Recuperare tutti gli album di Vasco Rossi ordinati per prezzo.
 
+-- QUERY 2: Join semplice.
+-- Elencare tutti gli album con il nome e cognome dell'artista.
 
--- Risultato atteso: 4 album di Vasco Rossi (Vivere, Albachiara, Colpa d'Alfredo, Bollicine)
+-- QUERY 3: Aggregazione con GROUP BY .
+-- Contare il numero di album per ogni artista e il prezzo medio.
 
+-- QUERY 4: Query annidata (subquery).
+-- Trovare tutti gli album il cui prezzo è superiore alla media dei prezzi degli album di tutti gli artisti.
 
--- QUERY 2: Join semplice
--- Elencare tutti gli album con il nome e cognome dell'artista
--- Risultato atteso: 13 album con i relativi artisti
+-- QUERY 5: Join con aggregazione.
+-- Calcolare il totale delle vendite per ogni artista.
 
+-- QUERY 6: Query con wildcards (LIKE).
+-- Trovare album con 'a' nel titolo.
 
--- QUERY 3: Aggregazione con GROUP BY
--- Contare il numero di album per ogni artista e il prezzo medio
-
--- Risultato atteso: Vasco Rossi con 4 album, Lucio Battisti con 3, etc.
+-- QUERY 7: LEFT JOIN con aggregazione.
+-- Elencare tutti gli artisti e il numero di album venduti (incluso 0 se non hanno vendite).
 
 CREATE TABLE Negozi (
     codice INTEGER PRIMARY KEY,
@@ -141,15 +145,84 @@ INSERT INTO RigheScontrino (id, scontrino_id, album_id, quantita) VALUES
 (15, 10, 1, 1),
 (16, 10, 9, 2);
 
-SELECT titolo, prezzo
-FROM AlbumVirtuale
-WHERE artista_id = 3
-ORDER BY prezzo;
+-- Query di complessità crescente per il database Music Store
 
-SELECT AlbumVirtuale.titolo, Artisti.nome, Artisti.cognome
-FROM AlbumVirtuale, Artisti
-WHERE AlbumVirtuale.artista_id = Artisti.id;
 
-SELECT artista_id, COUNT(*) AS numero_album, AVG(prezzo) AS prezzo_medio
-FROM AlbumVirtuale
-GROUP BY artista_id;
+-- QUERY 1: Selezione semplice
+-- Recuperare tutti gli album di Vasco Rossi ordinati per prezzo
+SELECT AV.titolo, AV.prezzo, A.nome, A.cognome
+FROM AlbumVirtuale AV
+JOIN Artisti A
+ON A.id = AV.artista_id
+WHERE A.nome = "Vasco" AND A.cognome = "Rossi";
+
+-- QUERY 2: Join semplice
+-- Elencare tutti gli album con il nome e cognome dell'artista
+SELECT AV.titolo, A.nome, A.cognome
+FROM AlbumVirtuale AV
+JOIN Artisti A
+ON A.id = AV.artista_id;
+
+-- QUERY 3: Aggregazione con GROUP BY
+-- Contare il numero di album per ogni artista e il prezzo medio
+SELECT A.nome, A.cognome, COUNT(A.id) AS numero_album, AVG(AV.prezzo) AS prezzo_medio
+FROM AlbumVirtuale AV
+JOIN Artisti A
+ON A.id = AV.artista_id
+WHERE A.cognome = "Ramazzotti"
+GROUP BY A.id, A.cognome
+HAVING numero_album >= 2 AND prezzo_medio > 16;
+
+-- QUERY 4: Query annidata (subquery)
+-- Trovare tutti gli album il cui prezzo è superiore alla media dei prezzi degli album di tutti gli artisti
+
+-- 1. media dei prezzi degli album di tutti gli artisti
+SELECT AVG(AV.prezzo) AS prezzo_medio
+FROM AlbumVirtuale AV;
+-- 16.22
+
+-- 2. Trovare tutti gli album il cui prezzo è superiore a 16.22
+SELECT AV.titolo, AV.prezzo
+FROM AlbumVirtuale AV
+WHERE AV.prezzo > 16.22;
+
+-- Trovare tutti gli album il cui prezzo è superiore alla media dei prezzi degli album di tutti gli artisti
+SELECT AV.titolo, AV.prezzo
+FROM AlbumVirtuale AV
+WHERE AV.prezzo > 
+    (SELECT AVG(AV.prezzo) AS prezzo_medio
+    FROM AlbumVirtuale AV);
+
+
+-- QUERY 5: Join con aggregazione
+-- Calcolare il totale delle vendite per ogni artista
+
+SELECT A.nome, A.cognome, SUM(S.importo_totale) AS totale_vendite
+FROM Artisti A
+JOIN AlbumVirtuale AV
+ON A.id = AV.artista_id
+JOIN RigheScontrino RS
+ON AV.codice = RS.album_id
+JOIN Scontrino S
+ON RS.scontrino_id = S.id
+GROUP BY A.id, A.nome, A.cognome;
+
+-- QUERY 6: Query con wildcards (LIKE)
+-- Trovare album con 'a' nel titolo
+
+SELECT AV.titolo
+FROM AlbumVirtuale AV
+WHERE AV.titolo LIKE 'a%';
+
+-- QUERY 7: LEFT JOIN con aggregazione
+-- Elencare tutti gli artisti e il numero di album venduti (incluso 0 se non hanno vendite)
+
+SELECT A.nome, A.cognome, COUNT(RS.album_id) AS numero_album_venduti
+FROM Artisti A
+LEFT JOIN AlbumVirtuale AV
+ON A.id = AV.artista_id
+LEFT JOIN RigheScontrino RS
+ON AV.codice = RS.album_id
+LEFT JOIN Scontrino S
+ON RS.scontrino_id = S.id
+GROUP BY A.id, A.nome, A.cognome;
