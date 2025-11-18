@@ -41,16 +41,15 @@ def detect_existing_venv():
                     return item
     return None
 
-def pip_path(env_name):
-    return os.path.join(env_name, 'Scripts' if platform.system() == 'Windows' else 'bin', 'pip')
-
 def python_path(env_name):
     return os.path.join(env_name, 'Scripts' if platform.system() == 'Windows' else 'bin', 'python')
 
 def ensure_pip_in_venv(env_name):
-    if os.path.exists(pip_path(env_name)):
-        return
-    subprocess.run([python_path(env_name), '-m', 'ensurepip', '--upgrade'])
+    try:
+        subprocess.run([python_path(env_name), '-m', 'ensurepip', '--upgrade'])
+        subprocess.run([python_path(env_name), '-m', 'pip', 'install', '--upgrade', 'pip'])
+    except Exception as e:
+        print(f"⚠️ Errore durante ensurepip: {e}")
 
 def create_virtualenv(env_name='venv'):
     subprocess.run([sys.executable, '-m', 'venv', env_name])
@@ -60,10 +59,10 @@ def create_virtualenv(env_name='venv'):
 
 def ensure_stdlib_list_installed(env_name):
     try:
-        result = subprocess.run([pip_path(env_name), 'show', 'stdlib-list'], capture_output=True, text=True)
+        result = subprocess.run([python_path(env_name), '-m', 'pip', 'show', 'stdlib-list'], capture_output=True, text=True)
         if result.returncode != 0 or 'Name: stdlib-list' not in result.stdout:
             print("📦 stdlib-list non trovato. Lo installo...")
-            subprocess.run([pip_path(env_name), 'install', 'stdlib-list'])
+            subprocess.run([python_path(env_name), '-m', 'pip', 'install', 'stdlib-list'])
         else:
             print("✅ stdlib-list già presente.")
     except Exception as e:
@@ -73,7 +72,11 @@ def get_standard_modules():
     try:
         from stdlib_list import stdlib_list
         version = f"{sys.version_info.major}.{sys.version_info.minor}"
-        return set(stdlib_list(version)).union(set(sys.builtin_module_names))
+        try:
+            return set(stdlib_list(version)).union(set(sys.builtin_module_names))
+        except Exception:
+            print("⚠️ stdlib-list non supporta questa versione, uso fallback 3.13")
+            return set(stdlib_list("3.13")).union(set(sys.builtin_module_names))
     except Exception as e:
         print(f"❌ Errore durante l'import di stdlib_list: {e}")
         return set()
@@ -132,7 +135,7 @@ def map_to_pypi(imports):
 
 def get_installed_packages(env_name):
     try:
-        result = subprocess.run([pip_path(env_name), 'freeze'], capture_output=True, text=True)
+        result = subprocess.run([python_path(env_name), '-m', 'pip', 'freeze'], capture_output=True, text=True)
         lines = result.stdout.strip().split('\n')
         packages = set()
         for line in lines:
@@ -164,7 +167,7 @@ def write_requirements(packages):
 
 def install_requirements(env_name):
     print("📥 Installazione delle dipendenze in corso...")
-    result = subprocess.run([pip_path(env_name), 'install', '-r', 'requirements.txt'], capture_output=True, text=True)
+    result = subprocess.run([python_path(env_name), '-m', 'pip', 'install', '-r', 'requirements.txt'], capture_output=True, text=True)
     if result.returncode == 0:
         print("✅ Tutte le dipendenze installate correttamente.")
         return
@@ -187,7 +190,7 @@ def install_requirements(env_name):
                         f.write(line)
             EXCLUDED_MODULES.update(failed)
             print("🔁 Riprovo l'installazione...")
-            retry = subprocess.run([pip_path(env_name), 'install', '-r', 'requirements.txt'], capture_output=True, text=True)
+            retry = subprocess.run([python_path(env_name), '-m', 'pip', 'install', '-r', 'requirements.txt'], capture_output=True, text=True)
             if retry.returncode == 0:
                 print("✅ Installazione completata dopo la correzione automatica.")
             else:
@@ -210,11 +213,15 @@ def main():
         print("⚠️ Nessun ambiente virtuale trovato. Lo creo ora...")
         venv = create_virtualenv()
 
+    # Controllo e installazione stdlib-list
     ensure_stdlib_list_installed(venv)
+
+    # Gestione moduli standard
     global EXCLUDED_MODULES
     EXCLUDED_MODULES = get_standard_modules()
     EXCLUDED_MODULES.update({'Queue', 'StringIO', 'cgi', 'compression', 'distutils'})
 
+    # Analisi degli import nei file Python
     imports = find_imports('.')
     valid, ignored = map_to_pypi(imports)
     installed = get_installed_packages(venv)
@@ -223,21 +230,26 @@ def main():
     combined = set(valid).union(installed)
     all_packages = {pkg for pkg in combined if is_pypi_package(pkg)}
 
+    # Aggiornamento requirements.txt
     updated = write_requirements(all_packages)
 
+    # Installazione pacchetti
     if updated:
         install_requirements(venv)
     else:
         print("📥 Nessuna installazione necessaria: ambiente già aggiornato.")
 
+    # Comando di attivazione
     activate_cmd = get_activate_command(venv, system_override=system)
     print(f"\n🚀 Per attivare l'ambiente virtuale:\n{activate_cmd}")
 
+    # Moduli ignorati
     if ignored:
         print("\n📄 Moduli ignorati (non installabili o locali):")
         for mod in ignored:
             print(" -", mod)
 
+    # Comandi utili
     print("\n📘 Comandi utili per gestire il tuo ambiente virtuale:")
     print("────────────────────────────────────────────────────────")
     print("🔹 Attivazione:")
@@ -245,12 +257,12 @@ def main():
     print("🔹 Disattivazione:")
     print("    deactivate")
     print("🔹 Installazione pacchetti:")
-    print("    pip install nome_pacchetto")
+    print("    python -m pip install nome_pacchetto")
     print("🔹 Aggiornamento requirements.txt:")
     print("    python setup_env.py")
     print("🔹 Ricostruzione ambiente da zero:")
     print("    python -m venv .venv")
-    print("    pip install -r requirements.txt")
+    print("    python -m pip install -r requirements.txt")
     print("────────────────────────────────────────────────────────")
 
 if __name__ == "__main__":
