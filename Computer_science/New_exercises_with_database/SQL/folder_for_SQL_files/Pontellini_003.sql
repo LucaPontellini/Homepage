@@ -1,4 +1,4 @@
--- database: db.sqlite
+-- database: :memory:
 -- Query con GROUP BY e funzioni aggregate:
 
 -- Seleziona la quantità totale prodotta per anno.

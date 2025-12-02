@@ -1,4 +1,4 @@
--- database: /path/to/database.db
+-- database: :memory:
 -- 1. Creare le tabelle del modello ER
 -- 2. Inserire dati nelle tabelle con le istruzioni di INSERT (2-3 righe per tabella)
 -- 3. Fare le seguenti query:

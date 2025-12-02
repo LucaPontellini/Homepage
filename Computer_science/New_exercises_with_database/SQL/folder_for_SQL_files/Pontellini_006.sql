@@ -1,3 +1,4 @@
+-- database: :memory:
 CREATE TABLE IF NOT EXISTS Autori (
     Id INTEGER PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL,
