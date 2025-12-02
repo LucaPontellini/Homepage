@@ -1,10 +1,11 @@
 import http.server
 import socketserver
+import os
 import json
 from urllib.parse import urlparse, parse_qs
 
+DB_FILE = os.path.join(os.path.dirname(__file__), "es12_db_biblioteca.json")
 PORT = 3001
-DB_FILE = 'es12_db_biblioteca.json'
 
 class BibliotecaHandler(http.server.SimpleHTTPRequestHandler):
     def _set_headers(self, code=200):
