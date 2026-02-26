@@ -9,7 +9,9 @@ Here on my GitHub, you'll find a variety of projects that I've been working on. 
 ### Other Projects
 - [End-of-Year-Project-for-Computer-Science-Poker](https://github.com/LucaPontellini/End-of-Year-Project-for-Computer-Science-Poker.git) (Version 1.0): An interactive casino simulation built with Python, HTML, CSS, JavaScript, and Flask. It features a sophisticated game engine, a dynamic user interface, and a fully operational cashier module. Currently, the available game is poker, with more games to be added in the future.
 
-- [Christmas-project](https://github.com/LucaPontellini/Christmas-project.git) (Version 2.0): A comprehensive data collection system to manage users and the cashier in a casino environment. It is an extension of the [End-of-Year-Project-for-Computer-Science-Poker](https://github.com/LucaPontellini/End-of-Year-Project-for-Computer-Science-Poker.git) and integrates seamlessly with it, handling user information efficiently and securely. Built with Flask, HTML, CSS, JavaScript, and JSON.
+- [Christmas-project](https://github.com/LucaPontellini/Christmas-project.git) (Version 1.0): A comprehensive data collection system to manage users and the cashier in a casino environment. It is an extension of the [End-of-Year-Project-for-Computer-Science-Poker](https://github.com/LucaPontellini/End-of-Year-Project-for-Computer-Science-Poker.git) and integrates seamlessly with it, handling user information efficiently and securely. Built with Flask, HTML, CSS, JavaScript, and JSON.
+
+- [Christmas-Project-v2.0-Full-Refresh](https://github.com/LucaPontellini/Christmas-Project-v2.0-Full-Refresh.git) (Version 2.0): A fully renewed and improved version of the Christmas Project, featuring a redesigned interface, cleaner structure, and a smoother workflow. This refresh enhances usability, performance, and maintainability while keeping full compatibility with the original system.
 
 ## 🌱 I’m currently learning ...
 
