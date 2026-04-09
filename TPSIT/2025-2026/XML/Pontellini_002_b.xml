@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentazioni xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="Pontellini_002_a.xsd">
+
+  <documentazione lang="Python" titolo="Documentazione Python">
+
+    <contenuto type="variabili">
+      <spiegazione>
+        Le variabili servono a memorizzare valori.
+      </spiegazione>
+      <codice language="Python">
+        x = 5
+        nome = "Luca"
+        print(x, nome)
+      </codice>
+    </contenuto>
+
+    <contenuto type="selezione">
+      <spiegazione>
+        La selezione permette di eseguire istruzioni diverse in base a condizioni.
+      </spiegazione>
+      <codice language="Python">
+        x = 10
+        if x &gt; 5:
+            print("Maggiore di 5")
+        elif x == 5:
+            print("Uguale a 5")
+        else:
+            print("Minore di 5")
+      </codice>
+    </contenuto>
+
+    <contenuto type="liste">
+      <spiegazione>
+        Le liste sono strutture dati dinamiche e modificabili.
+      </spiegazione>
+      <codice language="Python">
+        numeri = [1, 2, 3]
+        numeri.append(4)
+        print(numeri)  # [1, 2, 3, 4]
+      </codice>
+    </contenuto>
+
+    <contenuto type="dizionari">
+      <spiegazione>
+        I dizionari memorizzano coppie chiave-valore.
+      </spiegazione>
+      <codice language="Python">
+        studente = {"nome": "Luca", "eta": 20}
+        print(studente["nome"])  # Luca
+      </codice>
+    </contenuto>
+
+    <contenuto type="tuple">
+      <spiegazione>
+        Le tuple sono strutture dati statiche e immutabili.
+      </spiegazione>
+      <codice language="Python">
+        coordinate = (10, 20)
+        print(coordinate[0])  # 10
+      </codice>
+    </contenuto>
+
+    <contenuto type="iterazione">
+      <spiegazione>
+        I cicli for e while ripetono istruzioni più volte.
+      </spiegazione>
+      <codice language="Python">
+        for i in range(3):
+            print(i)
+
+        j = 0
+        
+        while j < 3:
+            print(j)
+            j += 1
+      </codice>
+    </contenuto>
+
+    <contenuto type="funzioni">
+      <spiegazione>
+        Le funzioni servono a riutilizzare istruzioni.
+      </spiegazione>
+      <codice language="Python">
+        def saluta():
+            print("Ciao mondo")
+
+        saluta()
+      </codice>
+    </contenuto>
+
+    <contenuto type="classi">
+      <spiegazione>
+        Le classi permettono di creare oggetti con attributi e metodi.
+      </spiegazione>
+      <codice language="Python">
+        class Studente:
+            def __init__(self, nome):
+                self.nome = nome
+
+            def saluta(self):
+                print("Ciao, sono", self.nome)
+
+        s = Studente("Anna")
+        s.saluta()
+      </codice>
+    </contenuto>
+
+  </documentazione>
+
+</documentazioni>

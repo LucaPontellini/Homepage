@@ -1,0 +1,21 @@
+rubrica:
+  - nome: !!str "Sabrina Torelli"
+    voto_pratico: !!int 7
+    voto_teorico: !!int 5
+    media: !!float 6.0
+    insufficiente: !!str "no"
+    commento: !!str "Buona prova pratica, ma nella teoria c'è da migliorare." 
+
+  - nome: !!str "Edoardo Mattioli"
+    voto_pratico: !!int 4
+    voto_teorico: !!int 5
+    media: !!float 4.5
+    insufficiente: !!str "sì"
+    commento: !!str "Impegno poco presente e risultati insufficienti. Necessita di una maggiore dedizione alla materia."
+
+  - nome: !!str "Silvano Vacondio"
+    voto_pratico: !!int 8
+    voto_teorico: !!int 7
+    media: !!float 7.5
+    insufficiente: !!str "no"
+    commento: !!str "Ottima preparazione sia pratica che teorica. Abbastanza costante."

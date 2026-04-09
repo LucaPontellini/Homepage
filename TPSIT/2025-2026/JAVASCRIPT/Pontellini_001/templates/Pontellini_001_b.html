@@ -1,0 +1,64 @@
+<!-- Presa a modello la struttura che trovate sul libro a pag. 102 (quella dei libri con autore, edizione, ecc.), effettuare:
+- creazione di una pagina HTML con una form per inserire nuovi libri
+- al submit (invio della form) creare/modificare un file .json ben strutturato secondo le regole viste a lezione contenente una collezione di libri
+(quindi ad ogni invio si aggiunge un libro alla biblioteca)
+- visualizzare successivamente su una nuova pagina HTML il contenuto del JSON (la biblioteca) in formato tabellare
+
+OPZIONALE:
+- uso dei CSS (formattazione ad esempio del colore del carattere, del font, del peso, ecc.)
+- controlli in javascript
+
+NB: la lettura/scrittura del file .json va fatta in javascript e in locale -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+
+    <!-- Icona del sito (favicon.ico) -->
+    <link rel="icon" href="../static/images/favicon.ico">
+
+    <!-- File CSS -->
+    <link rel="stylesheet" href="../static/Pontellini_001.css">
+</head>
+
+<body>
+
+    <!-- Banner -->
+    <img class="banner" src="../static/images/Biblioteca.png" alt="Biblioteca">
+
+    <div class="container">
+        <h1>Biblioteca</h1>
+
+        <!-- Caricamento JSON -->
+        <div class="file-wrapper">
+            <label>Carica il file JSON:</label>
+            <input type="file" id="fileJSON" accept=".json">
+        </div>
+
+        <!-- Tabella dei libri -->
+        <table id="tabellaLibri">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Numero</th>
+                    <th>Titolo</th>
+                    <th>Autore</th>
+                    <th>Edizione</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Torna all’inserimento -->
+        <a href="../templates/Pontellini_001_a.html">
+            <button style="margin-top: 25px; width: 80%;">Torna all'inserimento</button>
+        </a>
+    </div>
+
+<script src="../static/js/Pontellini_001_b.js"></script>
+
+</body>
+</html>

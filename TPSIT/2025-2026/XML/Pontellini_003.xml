@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rubrica xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="Pontellini_003.xsd">
+  <studente>
+    <nome>Sabrina Torelli</nome>
+    <voto_pratico>7</voto_pratico>
+    <voto_teorico>5</voto_teorico>
+    <media>6.0</media>
+    <insufficiente>no</insufficiente>
+    <commento>Buona prova pratica, ma nella teoria c'è da migliorare.</commento>
+  </studente>
+
+  <studente>
+    <nome>Edoardo Mattioli</nome>
+    <voto_pratico>4</voto_pratico>
+    <voto_teorico>5</voto_teorico>
+    <media>4.5</media>
+    <insufficiente>sì</insufficiente>
+    <commento>Impegno poco presente e risultati insufficienti. Necessita di una maggiore dedizione alla materia.</commento>
+  </studente>
+
+  <studente>
+    <nome>Silvano Vacondio</nome>
+    <voto_pratico>8</voto_pratico>
+    <voto_teorico>7</voto_teorico>
+    <media>7.5</media>
+    <insufficiente>no</insufficiente>
+    <commento>Ottima preparazione sia pratica che teorica. Abbastanza costante.</commento>
+  </studente>
+</rubrica>

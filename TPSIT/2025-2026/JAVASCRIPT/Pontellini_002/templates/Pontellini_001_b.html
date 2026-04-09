@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Dati Studente</title>
+
+    <link rel="stylesheet" href="../static/Pontellini_001.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Dati Studente</h1>
+
+    <pre id="outputJSON"></pre>
+
+    <button onclick="window.location.href='Pontellini_001_a.html'">
+        Torna alla form
+    </button>
+</div>
+
+<script>
+    // Recupero del JSON dal localStorage
+    const dati = localStorage.getItem("studente");
+
+    if (dati) {
+        document.getElementById("outputJSON").textContent =
+            JSON.stringify(JSON.parse(dati), null, 4);
+    } else {
+        document.getElementById("outputJSON").textContent =
+            "Nessun dato trovato";
+    }
+</script>
+
+</body>
+</html>

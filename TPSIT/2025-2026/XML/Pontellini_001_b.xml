@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rubrica xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="Pontellini_001_a.xsd">
+
+  <persona>
+    <nome>Giulia</nome>
+    <cognome>Rossi</cognome>
+    <indirizzo>Via delle Rose 12, Milano</indirizzo>
+    <telefono>+39 347 1234567</telefono>
+    <telefono>+39 02 9876543</telefono>
+    <email>giulia.rossi@example.com</email>
+    <email>g.rossi@azienda.it</email>
+    <sitoWeb>http://www.giuliarossi.it</sitoWeb>
+  </persona>
+
+  <persona>
+    <nome>Marco</nome>
+    <cognome>Bianchi</cognome>
+    <indirizzo>Corso Italia 45, Roma</indirizzo>
+    <telefono>+39 06 1234567</telefono>
+    <email>marco.bianchi@gmail.com</email>
+  </persona>
+
+</rubrica>

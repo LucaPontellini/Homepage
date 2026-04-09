@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="rubrica">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="studente" type="Studente" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="Studente">
+    <xs:sequence>
+      <xs:element name="nome" type="xs:string"/>
+      <xs:element name="voto_pratico" type="Voto"/>
+      <xs:element name="voto_teorico" type="Voto"/>
+      <xs:element name="media" type="Media"/>
+      <xs:element name="insufficiente" type="Insufficiente"/>
+      <xs:element name="commento" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Voto">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Media">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0.0"/>
+      <xs:maxInclusive value="10.0"/>
+      <xs:pattern value="\d{1,2}(\.\d)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Insufficiente">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="sì"/>
+      <xs:enumeration value="no"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

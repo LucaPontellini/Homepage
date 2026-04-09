@@ -1,0 +1,107 @@
+<!-- Creare una form per la registrazione di studenti in cui vi siano i seguenti campi da validare:
+
+- nome
+- cognome
+- data di nascita
+- codice fiscale
+- scelta multipla classe
+- scelta multipla sezione
+- checkbox ripetente
+- anni ripetuti
+- scelta multipla uscita (lavoro, università, ...)
+- bottone di submit
+
+All'invio effettuare la validazione compatibilmente con i campi.
+Se la form viene validata mostrare una pagina html (url a vostra scelta) con il JSON generato dai dati raccolti,
+altrimenti aggiungere un bordo rosso intorno al campo non validato e scrivere in un div posizionato dopo il bottone di submit campo e errore rilevato. -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scuola - Registrazione Studente</title>
+    <link rel="stylesheet" href="../static/Pontellini_001.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Registrazione Studente</h1>
+
+    <form id="formStudente">
+
+        <p>* Campi obbligatori</p>
+
+        <label for="nome">Nome *</label>
+        <input type="text" id="nome">
+
+        <label for="cognome">Cognome *</label>
+        <input type="text" id="cognome">
+
+        <label for="dataNascita">Data di nascita *</label>
+        <input type="date" id="dataNascita">
+
+        <label for="codiceFiscale">Codice fiscale *</label>
+        <input type="text" id="codiceFiscale">
+
+        <label for="classe">Classe *</label>
+        <select id="classe">
+            <option value="">Seleziona</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+        <label for="sezione">Sezione *</label>
+        <select id="sezione">
+            <option value="">Seleziona</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+            <option>F</option> 
+            <option>G</option>
+            <option>H</option>
+            <option>I</option>
+            <option>L</option> 
+            <option>M</option>
+            <option>N</option>
+            <option>O</option>
+            <option>P</option>
+            <option>Q</option>
+            <option>R</option> 
+            <option>S</option>
+            <option>T</option>
+            <option>U</option>
+            <option>V</option>
+            <option>Z</option>
+        </select>
+
+        <label>
+            <input type="checkbox" id="ripetente"> Ripetente
+        </label>
+
+        <input type="number" id="anniRipetuti" min="0" placeholder="Anni ripetuti">
+
+        <label for="uscita">Uscita *</label>
+        <select id="uscita">
+            <option value="">Seleziona</option>
+            <option value="lavoro">Lavoro</option>
+            <option value="universita">Università</option>
+            <option value="altro">Altro</option>
+        </select>
+
+        <button type="submit">Invia</button>
+
+        <div id="errori"></div>
+
+    </form>
+</div>
+
+<script src="../static/js/Pontellini_001.js"></script>
+
+</body>
+</html>

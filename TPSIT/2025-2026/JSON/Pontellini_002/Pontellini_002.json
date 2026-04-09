@@ -1,0 +1,44 @@
+{
+    "candidati" : [
+        {
+            "nome" : "Mario",
+            "cognome" : "Rossi",
+            "partito" : {
+                "nome" : "Lega",
+                "coalizione" : "centro",
+                "capogruppo" : {
+                    "nome" : "Giorgia",
+                    "cognome" : "Meloni",
+                    "data_nascita" : "15/01/1977",
+                    "anni_militanza" : 30
+                },
+                "logo" : "https:www.google.com/images/image1.jpg"
+            },
+            "partiti_passati" : [
+                {
+                    "nome" : "Lega",
+                    "coalizione" : "centro",
+                    "capogruppo" : {
+                        "nome" : "Giorgia",
+                        "cognome" : "Meloni",
+                        "data_nascita" : "15/01/1977",
+                        "anni_militanza" : 30
+                    },
+                    "logo" : "https:www.google.com/images/image2.jpg"
+                }, {
+                    "nome" : "Lega",
+                    "coalizione" : "centro",
+                    "capogruppo" : {
+                        "nome" : "Giorgia",
+                        "cognome" : "Meloni",
+                        "data_nascita" : "15/01/1977",
+                        "anni_militanza" : 30
+                    },
+                    "logo" : "https:www.google.com/images/image3.jpg"
+                }   
+            ],
+            "voti" : 15612,
+            "eletto" : true
+        }
+    ]
+}

@@ -1,0 +1,123 @@
+/* Reset base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sfondo */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../static/images/Classe.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Overlay scuro */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Container form */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* Titolo */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Label */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Input e select */
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* Focus input */
+input:focus,
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Bottone */
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover bottone */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Errori */
+#errori {
+    margin-top: 15px;
+    padding: 10px;
+    color: red;
+    font-weight: bold;
+    background-color: #ffe6e6;
+    border: 1px solid red;
+    border-radius: 6px;
+    display: block;
+}
+
+/* Nasconde il div errori se è vuoto */
+#errori:empty {
+    display: none;
+}
+
+/* Campi non validi */
+input.error,
+select.error {
+    border: 2px solid red;
+}

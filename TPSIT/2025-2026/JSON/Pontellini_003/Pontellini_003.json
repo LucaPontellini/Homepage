@@ -1,0 +1,131 @@
+{
+  "competizione": {
+    "nome_ufficiale": "Triathlon Riviera Adriatica 2026",
+    "data_di_inizio": "2026-06-10",
+    "data_di_conclusione": "2026-06-12",
+    "impianto_sportivo": "Centro Sportivo Regionale di Riccione",
+    "quota_di_iscrizione": "45.00",
+    "gare": [
+      {
+        "titolo": "Gara di Nuoto 1500m",
+        "disciplina": "nuoto",
+        "data_ora_inizio": "2026-06-10T09:00",
+        "durata_prevista": "01:00",
+        "categoria": "senior",
+        "descrizione_regolamento": "Gara in acque libere con percorso ad anello. È obbligatoria la muta se la temperatura dell’acqua è inferiore a 18°C.",
+        "partecipanti": {
+          "atleti": [
+            {
+              "nome": "Marco",
+              "cognome": "Bianchi",
+              "data_di_nascita": "1994-03-12",
+              "nazionalita": "Italiana",
+              "disciplina_praticata": "nuoto"
+            },
+            {
+              "nome": "Lucas",
+              "cognome": "Schneider",
+              "data_di_nascita": "1992-11-08",
+              "nazionalita": "Tedesca",
+              "disciplina_praticata": "nuoto"
+            }
+          ],
+          "squadre": []
+        },
+        "risultati_finali": [
+          {
+            "posizione": 1,
+            "punteggio": 25
+          },
+          {
+            "posizione": 2,
+            "punteggio": 18
+          }
+        ]
+      },
+      {
+        "titolo": "Staffetta 4x400",
+        "disciplina": "atletica",
+        "data_ora_inizio": "2026-06-11T15:30",
+        "durata_prevista": "00:45",
+        "categoria": "juniores",
+        "descrizione_regolamento": "Ogni squadra deve schierare 4 atleti. Cambio obbligatorio nella zona delimitata.",
+        "partecipanti": {
+          "atleti": [],
+          "squadre": [
+            {
+              "nome_squadra": "Atletica Rimini",
+              "anno_fondazione": 1987,
+              "giocatori": [
+                {
+                  "nome": "Andrea",
+                  "cognome": "Rossi",
+                  "data_di_nascita": "2008-05-21",
+                  "ruolo": "1ª frazione"
+                },
+                {
+                  "nome": "Lorenzo",
+                  "cognome": "Guidi",
+                  "data_di_nascita": "2007-09-14",
+                  "ruolo": "2ª frazione"
+                },
+                {
+                  "nome": "Matteo",
+                  "cognome": "Seri",
+                  "data_di_nascita": "2008-01-30",
+                  "ruolo": "3ª frazione"
+                },
+                {
+                  "nome": "Davide",
+                  "cognome": "Monti",
+                  "data_di_nascita": "2007-12-02",
+                  "ruolo": "4ª frazione"
+                }
+              ]
+            }
+          ]
+        },
+        "risultati_finali": [
+          {
+            "posizione": 1,
+            "punteggio": 30
+          }
+        ]
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Punto Medico Centrale",
+        "tipologia": "assistenza medica",
+        "posizione": 12,
+        "orari_di_disponibilita": "08:00-18:00"
+      },
+      {
+        "nome": "Area Ristoro Atleti",
+        "tipologia": "ristoro",
+        "posizione": 5,
+        "orari_di_disponibilita": "07:30-19:00"
+      },
+      {
+        "nome": "Zona Tecnica Bici",
+        "tipologia": "area tecnica",
+        "posizione": 3,
+        "orari_di_disponibilita": "08:00-17:00"
+      }
+    ],
+    "giudici_di_gara": [
+      {
+        "nome": "Giulia",
+        "cognome": "Ferrari",
+        "qualifica": "Giudice federale",
+        "anni_di_esperienza": 12
+      },
+      {
+        "nome": "Paolo",
+        "cognome": "Conti",
+        "qualifica": "Arbitro regionale",
+        "anni_di_esperienza": 7
+      }
+    ]
+  }
+}

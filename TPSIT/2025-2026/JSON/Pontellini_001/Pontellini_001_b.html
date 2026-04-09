@@ -1,0 +1,112 @@
+<!-- Presa a modello la struttura che trovate sul libro a pag. 102 (quella dei libri con autore, edizione, ecc.), effettuare:
+- creazione di una pagina HTML con una form per inserire nuovi libri
+- al submit (invio della form) creare/modificare un file .json ben strutturato secondo le regole viste a lezione contenente una collezione di libri
+(quindi ad ogni invio si aggiunge un libro alla biblioteca)
+- visualizzare successivamente su una nuova pagina HTML il contenuto del JSON (la biblioteca) in formato tabellare
+
+OPZIONALE:
+- uso dei CSS (formattazione ad esempio del colore del carattere, del font, del peso, ecc.)
+- controlli in javascript
+
+NB: la lettura/scrittura del file .json va fatta in javascript e in locale -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+
+    <!-- Icona del sito (favicon.ico) -->
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- File CSS -->
+    <link rel="stylesheet" href="Pontellini_001.css">
+</head>
+
+<body>
+
+    <!-- Banner -->
+    <img class="banner" src="images/Biblioteca.png" alt="Biblioteca">
+
+    <div class="container">
+        <h1>Biblioteca</h1>
+
+        <!-- Caricamento JSON -->
+        <div class="file-wrapper">
+            <label>Carica il file JSON:</label>
+            <input type="file" id="fileJSON" accept=".json">
+        </div>
+
+        <!-- Tabella dei libri -->
+        <table id="tabellaLibri">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Numero</th>
+                    <th>Titolo</th>
+                    <th>Autore</th>
+                    <th>Edizione</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Torna all’inserimento -->
+        <a href="Pontellini_001_a.html">
+            <button style="margin-top: 25px; width: 80%;">Torna all'inserimento</button>
+        </a>
+    </div>
+
+<script>
+// Variabile che conterrà la biblioteca caricata
+let biblioteca = null;
+
+// Caricamento del file JSON
+document.getElementById("fileJSON").addEventListener("change", e => {
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+        biblioteca = JSON.parse(reader.result);
+        aggiornaTabella();
+    };
+
+    reader.readAsText(file);
+});
+
+// Aggiorna la tabella HTML
+function aggiornaTabella() {
+    const tbody = document.querySelector("#tabellaLibri tbody");
+    tbody.innerHTML = "";
+
+    // Se non ci sono libri → messaggio
+    if (!biblioteca || biblioteca.libri.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center; padding:20px;">
+                    Nessun libro presente nella biblioteca
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    // Altrimenti mostra i libri
+    biblioteca.libri.forEach(l => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${l.categoria}</td>
+                <td>${l.numero}</td>
+                <td>${l.titolo}</td>
+                <td>${l.autore}</td>
+                <td>${l.edizione}</td>
+            </tr>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- Prendendo spunto dall'esercizio della biblioteca, riprendere la stessa form e utilizzare javascript per colorare il bordo degli elementi che compongono la form stessa 
+di rosso chiaro nel momento in cui sono selezionati con il click del mouse. Allo stesso modo colorarli di rosso scuro quando hanno il focus. -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Inserimento dei libri</title>
+
+    <!-- Icona del sito (favicon.ico) -->
+    <link rel="icon" href="../static/images/favicon.ico">
+
+    <!-- File CSS -->
+    <link rel="stylesheet" href="../static/Pontellini_001.css">
+</head>
+
+<body>
+
+    <!-- Banner superiore -->
+    <img class="banner" src="../static/images/Biblioteca.png" alt="Biblioteca">
+
+    <div class="container">
+
+        <h1>Biblioteca</h1>
+
+        <!-- FORM per inserire un nuovo libro -->
+        <form class="form" id="formLibro" method="POST">
+
+            <!-- Campi del libro -->
+            <input type="text" id="categoria" placeholder="Numero di categoria" required>
+            <input type="text" id="numero" placeholder="Numero del libro" required>
+            <input type="text" id="titolo" placeholder="Titolo" required>
+            <input type="text" id="autore" placeholder="Autore" required>
+            <input type="text" id="edizione" placeholder="Edizione" required>
+
+            <!-- Caricamento di un file JSON esistente -->
+            <div class="file-wrapper">
+                <label>Carica il file JSON:</label>
+                <input type="file" id="fileJSON" accept=".json">
+            </div>
+
+            <!-- Pulsante per aggiungere il libro -->
+            <input type="submit" value="Aggiungi il libro"/>
+
+            <!-- Pulsante per scaricare il JSON aggiornato -->
+            <button id="scaricaJSON" type="button">Scarica il JSON</button>
+
+            <!-- Pulsante per andare alla pagina di visualizzazione -->
+            <a href="../templates/Pontellini_001_b.html">
+                <button type="button" style="margin-top: 20px; width: 100%;">Vai alla tabella</button>
+            </a>
+        </form>
+    </div>
+
+<script src="../static/js/Pontellini_001_a.js"></script>
+
+</body>
+</html>
